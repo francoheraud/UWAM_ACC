@@ -1,0 +1,12 @@
+../Core/Src/sensor_inputs.c:36:21:Constrain	3
+../Core/Src/sensor_inputs.c:42:21:Convert_ADC_Code_To_mV	1
+../Core/Src/sensor_inputs.c:48:21:Convert_Pressure_PSI_from_mV	3
+../Core/Src/sensor_inputs.c:61:21:Convert_Temperature_C_from_mV	1
+../Core/Src/sensor_inputs.c:77:19:Sensors_Init	4
+../Core/Src/sensor_inputs.c:95:19:Sensors_Start	8
+../Core/Src/sensor_inputs.c:112:6:Store_Temperature_Readings	3
+../Core/Src/sensor_inputs.c:122:6:Store_Pressure_Readings	3
+../Core/Src/sensor_inputs.c:137:6:PWM_SetAll	3
+../Core/Src/sensor_inputs.c:162:6:Update_Segment_Temperature_Values	10
+../Core/Src/sensor_inputs.c:189:6:HAL_GPIO_EXTI_Callback	4
+../Core/Src/sensor_inputs.c:209:6:Update_Fan_Speed_Value	2
