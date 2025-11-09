@@ -1,0 +1,222 @@
+% Template for 2025 UWA Motorsport Electrical project brief
+
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[T1]{fontenc}
+\usepackage{titling}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{verbatimbox}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor} % For coloring
+\usepackage{float}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\setlength{\parindent}{0pt}
+\geometry{top=2.54cm,
+left=2.54cm,
+right=2.54cm,
+bottom=2.54cm}
+\setstretch{1.15}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    % filecolor=magenta,      
+    % urlcolor=cyan,
+    % pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+   
+
+
+\begin{document}
+
+
+       % Setting up a title
+    \begin{multicols}{2}
+        \begin{flushleft}
+        {\textbf{\fontsize{22}{30}\selectfont 2025 ACC Firmware Documentation}}
+        \end{flushleft}
+        
+        \begin{flushright}
+            \begin{flushright}
+            \includegraphics[scale=0.22]{Motorsport_Logo.jpg}
+            \end{flushright}
+        \end{flushright}
+    
+    \end{multicols}
+    Nov 2025
+
+    Rev. 1
+
+    Author \& Project Head: Franco Heraud
+
+
+    \begin{multicols}{2}
+        \begin{flushleft}
+            Signed off by: \hrulefill
+        \end{flushleft}
+    \end{multicols}
+    
+\section{Introduction}
+\subsection{Overview}
+
+
+
+
+
+\subsection{Requirements}
+The main functional requirements for the onboard MCU are as follows:
+
+
+\begin{itemize}
+    \item \textbf{Drivers}
+    \begin{itemize}
+        \item Must be dual-CAN compatible (one for data-logging and the other for receiving temperature data from the AMS)
+        \item Preferred to use DMA ADC reads 
+    \end{itemize}
+
+    \item \textbf{Sensors}
+    \begin{itemize}
+        \item Must perform ADC reads on the 4x temperature sensors and 4x pressure sensors and perform the necessary sensor input conversions
+        \item Must receive additional segment temperature data from the
+        CAN bus
+        \item Must accept a tachometer input from one of the fans
+        \item Must perform another ADC read from the power input pins connected to the switch circuit to measure the current power consumption of the synchronous buck controller
+    \end{itemize}
+
+     \item \textbf{Control System + Other Considerations}
+    \begin{itemize}
+        \item The fan speed must be regulated based off the sensor and tachometer inputs as inputs to cool the accumulator
+        \item Preferred to use a PID controller on top of basic threshold logic for controlling the fan speed
+        \item Sensor and power consumption data must be transmitted over the CAN bus for data-logging purposes
+    \end{itemize}
+\end{itemize}
+
+\textit{Any feedback + additional notes would be greatly appreciated.}
+
+
+\section{Sensors}
+\subsection{Fan RPM reading logic}
+
+The main fan RPM calculation logic will utilize a GPIO pin configured as an external interrupt and an internal hardware timer that uses a counter to calculate the pulse frequency in Hz and, hence, the fan RPM. Firstly, we alter the clock configuration settings to ensure that the input clock frequency used by the timer (TIM2 in this case) is 1 MHz. Where the clock is being divided from the input 8 MHz clock.
+
+\medskip
+
+
+
+Then, if we are using a 32-bit counter resolution, the counter period is $=2^{32}$ ticks. This is the number of ticks before the timer overflows, which occurs at:
+
+$$T_{overflow} =\frac{2^{32}}{10^6} \approx 71.58\text{ minutes}$$
+
+Essentially, there is $\Delta t =1/1\text{MHz} = 1\mu s$ per tick. So we just need to count the number of ticks per digital pulse supplied by the tachometer input and find the pulse period using: 
+
+$$T_{pulse}  =\Delta t \times (\text{Count Between Pulses})$$
+
+Thus, we derive the pulse frequency in Hz using:
+
+$$f_{pulse} = \frac{1}{T_{pulse}} = \frac{1}{1\mu s \times \text{Count Between Pulses}} = \frac{10^6 \text{ Hz}}{\text{Count Between Pulses}}$$
+
+
+The core logic implemented through an external interrupt and an internal hardware timer is as follows:
+
+\begin{lstlisting}
+const uint8_t PULSES_PER_REVOLUTION = 1;
+
+static volatile uint32_t tach_last_ticks  = 0;
+static volatile uint32_t tach_delta_ticks = 0;
+static volatile uint8_t  tach_new_period  = 0;
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    if (GPIO_Pin == TACH_IN_Pin) {
+        uint32_t now = __HAL_TIM_GET_COUNTER(&htim2);
+
+        uint32_t delta = now - tach_last_ticks;
+        tach_last_ticks = now;
+
+        if (delta > 0) {
+            tach_delta_ticks = delta;
+            tach_new_period  = 1;
+        }
+    }
+}
+
+void Update_Fan_Speed(SensorInputs_t *si) {
+	if (!tach_new_period || tach_delta_ticks == 0) si->fan_rpm = 0.0f;
+	const float tick_freq_hz = (float)pow(10, 6);
+	float pulse_freq_hz = tick_freq_hz / (float)tach_delta_ticks;
+	si->fan_rpm = (pulse_freq_hz * 60) / (float)PULSES_PER_REVOLUTION;
+}
+\end{lstlisting}
+
+
+
+
+\subsection{Temperature sensor reading logic}
+The ACC internal/external temperature inputs come from a temperature sensor with an in-built thermistor. Given the non-linear relationship between the thermistor temperature and resistance, we must use the provided constants and calibration values from the data sheet [] to accurately convert the input voltage from the ADC inputs to a temperature value in degrees Celsius.
+
+
+...
+
+(WIP)
+
+
+
+\end{document}
+

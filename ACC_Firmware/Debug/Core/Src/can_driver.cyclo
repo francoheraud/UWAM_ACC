@@ -1,0 +1,6 @@
+../Core/Src/can_driver.c:8:19:CAN_InitDriver	8
+../Core/Src/can_driver.c:19:19:CAN_Transmit1	4
+../Core/Src/can_driver.c:31:19:CAN_Transmit2	4
+../Core/Src/can_driver.c:43:19:CAN_Receive	5
+../Core/Src/can_driver.c:55:6:CAN_Test	1
+../Core/Src/can_driver.c:60:26:Config_CAN_Filter	1

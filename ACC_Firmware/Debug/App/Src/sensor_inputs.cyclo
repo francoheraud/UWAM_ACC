@@ -1,0 +1,11 @@
+../App/Src/sensor_inputs.c:11:14:Constrain	3
+../App/Src/sensor_inputs.c:18:14:Convert_Voltage_To_Pressure_PSI	1
+../App/Src/sensor_inputs.c:31:14:Convert_Voltage_To_Temperature_degC	1
+../App/Src/sensor_inputs.c:50:19:Sensors_Init	4
+../App/Src/sensor_inputs.c:68:19:Sensors_Start	8
+../App/Src/sensor_inputs.c:86:6:Update_ADC_Buffers	2
+../App/Src/sensor_inputs.c:95:6:Store_Temperature_Readings	2
+../App/Src/sensor_inputs.c:101:6:Store_Pressure_Readings	2
+../App/Src/sensor_inputs.c:112:6:PWM_SetAll	3
+../App/Src/sensor_inputs.c:166:6:HAL_GPIO_EXTI_Callback	3
+../App/Src/sensor_inputs.c:180:6:Update_Fan_Speed	3
