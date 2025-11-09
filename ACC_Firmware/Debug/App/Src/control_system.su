@@ -1,4 +1,0 @@
-../App/Src/control_system.c:9:14:Highest_Input_Temp	24	static
-../App/Src/control_system.c:18:14:Highest_Seg_Temp	24	static
-../App/Src/control_system.c:29:6:CAN_TransmitAll_SensorData	56	static
-../App/Src/control_system.c:64:6:ACC_Control_Loop	40	static
