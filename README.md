@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # UWAM Accumulator Cooling Control
 ## Brief Overview
 The ACC is a board that takes in data from temperature and pressure sensors, and adjusts the cooling fans of the accumulator when the LV system is on. ACC functionality must include:
