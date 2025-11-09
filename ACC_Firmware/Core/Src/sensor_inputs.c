@@ -5,74 +5,46 @@
 */
 
 #include "sensor_inputs.h"
-#include <string.h>
-#include <math.h>
+
 extern TIM_HandleTypeDef htim2;
 
-#ifndef VDDA_MV_DEFAULT
-#define VDDA_MV_DEFAULT 3300.0f
-#endif
-
-#ifndef ADC_RESOLUTION
-#define ADC_RESOLUTION 4095.0f 			// 12-bit
-#endif
-
-/* Divider on sensors 1..5: 30k (top) / 57.6k (bottom):
-Vadc = Vsensor * 57.6 / (30 + 57.6) = 0.657 * Vsensor
-Undo divider by multiplying by ~1/0.657 = 1.522
-*/
-#ifndef SENSOR_DIVIDER_UNDO_GAIN
-#define SENSOR_DIVIDER_UNDO_GAIN 	1.522f
-#endif
-
-// Honeywell MIPAM1XX050PAAAX (0–50 psi, absolute, 0.5–4.5 V @ 5 V)
-#define P_SENSOR_VSUPPLY 			5.0f // Vs
-#define P_SENSOR_PMIN_PSI 			0.0f
-#define P_SENSOR_PMAX_PSI 			50.0f
-#define PSI_TO_BAR 					0.0689476f
-
-// Some helper functions:
-
-static inline float Constrain(float x, float low, float high) {
+static float Constrain(float x, float low, float high) {
 	if (x < low) return low;
 	if (x > high) return high;
 	return x;
 }
 
-static inline float Convert_ADC_Code_To_mV(uint16_t code) {
-	return ( (float)code * VDDA_MV_DEFAULT ) / ADC_RESOLUTION;
+// Most like wrong -> Made an assumption on the min and max pressures in psi
+static float Convert_Voltage_To_Pressure_PSI(float volts) {
+    const float v_supply    	= 5.0f;		// volts
+    const float pressure_min  	= 0.0f;     // psi
+    const float pressure_max  	= 100.0f;   // psi
+
+    float ratio 	= (volts / v_supply - 0.10f) / 0.80f;
+    ratio 			= Constrain(ratio, 0.0f, 1.0f);
+
+    return pressure_min + ratio * (pressure_max - pressure_min);
 }
 
 
-// SOURCE: ...
-static inline float Convert_Pressure_PSI_from_mV(float mV_adc) {
-	float v_adc = mV_adc / 1000.0f; // V at MCU pin
-	float v_sensor = v_adc * SENSOR_DIVIDER_UNDO_GAIN; // V at sensor pin
-	float ratio = v_sensor / P_SENSOR_VSUPPLY; // Vout / Vs
-	float norm = (ratio - 0.10f) / 0.80f; // 0..1 across range
-	if (norm < 0.0f) norm = 0.0f;
-	if (norm > 1.0f) norm = 1.0f;
-	return P_SENSOR_PMIN_PSI + norm * (P_SENSOR_PMAX_PSI - P_SENSOR_PMIN_PSI);
+// Most likely wrong -> Will need to confirm the proper range of Rt/25 values!!
+static float Convert_Voltage_To_Temperature_degC(float volts) {
+	const float r_ref = 280.0f, r_25 = 2752.0f;				// ohms
+
+	const float v_supply 	= 5.0f;							// volts
+	float r_therm 			= (volts * r_ref) / (v_supply - volts);	// ohms
+	float ratio 			= r_therm / r_25;
+	float ln_ratio 			= log(ratio);
+
+	// assumption made here: will need to physically test the Rt/25 value
+	const float a = 0.003354016f, b = 0.000250275f, c = 2.42945e-6f, d = -7.3121e-8f;
+
+	float temp_inv_K	= a + b * ln_ratio + c * ln_ratio * ln_ratio + d * ln_ratio * ln_ratio * ln_ratio;
+	float temp_K		= 1 / temp_inv_K;
+	float temp_degC		= temp_K - 273.15f;
+
+	return temp_degC;
 }
-
-
-// NOTE: THIS IS WRONG!!
-// I need to either: Do my own calibration to find beta or get the data sheet for the thermistors!!
-static inline float Convert_Temperature_C_from_mV(float mV_adc) {
-	float v_adc = mV_adc / 1000.0f;
-	const float beta = 3991.0f;
-	const float temp_ref = 298.15f; // 25 deg C
-	//const float r0 = (float)pow(10,4), r_fixed = (float)pow(10,4);
-	const float ratio = 20.05f;
-
-	// using the NTC thermistor temperature equation:
-	// 1/T = 1/T0 + 1/beta * ln (R / R0)
-
-	float r_therm =  r_fixed * (v_adc / (3.3f - v_adc));
-	float temp_inv = 1.0f/temp_ref + (1.0f/beta) * log(ratio);
-	return 1.0f / temp_inv;
-}
-
 
 
 HAL_StatusTypeDef Sensors_Init(SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_HandleTypeDef *tim) {
@@ -110,28 +82,30 @@ HAL_StatusTypeDef Sensors_Start(SensorInputs_t *si) {
 	return HAL_OK;
 }
 
-void Store_Temperature_Readings(SensorInputs_t *si) {
-	if (!si) return;
+// Note: A sampling time of atleast 181.5 cycles prevents adc buffer indexes changing according to my testing
+void Update_ADC_Buffers(SensorInputs_t *si) {
 
-	for (uint8_t i = 0; i < 4; i++) {
-		float mV_value = Convert_ADC_Code_To_mV(si->adc_raw[i]);
-		si->temp_c[i] = Convert_Temperature_C_from_mV(mV_value);
-	}
+	// perform a single adc read
+	HAL_ADC_Start(si->adc);
+
+	for (uint8_t i = 0; i < ADC_CH_COUNT; i++)
+		si->adc_mV[i] = (si->adc_raw[i] / (float)ADC_RESOLUTION) * 3.30f;
+}
+
+void Store_Temperature_Readings(SensorInputs_t *si) {
+	for (uint8_t i = 0; i < 4; i++)
+		si->temp_c[i] = Convert_Voltage_To_Temperature_degC(si->adc_mV[i]);
 }
 
 /* Convert and store pressures from adc_raw into pressure_psi[] */
 void Store_Pressure_Readings(SensorInputs_t *si) {
-	if (!si) return;
-
 	// TODO: Do we want PSI or Pa? (1 psi = 6894.757 Pa)
 	// const float PSI_TO_PA = 6894.757f;
-	for (uint8_t i = 4; i < 7; i++) {
-	float mV_value = Convert_ADC_Code_To_mV(si->adc_raw[i]); // in psi
-	si->pressure_psi[i - 4] = Convert_Pressure_PSI_from_mV(mV_value) /* * PSI_TO_PA*/;
-	}
+	for (uint8_t i = 4; i < 7; i++)
+		si->pressure_psi[i - 4] = Convert_Voltage_To_Pressure_PSI(si->adc_mV[i]);
 
 	// TODO: Plz address the non ADC sensor input!!
-	si->pressure_psi[3] = 0.0f;
+	//si->pressure_psi[3] = 0.0f;
 }
 
 // Apply the struct member duty cycles to TIM1 CH1..CH3
@@ -158,6 +132,7 @@ void PWM_SetAll(SensorInputs_t *si) {
 }
 
 
+/*
 // TODO: Add a specific can filter config in the near future??
 // Read segment temperature data on the CAN bus coming from AMS
 bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
@@ -178,7 +153,7 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	return true;
 }
-
+*/
 
 
 //TODO: Verify PULSES_PER_REVOLUTION plz!!
@@ -206,27 +181,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 
-// Guess work for when it comes to detecting the fan rpm
-bool Update_Fan_Speed_Value(SensorInputs_t *si) {
-	if (!si) return false;
-
-	if (!tach_new_period || tach_delta_ticks == 0) {
-	    si->fan_rpm = 0.0f;
-	    return false;
-	}
-
+void Update_Fan_Speed(SensorInputs_t *si) {
+	if (!tach_new_period || tach_delta_ticks == 0) si->fan_rpm = 0.0f;
 	const float tick_freq_hz = (float)pow(10, 6);
 	float pulse_freq_hz = tick_freq_hz / (float)tach_delta_ticks;
 	si->fan_rpm = (pulse_freq_hz * 60) / (float)PULSES_PER_REVOLUTION;
-
-	return true;
 }
-
-
-
-
-
-
-
-
-

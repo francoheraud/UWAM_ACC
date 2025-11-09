@@ -4,10 +4,6 @@
 * Created on: Nov 1, 2025
 * Author: Franc
 *
-*
-* DOCS:
-*
-* 1. https://4donline.ihs.com/images/VipMasterIC/IC/HWSC/HWSC-S-A0012718244/HWSC-S-A0013884204-1.pdf?hkey=CECEF36DEECDED6468708AAF2E19C0C6
 */
 
 
@@ -21,16 +17,19 @@ extern "C" {
 #endif
 
 #include "main.h"
-#include "can_driver.h"
+//#include "can_driver.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <limits.h>
+#include <string.h>
+#include <math.h>
+#include <stdio.h>
 #include <math.h>
 
 
 // pc8 adc no worky >:(
-#define ADC_CH_COUNT 			7
-#define ADC_RESOLUTION		 	4095.0f
+#define ADC_CH_COUNT 			8
+#define ADC_RESOLUTION		 	4095
 #define PWM_RESOLUTION			255
 
 #define TEMP_ACC1_IN0 			0
@@ -89,7 +88,8 @@ HAL_StatusTypeDef Sensors_Start(SensorInputs_t *si);
 void Store_Temperature_Readings(SensorInputs_t *si);
 void Store_Pressure_Readings(SensorInputs_t *si);
 void PWM_SetAll(SensorInputs_t *si);
-
+void Update_Fan_Speed(SensorInputs_t *si);
+void Update_ADC_Buffers(SensorInputs_t *si);
 
 
 #endif /* INC_SENSOR_INPUTS_H_ */

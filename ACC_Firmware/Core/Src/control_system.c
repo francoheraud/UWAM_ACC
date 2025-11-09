@@ -6,7 +6,7 @@
 
 #include "control_system.h"
 
-static float highest_input_temp(SensorInputs_t *si) {
+static float Highest_Input_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < 4; i++) {
 		if (largest_temp < si->temp_c[i])
@@ -15,7 +15,7 @@ static float highest_input_temp(SensorInputs_t *si) {
 	return largest_temp;
 }
 
-static float highest_seg_temp(SensorInputs_t *si) {
+static float Highest_Seg_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < AMS_SEGMENT_COUNT; i++) {
 		if (largest_temp < si->seg_temp_c[i])
@@ -68,11 +68,11 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	Store_Temperature_Readings(si);
 	Store_Pressure_Readings(si);
 
-	float tseg_max 	= highest_seg_temp(si);
-	float tin_max	= highest_input_temp(si);
-	float tmax;
-	if (tseg_max > tin_max) tmax = tseg_max;
-	else tmax = tin_max;
+	float temp_seg_max 	= Highest_Seg_Temp(si);
+	float temp_in_max	= Highest_Input_Temp(si);
+	float temp_max;
+	if (temp_seg_max > temp_in_max) temp_max = temp_seg_max;
+	else temp_max = temp_in_max;
 
 
 	switch (control_state) {
@@ -80,7 +80,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch1_duty_cycle = 0.3f;
 		si->ch2_duty_cycle = 0.3f;
 		si->ch3_duty_cycle = 0.3f;
-		if (tmax > TEMP_THRESHOLD1)
+		if (temp_max > TEMP_THRESHOLD1)
 			control_state = ABOVE_40DEG;
 		break;
 
@@ -88,10 +88,10 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch1_duty_cycle = 0.7f;
 		si->ch2_duty_cycle = 0.7f;
 		si->ch3_duty_cycle = 0.7f;
-		if (tmax > TEMP_THRESHOLD2)
+		if (temp_max > TEMP_THRESHOLD2)
 			control_state = ABOVE_50DEG;
 
-		else if (tmax < TEMP_THRESHOLD1 - HYSTERESIS_WIDTH)
+		else if (temp_max < TEMP_THRESHOLD1 - HYSTERESIS_WIDTH)
 			control_state = BASE_MODE;
 
 		break;
@@ -100,7 +100,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch2_duty_cycle = 1.0f;
 		si->ch3_duty_cycle = 1.0f;
 
-		if (tmax < TEMP_THRESHOLD2 - HYSTERESIS_WIDTH)
+		if (temp_max < TEMP_THRESHOLD2 - HYSTERESIS_WIDTH)
 			control_state = ABOVE_40DEG;
 
 		break;
@@ -110,7 +110,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	return ;
 }
 
-
+/*
 // Experimental PID Controller (probably wont be used)
 const float kp = 1.0f, ki = 1.0f, kd = 1.0f;
 static uint8_t PID_Controller(float setpoint_rpm, float actual_rpm) {
@@ -125,5 +125,6 @@ static uint8_t PID_Controller(float setpoint_rpm, float actual_rpm) {
 	pwm_old = pwm;
 	return pwm;
 }
+*/
 
 
