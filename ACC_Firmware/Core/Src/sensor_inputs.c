@@ -158,28 +158,24 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 //TODO: Verify PULSES_PER_REVOLUTION plz!!
 const uint8_t PULSES_PER_REVOLUTION = 1;
-static volatile uint32_t 	tach_last_ticks 	= 0;
-static volatile uint32_t 	tach_delta_ticks 	= 0;
-static volatile uint8_t 	tach_new_period	 	= 0;
+
+static volatile uint32_t tach_last_ticks  = 0;
+static volatile uint32_t tach_delta_ticks = 0;
+static volatile uint8_t  tach_new_period  = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (GPIO_Pin == TACH_IN_Pin) {
-		uint32_t now = __HAL_TIM_GET_COUNTER(&htim2);
+    if (GPIO_Pin == TACH_IN_Pin) {
+        uint32_t now = __HAL_TIM_GET_COUNTER(&htim2);
 
-		uint32_t delta;
+        uint32_t delta = now - tach_last_ticks;
+        tach_last_ticks = now;
 
-		if (now >= tach_last_ticks) delta = now - tach_last_ticks;
-		else delta = UINT_MAX - tach_last_ticks + now + 1;
-
-		tach_last_ticks = now;
-
-		if (delta > 0) {
-			tach_delta_ticks = delta;
-			tach_new_period = 1;
-		}
-	}
+        if (delta > 0) {
+            tach_delta_ticks = delta;
+            tach_new_period  = 1;
+        }
+    }
 }
-
 
 void Update_Fan_Speed(SensorInputs_t *si) {
 	if (!tach_new_period || tach_delta_ticks == 0) si->fan_rpm = 0.0f;
