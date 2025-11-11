@@ -1,4 +1,4 @@
-# sync_repos.ps1 (test)
+# sync_repos.ps1 (test 2)
 # PowerShell script to commit and push to two remotes
 
 
