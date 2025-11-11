@@ -20,10 +20,16 @@ git commit -m "$Message"
 
 # Push to first remote (e.g. GitHub)
 Write-Host "Pushing to origin..."
-git push origin main
+
+git fetch origin
+git push --force origin main
 
 # Push to second remote (e.g. GitLab)
 Write-Host "Pushing to gitlab..."
-git push uwam main
 
-Write-Host "All changes pushed successfully!"
+git fetch uwam
+git pull --rebase uwam main
+git push --force uwam main
+
+git status
+
