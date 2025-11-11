@@ -25,11 +25,13 @@
  
 ### 11/11/25: Testing the CAN driver via USB-to-CAN v2
 
-* Faced a ton of errors when testing the CAN driver, the 'fix' for when it came to displaying the CAN data packetson the oscilloscope was to synchronise the bit rates.
+* Faced a ton of errors when testing the CAN driver, the 'fix' for when it came to displaying the CAN data packets on the oscilloscope was to synchronise the bit rates.
 
-* The bit rate of the USB-to-CAN device and the STM32 nucleo board were both configured to be 250 kbits/s after setting the prescaler (for time quantum) to 16, TQBS1 = 2 times and TQBS2 = 1 time. 
+* The bit rates of the USB-to-CAN device and the STM32 nucleo board were both configured to be 250 kbits/s after setting the prescaler (for time quantum) to 16, TQBS1 = 2 times and TQBS2 = 1 time. 
 
 * Despite getting valid CAN messages on the oscilloscope after implementing this change, the canalyzer is no longer detecting any CAN message whatsoever. The error code observed after using ``HAL_CAN_GetError()`` was ``0x00200000``.
+
+* ...
 
 ## Appendix:
 
