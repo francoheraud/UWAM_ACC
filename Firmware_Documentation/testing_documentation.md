@@ -31,7 +31,8 @@
 
 * Despite getting valid CAN messages on the oscilloscope after implementing this change, the canalyzer is no longer detecting any CAN message whatsoever. The error code observed after using ``HAL_CAN_GetError()`` was ``0x00200000``.
 
-* ...
+* *I have successfully configured the bit timing in CAN and learned how to use the canalyzer to debug CAN messages*
+
 
 ## Appendix:
 
