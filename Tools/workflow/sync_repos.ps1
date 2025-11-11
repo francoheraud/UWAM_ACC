@@ -1,5 +1,6 @@
-# sync_repos.ps1
+# sync_repos.ps1 (test)
 # PowerShell script to commit and push to two remotes
+
 
 param (
     [string]$Message = "Auto commit"
