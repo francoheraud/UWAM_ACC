@@ -14,15 +14,12 @@ extern "C" {
 #include "Other/acc_config.h"
 
 
-typedef struct {
+typedef struct CAN_Driver_t {
     CAN_HandleTypeDef *hcan1;
     CAN_HandleTypeDef *hcan2;
-    CAN_TxHeaderTypeDef tx1;
-    CAN_TxHeaderTypeDef tx2;
+    CAN_TxHeaderTypeDef tx1, tx2;
     CAN_RxHeaderTypeDef rx1;
-    uint8_t  tx_data[8];
-    uint8_t  rx_data[8];
-    //bool is_ready_to_read;
+    uint8_t  tx_data[8], rx_data[8];
     uint32_t id;
     uint8_t  len;
 } CAN_Driver_t;

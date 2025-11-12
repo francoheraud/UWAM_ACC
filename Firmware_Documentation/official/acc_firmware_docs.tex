@@ -163,14 +163,6 @@ The firmware executes on an STM32F412 microcontroller using the HAL abstraction 
 \subsection{Data Flow}
 Figure~\ref{fig:dataflow} (conceptual) illustrates the primary data paths. Sensor inputs enter the system either as analogue voltages sampled through \texttt{ADC2} or as CAN frames received via \texttt{FDCAN1}. The data is normalised into the \texttt{SensorInputs\_t} structure, which is the single source of truth for downstream control modules. Control outputs are subsequently published to the fan drivers (PWM) and to the vehicle network through CAN transmissions.
 
-\begin{figure}[H]
-    \centering
-    \caption{High level firmware data flow between sensors, processing, and actuators.}
-    \label{fig:dataflow}
-\end{figure}
-
-\subsection{Safety Hooks}
-All actuator facing code paths must pass through the \texttt{acc\_safety.c} guard rails. These hooks enforce sanity ranges, fail-safe timeouts, and diagnostics counters. Developers adding new outputs should extend the guard rails instead of bypassing them to maintain the safety case for the accumulator cooling package.
 
 \section{Sensors}
 \subsection{Fan RPM reading logic}
@@ -229,7 +221,7 @@ void Update_Fan_Speed(SensorInputs_t *si) {
 
 
 \subsection{Temperature sensor reading logic}
-Each coolant loop segment is instrumented using thermistors packaged with the fans. The device behaves as a 10~k$\Omega$ NTC element forming a voltage divider against a precision pull-up resistor. The ADC reading therefore reflects the thermistor resistance, which in turn maps non-linearly to temperature. The conversion pipeline implemented in \texttt{sensor\_inputs.c} performs the following steps for every DMA sample:
+Each coolant loop segment is instrumented using thermistors packaged with the fans. The device behaves as an NTC element forming a voltage divider against a precision pull-up resistor. The ADC reading therefore reflects the thermistor resistance, which in turn maps non-linearly to temperature. The conversion pipeline implemented in \texttt{sensor\_inputs.c} performs the following steps for every DMA sample:
 
 \begin{enumerate}
     \item Convert the raw ADC count to an input voltage based on the configured reference voltage and ADC resolution.
@@ -246,18 +238,20 @@ Four analogue pressure transducers monitor coolant circuit pressure and the accu
 \section{Device Drivers}
 \label{sec:drivers}
 \subsection{CAN Interface}
-The CAN driver exposes a double-buffered mailbox API that separates application level frame composition from the low-level HAL interactions. Outgoing frames are enqueued into a ring buffer and flushed inside the \texttt{HAL\_CAN\_TxMailbox1CompleteCallback} handler. This design prevents the control loop from blocking whenever the transceiver is busy. Received frames are parsed into structured messages defined in \texttt{acc\_messages.h}. Adding a new CAN topic requires updating the message definition, extending the parser, and documenting the payload format in Section~\ref{sec:can-map}.
+The CAN driver for the ACC firmware is intended to a clean and minimal API through implementing high-level wrapper functions which hides the low-level bare metal layer found within the STM32's HAL functions. This is to ensure quicker development and testing under time constraints.
+
+
 
 \subsection{PWM Fan Driver}
-PWM generation is performed by \texttt{TIM1} using complementary channels with dead-time insertion disabled. The driver abstracts timer register programming into \texttt{FanDriver\_SetDutyCycle()} which validates the requested duty cycle against calibrated minimum and maximum values. Interrupt safe updates allow the control algorithm to adjust speeds from either the main loop or PID callbacks without data races.
+PWM generation is performed by \texttt{TIM1} using complementary channels with dead-time insertion disabled. The driver abstracts timer register programming to use the 3 PWM duty cycle ratios (floating point values between 0 and 1) set before the function-call and generates 3 separate PWM signals on each channel.
 
 \section{Control Logic}
 \label{sec:control}
 \subsection{Thermal Control Strategy}
-The firmware implements a two-tier strategy. A hysteresis layer prevents rapid toggling of the fans around the thermal limits, while a PID controller refines the duty cycle to track the temperature set-point broadcast by the AMS. The PID loop is computed every 50~ms inside the sensor processing task. The input to the controller is the hottest temperature reported by either the hard-wired thermistors or the CAN-fed segment probes. The output is a duty-cycle request bounded by the fan driver guard rails.
+...
 
 \subsection{Fail-safe Behaviour}
-If the tachometer reports a zero RPM reading while the duty cycle command exceeds 40\%, the controller triggers a diagnostic fault and ramps to maximum speed for redundancy. The fault is latched and mirrored on the CAN telemetry stream so that the vehicle controller can initiate backup cooling if required.
+...
 
 \section{Testing and Verification}
 \label{sec:testing}
@@ -289,10 +283,10 @@ Table~\ref{tab:canmap} summarises the CAN payloads emitted by the ACC controller
         \hline
         \textbf{Message ID} & \textbf{Periodicity} & \textbf{Payload} & \textbf{Notes} \\
         \hline
-        0x601 & 20~ms & Fan duty cycle, fan RPM & Diagnostic flags in byte~7 \\
-        0x602 & 50~ms & Segment temperatures (4x int16) & Values in 0.1$^\circ$C \\
-        0x603 & 100~ms & Pressure readings (4x int16) & Values in 0.1~kPa \\
-        0x604 & Event & Fault/event code & Published on state transitions \\
+        ... & 20~ms & Fan duty cycle, fan RPM & Diagnostic flags in byte~7 \\
+        ... & 50~ms & Segment temperatures (4x int16) & Values in 0.1$^\circ$C \\
+        ... & 100~ms & Pressure readings (4x int16) & Values in 0.1~kPa \\
+        ... & Event & Fault/event code & Published on state transitions \\
         \hline
     \end{tabular}
     \caption{Accumulator cooling CAN messages.}
@@ -300,7 +294,8 @@ Table~\ref{tab:canmap} summarises the CAN payloads emitted by the ACC controller
 \end{table}
 
 \section{Change Control}
-The firmware team maintains this document alongside the source code repository. When introducing new peripherals or modifying the control algorithms, update the relevant sections and increment the revision metadata at the front of the document. Including diagrams of state machines or timing waveforms greatly assists the test and integration teams in validating behaviour on the vehicle.
+When introducing new peripherals or modifying the control algorithms, please make sure to update the relevant sections and increment the revision metadata at the front of the document. Including diagrams of state machines or timing waveforms greatly assists the test and integration teams in validating behaviour on the vehicle.
 
 \end{document}
+
 

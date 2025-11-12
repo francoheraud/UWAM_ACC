@@ -121,3 +121,13 @@ void CAN_Test(void)
 
 
 
+// Testing out implementing class-like functions in C...
+int Example(CAN_Driver_t *can) {
+	can->id = 1;
+	can->len = 1;
+	uint32_t mbox;
+	can->Transmit(can) = &CAN_Transmit1(can);
+}
+
+
+
