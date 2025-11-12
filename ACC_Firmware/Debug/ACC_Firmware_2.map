@@ -42,6 +42,8 @@ C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.external
                               ./App/Src/Drivers/sensor_inputs.o (log)
 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-s_nan.o)
                               C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-w_log.o) (nan)
+C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+                              ./App/Src/Drivers/can_driver.o (lroundf)
 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-e_log.o)
                               C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-w_log.o) (__ieee754_log)
 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_arm_muldf3.o)
@@ -122,11 +124,44 @@ Discarded input sections
  .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
  .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
  .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/can_driver.o
  .text          0x00000000        0x0 ./App/Src/Drivers/can_driver.o
  .data          0x00000000        0x0 ./App/Src/Drivers/can_driver.o
  .bss           0x00000000        0x0 ./App/Src/Drivers/can_driver.o
  .text.CAN_InitDriver
                 0x00000000       0x6c ./App/Src/Drivers/can_driver.o
+ .text.CAN_16Bit_Serializer
+                0x00000000       0x3a ./App/Src/Drivers/can_driver.o
+ .text.CAN_16Bit_Deserializer
+                0x00000000       0x54 ./App/Src/Drivers/can_driver.o
  .text.CAN_Transmit1
                 0x00000000       0x4a ./App/Src/Drivers/can_driver.o
  .text.CAN_Transmit2
@@ -135,23 +170,53 @@ Discarded input sections
                 0x00000000       0x5a ./App/Src/Drivers/can_driver.o
  .text.CAN_Test
                 0x00000000        0xe ./App/Src/Drivers/can_driver.o
- .debug_info    0x00000000      0x786 ./App/Src/Drivers/can_driver.o
- .debug_abbrev  0x00000000      0x1b5 ./App/Src/Drivers/can_driver.o
+ .debug_info    0x00000000      0x87c ./App/Src/Drivers/can_driver.o
+ .debug_abbrev  0x00000000      0x215 ./App/Src/Drivers/can_driver.o
  .debug_aranges
-                0x00000000       0x40 ./App/Src/Drivers/can_driver.o
+                0x00000000       0x50 ./App/Src/Drivers/can_driver.o
  .debug_rnglists
-                0x00000000       0x2b ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000      0x218 ./App/Src/Drivers/can_driver.o
+                0x00000000       0x37 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x39e ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000       0x2e ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000       0x28 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x5b ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x2a ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x94 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x43 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x190 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x57 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x370 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x4a ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x58 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x8e ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000       0x51 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x185 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x19b ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x3c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x146 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x103 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x6a ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x1df ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x29 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x7c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x17 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x118 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x20 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x22 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x2e ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x28 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x1c ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0xfb ./App/Src/Drivers/can_driver.o
@@ -160,8 +225,7 @@ Discarded input sections
  .debug_macro   0x00000000    0x146b1 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x6d ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000     0x3693 ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000      0x190 ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000       0x5c ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0x56 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x902 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x9e9 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x115 ./App/Src/Drivers/can_driver.o
@@ -186,13 +250,14 @@ Discarded input sections
  .debug_macro   0x00000000       0x4d ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000      0x126 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
- .debug_macro   0x00000000       0xe8 ./App/Src/Drivers/can_driver.o
- .debug_line    0x00000000      0xa3f ./App/Src/Drivers/can_driver.o
- .debug_str     0x00000000    0xc6f91 ./App/Src/Drivers/can_driver.o
+ .debug_macro   0x00000000       0xbe ./App/Src/Drivers/can_driver.o
+ .debug_line    0x00000000      0xc9f ./App/Src/Drivers/can_driver.o
+ .debug_str     0x00000000    0xcb5bd ./App/Src/Drivers/can_driver.o
  .comment       0x00000000       0x44 ./App/Src/Drivers/can_driver.o
- .debug_frame   0x00000000       0xc0 ./App/Src/Drivers/can_driver.o
+ .debug_frame   0x00000000      0x10c ./App/Src/Drivers/can_driver.o
  .ARM.attributes
                 0x00000000       0x34 ./App/Src/Drivers/can_driver.o
+ .group         0x00000000        0xc ./App/Src/Drivers/control_system.o
  .group         0x00000000        0xc ./App/Src/Drivers/control_system.o
  .group         0x00000000        0xc ./App/Src/Drivers/control_system.o
  .group         0x00000000        0xc ./App/Src/Drivers/control_system.o
@@ -279,23 +344,53 @@ Discarded input sections
                 0x00000000      0x134 ./App/Src/Drivers/control_system.o
  .bss.control_state.0
                 0x00000000        0x1 ./App/Src/Drivers/control_system.o
- .debug_info    0x00000000     0x113d ./App/Src/Drivers/control_system.o
- .debug_abbrev  0x00000000      0x23f ./App/Src/Drivers/control_system.o
+ .debug_info    0x00000000     0x1154 ./App/Src/Drivers/control_system.o
+ .debug_abbrev  0x00000000      0x256 ./App/Src/Drivers/control_system.o
  .debug_aranges
                 0x00000000       0x38 ./App/Src/Drivers/control_system.o
  .debug_rnglists
                 0x00000000       0x27 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x394 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x3b2 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x2e ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x28 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x5b ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x2a ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x94 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x43 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x190 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x57 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x370 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x4a ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x58 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x8e ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x51 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x185 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x19b ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x3c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x146 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x103 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x6a ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x1df ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x29 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x7c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x17 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x118 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x20 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x22 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x2e ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x28 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0xfb ./App/Src/Drivers/control_system.o
@@ -304,8 +399,7 @@ Discarded input sections
  .debug_macro   0x00000000    0x146b1 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x6d ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000     0x3693 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x190 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x5c ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0x56 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x902 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x9e9 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x115 ./App/Src/Drivers/control_system.o
@@ -330,41 +424,15 @@ Discarded input sections
  .debug_macro   0x00000000       0x4d ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000      0x126 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0xe8 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x22 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x61 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x370 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x7c ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x17 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x118 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x2a ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x43 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x34 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x4a ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x34 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x58 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x8e ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x185 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x3c ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x20 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x19b ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000      0x146 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x88 ./App/Src/Drivers/control_system.o
- .debug_macro   0x00000000       0x22 ./App/Src/Drivers/control_system.o
- .debug_line    0x00000000      0xc85 ./App/Src/Drivers/control_system.o
- .debug_str     0x00000000    0xcbef1 ./App/Src/Drivers/control_system.o
+ .debug_macro   0x00000000       0xbe ./App/Src/Drivers/control_system.o
+ .debug_line    0x00000000      0xcb4 ./App/Src/Drivers/control_system.o
+ .debug_str     0x00000000    0xcbd10 ./App/Src/Drivers/control_system.o
  .comment       0x00000000       0x44 ./App/Src/Drivers/control_system.o
  .debug_frame   0x00000000       0xa8 ./App/Src/Drivers/control_system.o
  .ARM.attributes
                 0x00000000       0x34 ./App/Src/Drivers/control_system.o
+ .group         0x00000000        0xc ./App/Src/Drivers/sensor_inputs.o
+ .group         0x00000000        0xc ./App/Src/Drivers/sensor_inputs.o
  .group         0x00000000        0xc ./App/Src/Drivers/sensor_inputs.o
  .group         0x00000000        0xc ./App/Src/Drivers/sensor_inputs.o
  .group         0x00000000        0xc ./App/Src/Drivers/sensor_inputs.o
@@ -457,7 +525,7 @@ Discarded input sections
  .text.Sensors_Start
                 0x00000000       0x8e ./App/Src/Drivers/sensor_inputs.o
  .text.Update_ADC_Buffers
-                0x00000000       0x68 ./App/Src/Drivers/sensor_inputs.o
+                0x00000000       0x70 ./App/Src/Drivers/sensor_inputs.o
  .text.Store_Temperature_Readings
                 0x00000000       0x8a ./App/Src/Drivers/sensor_inputs.o
  .text.Store_Pressure_Readings
@@ -465,21 +533,51 @@ Discarded input sections
  .text.PWM_SetAll
                 0x00000000       0xdc ./App/Src/Drivers/sensor_inputs.o
  .text.Update_Segment_Temperature_Values
-                0x00000000       0x7c ./App/Src/Drivers/sensor_inputs.o
+                0x00000000       0x7e ./App/Src/Drivers/sensor_inputs.o
  .rodata.PULSES_PER_REVOLUTION
                 0x00000000        0x1 ./App/Src/Drivers/sensor_inputs.o
  .text.Update_Fan_Speed
                 0x00000000       0x7c ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x2e ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x28 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x5b ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x2a ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x94 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x43 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x190 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x57 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x370 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x4a ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x34 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x58 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x8e ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x51 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x185 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x19b ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x3c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x146 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x103 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x6a ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x1df ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x29 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x7c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x17 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x118 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x20 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x22 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000      0x2a1 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x2e ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x28 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x22 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0xfb ./App/Src/Drivers/sensor_inputs.o
@@ -488,8 +586,7 @@ Discarded input sections
  .debug_macro   0x00000000    0x146b1 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x6d ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000     0x3693 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x190 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x5c ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0x56 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x902 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x9e9 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x115 ./App/Src/Drivers/sensor_inputs.o
@@ -514,34 +611,53 @@ Discarded input sections
  .debug_macro   0x00000000       0x4d ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000      0x126 ./App/Src/Drivers/sensor_inputs.o
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x22 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x61 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x370 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x7c ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x17 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x118 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x2a ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x43 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x34 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x4a ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x34 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x58 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x8e ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x185 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x3c ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x20 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x19b ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x10 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x1c ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x16 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000      0x146 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0xe8 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000000       0x88 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x00000000       0xbe ./App/Src/Drivers/sensor_inputs.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
+ .group         0x00000000        0xc ./App/Src/Other/scheduler.o
  .group         0x00000000        0xc ./App/Src/Other/scheduler.o
  .group         0x00000000        0xc ./App/Src/Other/scheduler.o
  .group         0x00000000        0xc ./App/Src/Other/scheduler.o
@@ -574,28 +690,24 @@ Discarded input sections
  .data          0x00000000        0x0 ./App/Src/Other/scheduler.o
  .bss           0x00000000        0x0 ./App/Src/Other/scheduler.o
  .text.Schedule_Task
-                0x00000000       0x44 ./App/Src/Other/scheduler.o
- .debug_info    0x00000000       0xf4 ./App/Src/Other/scheduler.o
+                0x00000000       0x46 ./App/Src/Other/scheduler.o
+ .debug_info    0x00000000      0x108 ./App/Src/Other/scheduler.o
  .debug_abbrev  0x00000000       0x8e ./App/Src/Other/scheduler.o
  .debug_aranges
                 0x00000000       0x20 ./App/Src/Other/scheduler.o
  .debug_rnglists
                 0x00000000       0x13 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000      0x14d ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x39e ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000       0xe8 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x22 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x5b ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x2a ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x94 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x43 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x34 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x190 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x57 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000       0x9e ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x370 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000      0x112 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000       0x10 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x4a ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x34 ./App/Src/Other/scheduler.o
@@ -604,14 +716,64 @@ Discarded input sections
  .debug_macro   0x00000000       0x8e ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x1c ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x185 ./App/Src/Other/scheduler.o
- .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x19b ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x3c ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x10 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x146 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x103 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x6a ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x1df ./App/Src/Other/scheduler.o
- .debug_line    0x00000000      0x5f1 ./App/Src/Other/scheduler.o
- .debug_str     0x00000000     0x7cda ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x29 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x7c ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x17 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x118 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x20 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x22 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x2a1 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x2e ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x28 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x1c ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x22 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0xfb ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000     0x1011 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x11f ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000    0x146b1 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x6d ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000     0x3693 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x56 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x902 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x9e9 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x115 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x192 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0xa5 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x158 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x287 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x5f ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x236 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x9e1 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x38b ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x176 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0xf9 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x40f ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x132 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x29c ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x2e ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x127 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x91 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x89 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x8ed ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x4d ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000      0x126 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
+ .debug_macro   0x00000000       0xbe ./App/Src/Other/scheduler.o
+ .debug_line    0x00000000      0xae4 ./App/Src/Other/scheduler.o
+ .debug_str     0x00000000    0xcb189 ./App/Src/Other/scheduler.o
  .comment       0x00000000       0x44 ./App/Src/Other/scheduler.o
  .debug_frame   0x00000000       0x38 ./App/Src/Other/scheduler.o
  .ARM.attributes
@@ -668,8 +830,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x2e ./Core/Src/main.o
  .debug_macro   0x00000000       0x28 ./Core/Src/main.o
  .debug_macro   0x00000000       0x22 ./Core/Src/main.o
- .debug_macro   0x00000000       0x8e ./Core/Src/main.o
- .debug_macro   0x00000000       0x51 ./Core/Src/main.o
  .debug_macro   0x00000000      0x103 ./Core/Src/main.o
  .debug_macro   0x00000000       0x6a ./Core/Src/main.o
  .debug_macro   0x00000000      0x1df ./Core/Src/main.o
@@ -682,7 +842,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x6d ./Core/Src/main.o
  .debug_macro   0x00000000     0x3693 ./Core/Src/main.o
  .debug_macro   0x00000000      0x190 ./Core/Src/main.o
- .debug_macro   0x00000000       0x5c ./Core/Src/main.o
  .debug_macro   0x00000000      0x902 ./Core/Src/main.o
  .debug_macro   0x00000000      0x9e9 ./Core/Src/main.o
  .debug_macro   0x00000000      0x115 ./Core/Src/main.o
@@ -3905,6 +4064,13 @@ Discarded input sections
  .debug_frame   0x00000000       0x20 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-s_nan.o)
  .ARM.attributes
                 0x00000000       0x34 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-s_nan.o)
+ .text          0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+ .text.lroundf  0x00000000       0x5a C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+ .debug_frame   0x00000000       0x20 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
+ .ARM.attributes
+                0x00000000       0x34 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-sf_lround.o)
  .text          0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-e_log.o)
  .data          0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-e_log.o)
  .bss           0x00000000        0x0 C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a(libm_a-e_log.o)
@@ -4551,41 +4717,41 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000     0xdd05
- .debug_info    0x00000000     0x15a2 ./App/Src/Drivers/sensor_inputs.o
- .debug_info    0x000015a2     0x1948 ./Core/Src/main.o
- .debug_info    0x00002eea     0x127e ./Core/Src/stm32f4xx_hal_msp.o
- .debug_info    0x00004168      0x3e3 ./Core/Src/stm32f4xx_it.o
- .debug_info    0x0000454b      0x54a ./Core/Src/system_stm32f4xx.o
- .debug_info    0x00004a95       0x30 ./Core/Startup/startup_stm32f412retx.o
- .debug_info    0x00004ac5      0x96a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_info    0x0000542f      0xce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_info    0x00006112      0xf4c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_info    0x0000705e      0xd7a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_info    0x00007dd8      0x8e7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_info    0x000086bf      0x70b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_info    0x00008dca      0x8ff ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_info    0x000096c9      0x7c4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_info    0x00009e8d     0x299d ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_info    0x0000c82a     0x14db ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_info     0x00000000     0xdd03
+ .debug_info    0x00000000     0x15a0 ./App/Src/Drivers/sensor_inputs.o
+ .debug_info    0x000015a0     0x1948 ./Core/Src/main.o
+ .debug_info    0x00002ee8     0x127e ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_info    0x00004166      0x3e3 ./Core/Src/stm32f4xx_it.o
+ .debug_info    0x00004549      0x54a ./Core/Src/system_stm32f4xx.o
+ .debug_info    0x00004a93       0x30 ./Core/Startup/startup_stm32f412retx.o
+ .debug_info    0x00004ac3      0x96a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_info    0x0000542d      0xce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_info    0x00006110      0xf4c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_info    0x0000705c      0xd7a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_info    0x00007dd6      0x8e7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_info    0x000086bd      0x70b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_info    0x00008dc8      0x8ff ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_info    0x000096c7      0x7c4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_info    0x00009e8b     0x299d ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_info    0x0000c828     0x14db ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_abbrev   0x00000000     0x230f
- .debug_abbrev  0x00000000      0x332 ./App/Src/Drivers/sensor_inputs.o
- .debug_abbrev  0x00000332      0x2eb ./Core/Src/main.o
- .debug_abbrev  0x0000061d      0x298 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_abbrev  0x000008b5      0x17e ./Core/Src/stm32f4xx_it.o
- .debug_abbrev  0x00000a33      0x11a ./Core/Src/system_stm32f4xx.o
- .debug_abbrev  0x00000b4d       0x24 ./Core/Startup/startup_stm32f412retx.o
- .debug_abbrev  0x00000b71      0x214 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_abbrev  0x00000d85      0x252 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_abbrev  0x00000fd7      0x245 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_abbrev  0x0000121c      0x31d ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_abbrev  0x00001539      0x264 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_abbrev  0x0000179d      0x1d4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_abbrev  0x00001971      0x2b7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_abbrev  0x00001c28      0x1ec ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_abbrev  0x00001e14      0x278 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_abbrev  0x0000208c      0x283 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_abbrev   0x00000000     0x2310
+ .debug_abbrev  0x00000000      0x333 ./App/Src/Drivers/sensor_inputs.o
+ .debug_abbrev  0x00000333      0x2eb ./Core/Src/main.o
+ .debug_abbrev  0x0000061e      0x298 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_abbrev  0x000008b6      0x17e ./Core/Src/stm32f4xx_it.o
+ .debug_abbrev  0x00000a34      0x11a ./Core/Src/system_stm32f4xx.o
+ .debug_abbrev  0x00000b4e       0x24 ./Core/Startup/startup_stm32f412retx.o
+ .debug_abbrev  0x00000b72      0x214 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_abbrev  0x00000d86      0x252 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_abbrev  0x00000fd8      0x245 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_abbrev  0x0000121d      0x31d ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_abbrev  0x0000153a      0x264 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_abbrev  0x0000179e      0x1d4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_abbrev  0x00001972      0x2b7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_abbrev  0x00001c29      0x1ec ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_abbrev  0x00001e15      0x278 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_abbrev  0x0000208d      0x283 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
 .debug_aranges  0x00000000      0xd58
  .debug_aranges
@@ -4656,59 +4822,62 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x0000092a      0x125 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_macro    0x00000000     0x1fcd
- .debug_macro   0x00000000      0x381 ./App/Src/Drivers/sensor_inputs.o
- .debug_macro   0x00000381      0x205 ./Core/Src/main.o
- .debug_macro   0x00000586      0x205 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_macro   0x0000078b      0x20f ./Core/Src/stm32f4xx_it.o
- .debug_macro   0x0000099a      0x1f6 ./Core/Src/system_stm32f4xx.o
- .debug_macro   0x00000b90      0x256 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_macro   0x00000de6      0x1f7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_macro   0x00000fdd      0x205 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_macro   0x000011e2      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_macro   0x000013d8      0x1fc ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_macro   0x000015d4      0x1fc ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_macro   0x000017d0      0x21a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_macro   0x000019ea      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_macro   0x00001be0      0x1f7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_macro   0x00001dd7      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_macro    0x00000000     0x212f
+ .debug_macro   0x00000000      0x3a8 ./App/Src/Drivers/sensor_inputs.o
+ .debug_macro   0x000003a8      0x205 ./Core/Src/main.o
+ .debug_macro   0x000005ad       0x8e ./Core/Src/main.o
+ .debug_macro   0x0000063b       0x51 ./Core/Src/main.o
+ .debug_macro   0x0000068c       0x5c ./Core/Src/main.o
+ .debug_macro   0x000006e8      0x205 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_macro   0x000008ed      0x20f ./Core/Src/stm32f4xx_it.o
+ .debug_macro   0x00000afc      0x1f6 ./Core/Src/system_stm32f4xx.o
+ .debug_macro   0x00000cf2      0x256 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_macro   0x00000f48      0x1f7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_macro   0x0000113f      0x205 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_macro   0x00001344      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_macro   0x0000153a      0x1fc ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_macro   0x00001736      0x1fc ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_macro   0x00001932      0x21a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_macro   0x00001b4c      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_macro   0x00001d42      0x1f7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_macro   0x00001f39      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_line     0x00000000    0x10c0d
- .debug_line    0x00000000      0xf77 ./App/Src/Drivers/sensor_inputs.o
- .debug_line    0x00000f77      0xbaa ./Core/Src/main.o
- .debug_line    0x00001b21      0xa1f ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x00002540      0x94f ./Core/Src/stm32f4xx_it.o
- .debug_line    0x00002e8f      0x8e6 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x00003775       0x7a ./Core/Startup/startup_stm32f412retx.o
- .debug_line    0x000037ef      0xb9b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_line    0x0000438a     0x12e6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_line    0x00005670     0x135a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_line    0x000069ca      0xe6b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_line    0x00007835     0x1107 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_line    0x0000893c      0xca3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_line    0x000095df      0xfb4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_line    0x0000a593     0x126f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_line    0x0000b802     0x3910 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_line    0x0000f112     0x1afb ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_line     0x00000000    0x10c34
+ .debug_line    0x00000000      0xf9e ./App/Src/Drivers/sensor_inputs.o
+ .debug_line    0x00000f9e      0xbaa ./Core/Src/main.o
+ .debug_line    0x00001b48      0xa1f ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x00002567      0x94f ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x00002eb6      0x8e6 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x0000379c       0x7a ./Core/Startup/startup_stm32f412retx.o
+ .debug_line    0x00003816      0xb9b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_line    0x000043b1     0x12e6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_line    0x00005697     0x135a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_line    0x000069f1      0xe6b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000785c     0x1107 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_line    0x00008963      0xca3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_line    0x00009606      0xfb4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000a5ba     0x126f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_line    0x0000b829     0x3910 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_line    0x0000f139     0x1afb ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_str      0x00000000    0xcf6f1
- .debug_str     0x00000000    0xcf6f1 ./App/Src/Drivers/sensor_inputs.o
-                              0xcbfed (size before relaxing)
- .debug_str     0x000cf6f1    0xc7c5a ./Core/Src/main.o
- .debug_str     0x000cf6f1    0xc7380 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_str     0x000cf6f1    0xc6b42 ./Core/Src/stm32f4xx_it.o
- .debug_str     0x000cf6f1    0xc6971 ./Core/Src/system_stm32f4xx.o
- .debug_str     0x000cf6f1       0x89 ./Core/Startup/startup_stm32f412retx.o
- .debug_str     0x000cf6f1    0xc7508 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_str     0x000cf6f1    0xc6f73 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_str     0x000cf6f1    0xc7080 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_str     0x000cf6f1    0xc7260 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_str     0x000cf6f1    0xc6da0 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_str     0x000cf6f1    0xc6b2b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_str     0x000cf6f1    0xc6de3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_str     0x000cf6f1    0xc6ce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_str     0x000cf6f1    0xc7d10 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_str     0x000cf6f1    0xc751c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_str      0x00000000    0xcf581
+ .debug_str     0x00000000    0xcf581 ./App/Src/Drivers/sensor_inputs.o
+                              0xcbe88 (size before relaxing)
+ .debug_str     0x000cf581    0xc7c5a ./Core/Src/main.o
+ .debug_str     0x000cf581    0xc7380 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_str     0x000cf581    0xc6b42 ./Core/Src/stm32f4xx_it.o
+ .debug_str     0x000cf581    0xc6971 ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x000cf581       0x89 ./Core/Startup/startup_stm32f412retx.o
+ .debug_str     0x000cf581    0xc7508 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_str     0x000cf581    0xc6f73 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_str     0x000cf581    0xc7080 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_str     0x000cf581    0xc7260 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_str     0x000cf581    0xc6da0 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_str     0x000cf581    0xc6b2b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_str     0x000cf581    0xc6de3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_str     0x000cf581    0xc6ce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_str     0x000cf581    0xc7d10 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_str     0x000cf581    0xc751c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./App/Src/Drivers/sensor_inputs.o

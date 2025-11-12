@@ -30,7 +30,7 @@ static float Highest_Input_Temp(SensorInputs_t *si) {
 */
 static float Highest_Seg_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
-	for (uint8_t i = 0; i < AMS_SEGMENT_COUNT; i++) {
+	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
 		if (largest_temp < si->seg_temp_c[i])
 			largest_temp = si->seg_temp_c[i];
 	}
@@ -53,18 +53,19 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 		}
 		can->tx_data[i] = si->temp_c[i];
 	}
-	can->tx2.StdId 	= ACC_DOUT_CAN_ID1;
+	can->tx2.StdId 	= ACC_CAN_ID_ACC_TEMP;
 	can->tx2.DLC 	= 8;
 	CAN_Transmit2(can);
 
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
-	for (uint8_t j = 0; j < AMS_SEGMENT_COUNT; j++) {
+	for (uint8_t j = 0; j < ACC_NUM_SEG_TEMPS; j++) {
 		can->tx_data[j] = si->seg_temp_c[j];
 	}
 
-	can->tx_data[AMS_SEGMENT_COUNT] = si->fan_rpm;
-	can->tx2.StdId 	= ACC_DOUT_CAN_ID2;
-	can->tx2.DLC 	= AMS_SEGMENT_COUNT;
+	// TODO: Fix all this bullshit here
+	can->tx_data[ACC_NUM_SEG_TEMPS] = (uint8_t)lroundf(si->fan_rpm);
+	can->tx2.StdId 	= ACC_CAN_ID_ACC_SEG_TEMP;
+	can->tx2.DLC 	= ACC_NUM_SEG_TEMPS;
 	CAN_Transmit2(can);
 
 	return;
@@ -101,7 +102,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch1_duty_cycle = 0.3f;
 		si->ch2_duty_cycle = 0.3f;
 		si->ch3_duty_cycle = 0.3f;
-		if (temp_max > TEMP_THRESHOLD1)
+		if (temp_max > ACC_TEMP_THRESHOLD1_DEGC)
 			control_state = ABOVE_40DEG;
 		break;
 
@@ -109,10 +110,10 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch1_duty_cycle = 0.7f;
 		si->ch2_duty_cycle = 0.7f;
 		si->ch3_duty_cycle = 0.7f;
-		if (temp_max > TEMP_THRESHOLD2)
+		if (temp_max > ACC_TEMP_THRESHOLD2_DEGC)
 			control_state = ABOVE_50DEG;
 
-		else if (temp_max < TEMP_THRESHOLD1 - HYSTERESIS_WIDTH)
+		else if (temp_max < ACC_TEMP_THRESHOLD1_DEGC - ACC_TEMP_HYSTERESIS_DEGC)
 			control_state = BASE_MODE;
 
 		break;
@@ -121,7 +122,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 		si->ch2_duty_cycle = 1.0f;
 		si->ch3_duty_cycle = 1.0f;
 
-		if (temp_max < TEMP_THRESHOLD2 - HYSTERESIS_WIDTH)
+		if (temp_max < ACC_TEMP_THRESHOLD2_DEGC - ACC_TEMP_HYSTERESIS_DEGC)
 			control_state = ABOVE_40DEG;
 
 		break;

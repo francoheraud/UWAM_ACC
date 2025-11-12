@@ -2,7 +2,8 @@ project:
   name: "UWA Motorsports Accumulator Cooling Control"
   version: "1.0.0"
   author: "Franco Heraud"
-  contributor(s): "..."      # feel free to become a contributor and add your name here if keen!
+  contributor(s): "..."      
+
 
 hardware:
   mcu:
@@ -16,6 +17,7 @@ hardware:
     pwm:
       min_duty: 0.2
       max_duty: 0.95
+      resolution: 255
 
 
 communication:
@@ -30,52 +32,40 @@ communication:
 
 sensors:
   pressure:
-    - name: "p1"
+    - name: "Pin1"
       adc_channel: 1
-      min_psi: 0
-      max_psi: 100
-    
-    - name: "p2"
+
+    - name: "Pin2"
       adc_channel: 2
-      min_psi: 0
-      max_psi: 100
 
-    - name: "p3"
+    - name: "Pin3"
       adc_channel: 3
-      min_psi: 0
-      max_psi: 100
-    
-    - name: "p4"
-      adc_channel: 4
-      min_psi: 0
-      max_psi: 100
 
+    - name: "Pin4"
+      adc_channel: 4
 
   temperature:
-    common:
-      coefficients:     # Steinhart-Hart coefficients
-        a: 0.003354016
-        b: 0.000250275
-        c: 2.42945e-6
-        d: -7.3121e-8
     sensors:
-      - name: "t1"
+      - name: "Tin1"
         adc_channel: 5
       
-      - name: "t2"
+      - name: "Tin2"
         adc_channel: 6
         
-      - name: "t3"
+      - name: "Tin3"
         adc_channel: 7
         
-      - name: "t4"
+      - name: "Tin4"
         adc_channel: 8
-        
-
-control:                # TODO: Find out if there are any more critical thresholds to consider
+    
+    
+control:               
   temp_threshold1: 40
   temp_threshold2: 60
   hysteresis_degC: 3
+
+num_seg_temp: 4
+
 
 
 

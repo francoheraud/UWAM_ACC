@@ -11,8 +11,6 @@
 extern "C" {
 #endif
 
-#include "main.h"
-#include <stdint.h>
 #include "acc_config.h"
 
 

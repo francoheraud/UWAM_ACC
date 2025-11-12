@@ -12,8 +12,8 @@
  * @brief Lightweight scheduler. Intended to be used with i.e.,
  * a (scaled) hardware timer variable or system tick variable.
  *
-* @param *timer_ptr (**Must be in milliseconds!**) -> Must also be casted to integer.
-* @return SchedulerState (enum)
+* @param *timer_ptr			Must be in milliseconds
+* @return SchedulerState 	Enum for timing definitions.
 * @note Auto-gen: fill details.
 */
 SchedulerState Schedule_Task(uint32_t *timer_ptr) {
@@ -27,8 +27,8 @@ SchedulerState Schedule_Task(uint32_t *timer_ptr) {
 		return EXEC_100MS;
 	}
 
-	if (*timer_ptr >= 100) *timer_ptr = 0;
-
+	if (*timer_ptr > 100) *timer_ptr = 0; // reset routine
+	return BUSY;
 }
 
 

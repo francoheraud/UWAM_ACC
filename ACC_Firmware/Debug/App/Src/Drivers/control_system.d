@@ -1,5 +1,7 @@
 App/Src/Drivers/control_system.o: ../App/Src/Drivers/control_system.c \
  C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/control_system.h \
+ C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/can_driver.h \
+ C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Other/acc_config.h \
  ../Core/Inc/main.h \
  C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
@@ -32,10 +34,10 @@ App/Src/Drivers/control_system.o: ../App/Src/Drivers/control_system.c \
  C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/can_driver.h \
- C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Other/acc_config.h \
  C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/sensor_inputs.h
 C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/control_system.h:
+C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/can_driver.h:
+C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Other/acc_config.h:
 ../Core/Inc/main.h:
 C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -68,6 +70,4 @@ C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HA
 C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 C:/Users/Franc/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
-C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/can_driver.h:
-C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Other/acc_config.h:
 C:/Users/Franc/OneDrive/Documents/GitHub/UWAM_ACC/ACC_Firmware/App/Inc/Drivers/sensor_inputs.h:

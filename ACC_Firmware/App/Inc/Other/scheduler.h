@@ -16,7 +16,8 @@ extern "C" {
 typedef enum {
 	EXEC_1MS,
 	EXEC_10MS,
-	EXEC_100MS
+	EXEC_100MS,
+	BUSY
 } SchedulerState;
 
 SchedulerState Schedule_Tasks(uint32_t *timer_ptr);

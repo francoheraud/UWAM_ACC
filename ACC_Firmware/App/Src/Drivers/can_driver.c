@@ -25,12 +25,40 @@ HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv) {
     return  HAL_CAN_Start(drv->hcan1) || HAL_CAN_Start(drv->hcan2);
 }
 
+
+/**
+ * @brief 			Serialize a float value into two bytes.
+ * @param data_in	Temperature or pressure value.
+ * @return void
+ * @note Auto-gen: fill details.
+ */
+void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]) {
+	uint16_t data_in_16u 	= (uint16_t)lroundf(data_in);
+	uint8_t high_byte 		= (uint8_t)(data_in_16u >> 8);
+	uint8_t low_byte 		= (uint8_t)(data_in_16u & 0xff);
+	output_buf[0] = low_byte;
+	output_buf[1] = high_byte;
+}
+
+
+/**
+ * @brief 				Deserializes rx data from CAN. Assumes rx data is of form: {lowbyte1, highbyte1, lowbyte2, highbyte2, ...}
+ * @param data_in_buf	Translated input data from the CAN bus.
+ * @param rx_data		Raw input data from the CAN bus.
+ * @return return_type	void
+ * @note Auto-gen: fill details.
+ */
+void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]) {
+	for (uint8_t i = 0; i < 4; i++)
+		data_in_buf[i] =  (uint16_t)((rx_data[i+1] << 8) | (rx_data[i]));
+}
+
 /**
  * @brief Transmits a CAN message over to the 1st CAN bus.
-* @param CAN_Driver_t *drv
-* @return HAL_StatusTypeDef
-* @note Auto-gen: fill details.
-*/
+ * @param CAN_Driver_t *drv
+ * @return HAL_StatusTypeDef
+ * @note Auto-gen: fill details.
+ */
 HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *drv) {
 
     uint32_t mbox;

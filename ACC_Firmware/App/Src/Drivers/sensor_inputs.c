@@ -173,7 +173,7 @@ void Update_ADC_Buffers(SensorInputs_t *si) {
 	HAL_ADC_Start(si->adc);
 
 	for (uint8_t i = 0; i < ADC_CH_COUNT; i++)
-		si->adc_V[i] = (si->adc_raw[i] / (float)ADC_RESOLUTION) * 3.30f;
+		si->adc_V[i] = (si->adc_raw[i] / ((float)pow(10,ACC_ADC_RES_BITS)) - 1.0f) * 3.30f;
 }
 
 /**
@@ -218,10 +218,9 @@ void PWM_SetAll(SensorInputs_t *si) {
 	float d3 = Constrain(si->ch3_duty_cycle, 0.0f, 100.0f);
 
 	// default res is 255
-	uint32_t d1_scaled = (uint32_t)(d1 * (float)PWM_RESOLUTION);
-	uint32_t d2_scaled = (uint32_t)(d2 * (float)PWM_RESOLUTION);
-	uint32_t d3_scaled = (uint32_t)(d3 * (float)PWM_RESOLUTION);
-
+	uint32_t d1_scaled = (uint32_t)(d1 * (float)ACC_PWM_RESOLUTION);
+	uint32_t d2_scaled = (uint32_t)(d2 * (float)ACC_PWM_RESOLUTION);
+	uint32_t d3_scaled = (uint32_t)(d3 * (float)ACC_PWM_RESOLUTION);
 
 	__HAL_TIM_SET_COMPARE(si->tim, TIM_CHANNEL_1, d1_scaled);
 	__HAL_TIM_SET_COMPARE(si->tim, TIM_CHANNEL_2, d2_scaled);
@@ -239,7 +238,7 @@ void PWM_SetAll(SensorInputs_t *si) {
 */
 bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
-	can->rx1.StdId 	= AMS_SEG_TEMP_CAN_ID;
+	can->rx1.StdId 	= ACC_CAN_ID_ACC_SEG_TEMP;
 	can->rx1.DLC	= 8;			// TODO: Assume 8 for now, check intended CAN IDs with elec team...
 	HAL_StatusTypeDef can_rx_status = CAN_Receive1(can);
 
@@ -250,7 +249,7 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 	if (HAL_CAN_GetRxFifoFillLevel(can->hcan1, CAN_RX_FIFO0) == 0)
 	    return false;
 
-	for (uint8_t i = 0; i < AMS_SEGMENT_COUNT; i++) {
+	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
 		si->seg_temp_c[i] = (float)can->rx_data[i];
 	}
 	return true;
