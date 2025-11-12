@@ -11,5 +11,5 @@
 ../App/Src/Drivers/sensor_inputs.c:199:6:Store_Pressure_Readings	3
 ../App/Src/Drivers/sensor_inputs.c:213:6:PWM_SetAll	3
 ../App/Src/Drivers/sensor_inputs.c:239:6:Update_Segment_Temperature_Values	4
-../App/Src/Drivers/sensor_inputs.c:272:6:HAL_GPIO_EXTI_Callback	3
-../App/Src/Drivers/sensor_inputs.c:292:6:Update_Fan_Speed	3
+../App/Src/Drivers/sensor_inputs.c:276:6:HAL_GPIO_EXTI_Callback	3
+../App/Src/Drivers/sensor_inputs.c:296:6:Update_Fan_Speed	3

@@ -49,8 +49,10 @@ void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]) {
  * @note Auto-gen: fill details.
  */
 void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]) {
-	for (uint8_t i = 0; i < 4; i++)
-		data_in_buf[i] =  (uint16_t)((rx_data[i+1] << 8) | (rx_data[i]));
+	for (uint8_t i = 0; i < 4; i++) {
+		uint8_t byte_idx = i * 2;
+		data_in_buf[i] =  (uint16_t)((rx_data[byte_idx + 1] << 8) | (rx_data[byte_idx]));
+	}
 }
 
 /**

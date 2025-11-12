@@ -249,6 +249,10 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 	if (HAL_CAN_GetRxFifoFillLevel(can->hcan1, CAN_RX_FIFO0) == 0)
 	    return false;
 
+	//FIXME: Assumed that we're receiving unsigned 16 bit data here?
+	// Double check endianness aw?
+	CAN_16Bit_Deserializer(si->seg_temp_c, can->rx_data);
+
 	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
 		si->seg_temp_c[i] = (float)can->rx_data[i];
 	}

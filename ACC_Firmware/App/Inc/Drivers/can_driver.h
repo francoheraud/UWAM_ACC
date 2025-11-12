@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-#include "acc_config.h"
+#include "Other/acc_config.h"
 
 
 typedef struct {
