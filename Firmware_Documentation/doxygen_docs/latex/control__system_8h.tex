@@ -1,0 +1,62 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Inc/\+Drivers/control\+\_\+system.h File Reference}
+\hypertarget{control__system_8h}{}\label{control__system_8h}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/control\_system.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/control\_system.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}Drivers/can\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}Drivers/sensor\+\_\+inputs.\+h"{}}\newline
+{\ttfamily \#include "{}Other/acc\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_a_c_c__t}{ACC\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{control__system_8h_a0ac89eccf34523d1dd698c4f262c7f26}{TEMP\+\_\+\+THRESHOLD1}}~40.\+0f
+\item 
+\#define \mbox{\hyperlink{control__system_8h_a04c4a2f2b51a9e808e832cc8d63fba2f}{TEMP\+\_\+\+THRESHOLD2}}~50.\+0f
+\item 
+\#define \mbox{\hyperlink{control__system_8h_a3f44b4a53bbf24c87d40a5fbe6ef0214}{HYSTERESIS\+\_\+\+WIDTH}}~3.\+0f
+\item 
+\#define \mbox{\hyperlink{control__system_8h_a6cf1e87010c9ecdce6f16bc64ebff7cc}{ACC\+\_\+\+DOUT\+\_\+\+CAN\+\_\+\+ID1}}~(uint16\+\_\+t)0x4\+A2
+\item 
+\#define \mbox{\hyperlink{control__system_8h_abb8e899df6e3ef13cad288295ed076d5}{ACC\+\_\+\+DOUT\+\_\+\+CAN\+\_\+\+ID2}}~(uint16\+\_\+t)0x4\+A3
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{control__system_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{control__system_8h_a6cf1e87010c9ecdce6f16bc64ebff7cc}\index{control\_system.h@{control\_system.h}!ACC\_DOUT\_CAN\_ID1@{ACC\_DOUT\_CAN\_ID1}}
+\index{ACC\_DOUT\_CAN\_ID1@{ACC\_DOUT\_CAN\_ID1}!control\_system.h@{control\_system.h}}
+\doxysubsubsection{\texorpdfstring{ACC\_DOUT\_CAN\_ID1}{ACC\_DOUT\_CAN\_ID1}}
+{\footnotesize\ttfamily \label{control__system_8h_a6cf1e87010c9ecdce6f16bc64ebff7cc} 
+\#define ACC\+\_\+\+DOUT\+\_\+\+CAN\+\_\+\+ID1~(uint16\+\_\+t)0x4\+A2}
+
+\Hypertarget{control__system_8h_abb8e899df6e3ef13cad288295ed076d5}\index{control\_system.h@{control\_system.h}!ACC\_DOUT\_CAN\_ID2@{ACC\_DOUT\_CAN\_ID2}}
+\index{ACC\_DOUT\_CAN\_ID2@{ACC\_DOUT\_CAN\_ID2}!control\_system.h@{control\_system.h}}
+\doxysubsubsection{\texorpdfstring{ACC\_DOUT\_CAN\_ID2}{ACC\_DOUT\_CAN\_ID2}}
+{\footnotesize\ttfamily \label{control__system_8h_abb8e899df6e3ef13cad288295ed076d5} 
+\#define ACC\+\_\+\+DOUT\+\_\+\+CAN\+\_\+\+ID2~(uint16\+\_\+t)0x4\+A3}
+
+\Hypertarget{control__system_8h_a3f44b4a53bbf24c87d40a5fbe6ef0214}\index{control\_system.h@{control\_system.h}!HYSTERESIS\_WIDTH@{HYSTERESIS\_WIDTH}}
+\index{HYSTERESIS\_WIDTH@{HYSTERESIS\_WIDTH}!control\_system.h@{control\_system.h}}
+\doxysubsubsection{\texorpdfstring{HYSTERESIS\_WIDTH}{HYSTERESIS\_WIDTH}}
+{\footnotesize\ttfamily \label{control__system_8h_a3f44b4a53bbf24c87d40a5fbe6ef0214} 
+\#define HYSTERESIS\+\_\+\+WIDTH~3.\+0f}
+
+\Hypertarget{control__system_8h_a0ac89eccf34523d1dd698c4f262c7f26}\index{control\_system.h@{control\_system.h}!TEMP\_THRESHOLD1@{TEMP\_THRESHOLD1}}
+\index{TEMP\_THRESHOLD1@{TEMP\_THRESHOLD1}!control\_system.h@{control\_system.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_THRESHOLD1}{TEMP\_THRESHOLD1}}
+{\footnotesize\ttfamily \label{control__system_8h_a0ac89eccf34523d1dd698c4f262c7f26} 
+\#define TEMP\+\_\+\+THRESHOLD1~40.\+0f}
+
+\Hypertarget{control__system_8h_a04c4a2f2b51a9e808e832cc8d63fba2f}\index{control\_system.h@{control\_system.h}!TEMP\_THRESHOLD2@{TEMP\_THRESHOLD2}}
+\index{TEMP\_THRESHOLD2@{TEMP\_THRESHOLD2}!control\_system.h@{control\_system.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_THRESHOLD2}{TEMP\_THRESHOLD2}}
+{\footnotesize\ttfamily \label{control__system_8h_a04c4a2f2b51a9e808e832cc8d63fba2f} 
+\#define TEMP\+\_\+\+THRESHOLD2~50.\+0f}
+

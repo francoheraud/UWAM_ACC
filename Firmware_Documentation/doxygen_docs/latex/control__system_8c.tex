@@ -1,0 +1,139 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Src/\+Drivers/control\+\_\+system.c File Reference}
+\hypertarget{control__system_8c}{}\label{control__system_8c}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/control\_system.c@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/control\_system.c}}
+{\ttfamily \#include $<$Drivers/control\+\_\+system.\+h$>$}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \{ \mbox{\hyperlink{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a26b6cd8468d6a7b869fb25d2fd8b2519}{BASE\+\_\+\+MODE}}
+, \mbox{\hyperlink{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab5449d9bc188f0432fc56e58c8ee1701}{ABOVE\+\_\+40\+DEG}}
+, \mbox{\hyperlink{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a001e3af45603cecdb526dd8f0b6038d8}{ABOVE\+\_\+50\+DEG}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{control__system_8c_ad9b858d010fb78b61fd0eba9e5a2b743}{Highest\+\_\+\+Input\+\_\+\+Temp}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Returns largest temperature out of all input temperatures going into MCU. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{control__system_8c_ae721db7d4c3f4b56cd9928f69d9cb10e}{Highest\+\_\+\+Seg\+\_\+\+Temp}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Returns largest temperature out of all segment temperatures recorded from the CAN bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{control__system_8c_a1d3dac7ff6d6901ec25b65f2ec003d2f}{CAN\+\_\+\+Transmit\+All\+\_\+\+Sensor\+Data}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si, \mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}can)
+\begin{DoxyCompactList}\small\item\em Sends all the data in the temp + pressure buffers over to the relevant CAN bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{control__system_8c_a27d6baeeeb9cc9e85168c7cf6bb4559b}{ACC\+\_\+\+Control\+\_\+\+Loop}} (\mbox{\hyperlink{struct_a_c_c__t}{ACC\+\_\+t}} \texorpdfstring{$\ast$}{*}acc, \mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si, \mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}can)
+\begin{DoxyCompactList}\small\item\em Main control loop. Uses a simple threshold algorithm with hysteresis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{control__system_8c_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8}\index{control\_system.c@{control\_system.c}!State@{State}}
+\index{State@{State}!control\_system.c@{control\_system.c}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily \label{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8} 
+enum \mbox{\hyperlink{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BASE\_MODE@{BASE\_MODE}!control\_system.c@{control\_system.c}}\index{control\_system.c@{control\_system.c}!BASE\_MODE@{BASE\_MODE}}}\Hypertarget{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a26b6cd8468d6a7b869fb25d2fd8b2519}\label{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a26b6cd8468d6a7b869fb25d2fd8b2519} 
+BASE\+\_\+\+MODE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ABOVE\_40DEG@{ABOVE\_40DEG}!control\_system.c@{control\_system.c}}\index{control\_system.c@{control\_system.c}!ABOVE\_40DEG@{ABOVE\_40DEG}}}\Hypertarget{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab5449d9bc188f0432fc56e58c8ee1701}\label{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab5449d9bc188f0432fc56e58c8ee1701} 
+ABOVE\+\_\+40\+DEG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ABOVE\_50DEG@{ABOVE\_50DEG}!control\_system.c@{control\_system.c}}\index{control\_system.c@{control\_system.c}!ABOVE\_50DEG@{ABOVE\_50DEG}}}\Hypertarget{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a001e3af45603cecdb526dd8f0b6038d8}\label{control__system_8c_a5d74787dedbc4e11c1ab15bf487e61f8a001e3af45603cecdb526dd8f0b6038d8} 
+ABOVE\+\_\+50\+DEG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{control__system_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{control__system_8c_a27d6baeeeb9cc9e85168c7cf6bb4559b}\index{control\_system.c@{control\_system.c}!ACC\_Control\_Loop@{ACC\_Control\_Loop}}
+\index{ACC\_Control\_Loop@{ACC\_Control\_Loop}!control\_system.c@{control\_system.c}}
+\doxysubsubsection{\texorpdfstring{ACC\_Control\_Loop()}{ACC\_Control\_Loop()}}
+{\footnotesize\ttfamily \label{control__system_8c_a27d6baeeeb9cc9e85168c7cf6bb4559b} 
+void ACC\+\_\+\+Control\+\_\+\+Loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_a_c_c__t}{ACC\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{acc}{, }\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{, }\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{can}{}\end{DoxyParamCaption})}
+
+
+
+Main control loop. Uses a simple threshold algorithm with hysteresis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_a_c_c__t}{ACC\+\_\+t}} & \texorpdfstring{$\ast$}{*}acc, \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t} \texorpdfstring{$\ast$}{*}si, \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t} \texorpdfstring{$\ast$}{*}can \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{control__system_8c_a1d3dac7ff6d6901ec25b65f2ec003d2f}\index{control\_system.c@{control\_system.c}!CAN\_TransmitAll\_SensorData@{CAN\_TransmitAll\_SensorData}}
+\index{CAN\_TransmitAll\_SensorData@{CAN\_TransmitAll\_SensorData}!control\_system.c@{control\_system.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_TransmitAll\_SensorData()}{CAN\_TransmitAll\_SensorData()}}
+{\footnotesize\ttfamily \label{control__system_8c_a1d3dac7ff6d6901ec25b65f2ec003d2f} 
+void CAN\+\_\+\+Transmit\+All\+\_\+\+Sensor\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{, }\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{can}{}\end{DoxyParamCaption})}
+
+
+
+Sends all the data in the temp + pressure buffers over to the relevant CAN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si, \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t} \texorpdfstring{$\ast$}{*}can, \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{control__system_8c_ad9b858d010fb78b61fd0eba9e5a2b743}\index{control\_system.c@{control\_system.c}!Highest\_Input\_Temp@{Highest\_Input\_Temp}}
+\index{Highest\_Input\_Temp@{Highest\_Input\_Temp}!control\_system.c@{control\_system.c}}
+\doxysubsubsection{\texorpdfstring{Highest\_Input\_Temp()}{Highest\_Input\_Temp()}}
+{\footnotesize\ttfamily \label{control__system_8c_ad9b858d010fb78b61fd0eba9e5a2b743} 
+float Highest\+\_\+\+Input\+\_\+\+Temp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns largest temperature out of all input temperatures going into MCU. 
+
+Main ACC Control Code
+\begin{DoxyItemize}
+\item Franco Heraud 
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+
+\end{DoxyItemize}\Hypertarget{control__system_8c_ae721db7d4c3f4b56cd9928f69d9cb10e}\index{control\_system.c@{control\_system.c}!Highest\_Seg\_Temp@{Highest\_Seg\_Temp}}
+\index{Highest\_Seg\_Temp@{Highest\_Seg\_Temp}!control\_system.c@{control\_system.c}}
+\doxysubsubsection{\texorpdfstring{Highest\_Seg\_Temp()}{Highest\_Seg\_Temp()}}
+{\footnotesize\ttfamily \label{control__system_8c_ae721db7d4c3f4b56cd9928f69d9cb10e} 
+float Highest\+\_\+\+Seg\+\_\+\+Temp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns largest temperature out of all segment temperatures recorded from the CAN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}

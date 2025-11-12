@@ -24,6 +24,7 @@ typedef struct {
     CAN_RxHeaderTypeDef rx1;
     uint8_t  tx_data[8];
     uint8_t  rx_data[8];
+    //bool is_ready_to_read;
     uint32_t id;
     uint8_t  len;
 } CAN_Driver_t;

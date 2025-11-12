@@ -1,0 +1,369 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Inc/\+Drivers/sensor\+\_\+inputs.h File Reference}
+\hypertarget{sensor__inputs_8h}{}\label{sensor__inputs_8h}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/sensor\_inputs.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/sensor\_inputs.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}Drivers/can\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}Other/acc\+\_\+config.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_ab30bfc2c4f68d1f49bbbc546b25b5d96}{ADC\+\_\+\+CH\+\_\+\+COUNT}}~8
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a00978ca9e8220475258dcbbbb7d29129}{ADC\+\_\+\+RESOLUTION}}~4095
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_ad53655e6cac4dfd2c67ecda5eea77a4e}{PWM\+\_\+\+RESOLUTION}}~255
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a4988fbfcf04b1a6c150418cf05e9a29e}{TEMP\+\_\+\+ACC1\+\_\+\+IN0}}~0
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_add8a44a0a2430896b0f0b37b40a1ebca}{TEMP\+\_\+\+ACC2\+\_\+\+IN1}}~1
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_aec8f89590b4c23ae20ec20e8157d80cc}{TEMP\+\_\+\+DUCT1\+\_\+\+IN2}}~2
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a9d1028d59299d9b71dae05801270480a}{TEMP\+\_\+\+DUCT2\+\_\+\+IN3}}~3
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_ab4f221039eab7a605d211a841daa532f}{PRES\+\_\+\+ACC1\+\_\+\+IN7}}~4
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_af027b1b4128b3a4625f546a8dee78fe2}{PRES\+\_\+\+ACC2\+\_\+\+IN8}}~5
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a3dabe4849934a6ba3a53ffeee8b100f6}{PRES\+\_\+\+DUCT1\+\_\+\+IN9}}~6
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_ae906af8657c47012acbea333edd70da0}{PRES\+\_\+\+DUCT2\+\_\+\+INX}}~99
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_aad4045bddaa07be5003b04f6954a54d2}{STATUS\+\_\+\+LED1}}~GPIO\+\_\+\+PIN\+\_\+6
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a4dcddcb55f302add5252a68e1ad8a3e9}{STATUS\+\_\+\+LED2}}~GPIO\+\_\+\+PIN\+\_\+7
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_af40be5233e229acc58afed9e2e52f0aa}{STATUS\+\_\+\+LED3}}~GPIO\+\_\+\+PIN\+\_\+11
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a231130a4e31824c114dc193af3555bc7}{STATUS\+\_\+\+LED4}}~GPIO\+\_\+\+PIN\+\_\+12
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a10e642e6eb22db120aefdc555fd61b64}{STATUS\+\_\+\+LED5}}~GPIO\+\_\+\+PIN\+\_\+13
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a81c141b23845e28ea568cb822c482d54}{P\+\_\+\+SENSOR\+\_\+\+VSUP1}}~4.\+5f
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_ac8e5c05531a308896877d1bde6223f2e}{P\+\_\+\+SENSOR\+\_\+\+PMAX1}}~50.\+0f
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_adf6e070f23ad03569769ce15603ccf47}{P\+\_\+\+SENSOR\+\_\+\+PMIN1}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_a616e7aa2061d8c22c59662eeefe420cb}{AMS\+\_\+\+SEGMENT\+\_\+\+COUNT}}~4
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_af43aeab568660f36889957076b3c397c}{AMS\+\_\+\+SEG\+\_\+\+TEMP\+\_\+\+CAN\+\_\+\+ID}}~(uint16\+\_\+t)0x00000000
+\item 
+\#define \mbox{\hyperlink{sensor__inputs_8h_adc773d198cfe9589b42d479bffbfe839}{TACH\+\_\+\+TIMER\+\_\+\+CLK\+\_\+\+HZ}}~16000000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{sensor__inputs_8h_a7c54d187b42311d2d180b269ca9eba0e}{Sensors\+\_\+\+Init}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc, TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim)
+\begin{DoxyCompactList}\small\item\em Sensor initialization function. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{sensor__inputs_8h_a3ddab797f4e1eed59e1b574ee5b88f1f}{Sensors\+\_\+\+Start}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Checks ADC DMA status and the status of all 3 PWM channels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8h_a4ae8fc699c9612c77f53202143422fca}{Store\+\_\+\+Temperature\+\_\+\+Readings}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Store converted temperature readings to temperature buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8h_a7fddf50ee6bb74576da3b524cad11dd8}{Store\+\_\+\+Pressure\+\_\+\+Readings}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Store converted p readings to pressure buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8h_af2ef93d77fdef489d590c17236625490}{PWM\+\_\+\+Set\+All}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Apply the struct member duty cycles to TIM1 CH1, CH2 \& CH3. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8h_ac89c08962cef06037de8533eed6fbbbe}{Update\+\_\+\+Fan\+\_\+\+Speed}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Call to update the fan speed into si-\/\texorpdfstring{$>$}{>}fan\+\_\+rpm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8h_a3e3318485a102e9bbf67bc2844cee6e4}{Update\+\_\+\+ADC\+\_\+\+Buffers}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Performs a single ADC read and updates the adc voltage buffer (in V). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{sensor__inputs_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sensor__inputs_8h_ab30bfc2c4f68d1f49bbbc546b25b5d96}\index{sensor\_inputs.h@{sensor\_inputs.h}!ADC\_CH\_COUNT@{ADC\_CH\_COUNT}}
+\index{ADC\_CH\_COUNT@{ADC\_CH\_COUNT}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_CH\_COUNT}{ADC\_CH\_COUNT}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ab30bfc2c4f68d1f49bbbc546b25b5d96} 
+\#define ADC\+\_\+\+CH\+\_\+\+COUNT~8}
+
+\Hypertarget{sensor__inputs_8h_a00978ca9e8220475258dcbbbb7d29129}\index{sensor\_inputs.h@{sensor\_inputs.h}!ADC\_RESOLUTION@{ADC\_RESOLUTION}}
+\index{ADC\_RESOLUTION@{ADC\_RESOLUTION}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_RESOLUTION}{ADC\_RESOLUTION}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a00978ca9e8220475258dcbbbb7d29129} 
+\#define ADC\+\_\+\+RESOLUTION~4095}
+
+\Hypertarget{sensor__inputs_8h_af43aeab568660f36889957076b3c397c}\index{sensor\_inputs.h@{sensor\_inputs.h}!AMS\_SEG\_TEMP\_CAN\_ID@{AMS\_SEG\_TEMP\_CAN\_ID}}
+\index{AMS\_SEG\_TEMP\_CAN\_ID@{AMS\_SEG\_TEMP\_CAN\_ID}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{AMS\_SEG\_TEMP\_CAN\_ID}{AMS\_SEG\_TEMP\_CAN\_ID}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_af43aeab568660f36889957076b3c397c} 
+\#define AMS\+\_\+\+SEG\+\_\+\+TEMP\+\_\+\+CAN\+\_\+\+ID~(uint16\+\_\+t)0x00000000}
+
+\Hypertarget{sensor__inputs_8h_a616e7aa2061d8c22c59662eeefe420cb}\index{sensor\_inputs.h@{sensor\_inputs.h}!AMS\_SEGMENT\_COUNT@{AMS\_SEGMENT\_COUNT}}
+\index{AMS\_SEGMENT\_COUNT@{AMS\_SEGMENT\_COUNT}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{AMS\_SEGMENT\_COUNT}{AMS\_SEGMENT\_COUNT}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a616e7aa2061d8c22c59662eeefe420cb} 
+\#define AMS\+\_\+\+SEGMENT\+\_\+\+COUNT~4}
+
+\Hypertarget{sensor__inputs_8h_ac8e5c05531a308896877d1bde6223f2e}\index{sensor\_inputs.h@{sensor\_inputs.h}!P\_SENSOR\_PMAX1@{P\_SENSOR\_PMAX1}}
+\index{P\_SENSOR\_PMAX1@{P\_SENSOR\_PMAX1}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{P\_SENSOR\_PMAX1}{P\_SENSOR\_PMAX1}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ac8e5c05531a308896877d1bde6223f2e} 
+\#define P\+\_\+\+SENSOR\+\_\+\+PMAX1~50.\+0f}
+
+\Hypertarget{sensor__inputs_8h_adf6e070f23ad03569769ce15603ccf47}\index{sensor\_inputs.h@{sensor\_inputs.h}!P\_SENSOR\_PMIN1@{P\_SENSOR\_PMIN1}}
+\index{P\_SENSOR\_PMIN1@{P\_SENSOR\_PMIN1}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{P\_SENSOR\_PMIN1}{P\_SENSOR\_PMIN1}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_adf6e070f23ad03569769ce15603ccf47} 
+\#define P\+\_\+\+SENSOR\+\_\+\+PMIN1~0.\+0f}
+
+\Hypertarget{sensor__inputs_8h_a81c141b23845e28ea568cb822c482d54}\index{sensor\_inputs.h@{sensor\_inputs.h}!P\_SENSOR\_VSUP1@{P\_SENSOR\_VSUP1}}
+\index{P\_SENSOR\_VSUP1@{P\_SENSOR\_VSUP1}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{P\_SENSOR\_VSUP1}{P\_SENSOR\_VSUP1}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a81c141b23845e28ea568cb822c482d54} 
+\#define P\+\_\+\+SENSOR\+\_\+\+VSUP1~4.\+5f}
+
+\Hypertarget{sensor__inputs_8h_ab4f221039eab7a605d211a841daa532f}\index{sensor\_inputs.h@{sensor\_inputs.h}!PRES\_ACC1\_IN7@{PRES\_ACC1\_IN7}}
+\index{PRES\_ACC1\_IN7@{PRES\_ACC1\_IN7}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PRES\_ACC1\_IN7}{PRES\_ACC1\_IN7}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ab4f221039eab7a605d211a841daa532f} 
+\#define PRES\+\_\+\+ACC1\+\_\+\+IN7~4}
+
+\Hypertarget{sensor__inputs_8h_af027b1b4128b3a4625f546a8dee78fe2}\index{sensor\_inputs.h@{sensor\_inputs.h}!PRES\_ACC2\_IN8@{PRES\_ACC2\_IN8}}
+\index{PRES\_ACC2\_IN8@{PRES\_ACC2\_IN8}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PRES\_ACC2\_IN8}{PRES\_ACC2\_IN8}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_af027b1b4128b3a4625f546a8dee78fe2} 
+\#define PRES\+\_\+\+ACC2\+\_\+\+IN8~5}
+
+\Hypertarget{sensor__inputs_8h_a3dabe4849934a6ba3a53ffeee8b100f6}\index{sensor\_inputs.h@{sensor\_inputs.h}!PRES\_DUCT1\_IN9@{PRES\_DUCT1\_IN9}}
+\index{PRES\_DUCT1\_IN9@{PRES\_DUCT1\_IN9}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PRES\_DUCT1\_IN9}{PRES\_DUCT1\_IN9}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a3dabe4849934a6ba3a53ffeee8b100f6} 
+\#define PRES\+\_\+\+DUCT1\+\_\+\+IN9~6}
+
+\Hypertarget{sensor__inputs_8h_ae906af8657c47012acbea333edd70da0}\index{sensor\_inputs.h@{sensor\_inputs.h}!PRES\_DUCT2\_INX@{PRES\_DUCT2\_INX}}
+\index{PRES\_DUCT2\_INX@{PRES\_DUCT2\_INX}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PRES\_DUCT2\_INX}{PRES\_DUCT2\_INX}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ae906af8657c47012acbea333edd70da0} 
+\#define PRES\+\_\+\+DUCT2\+\_\+\+INX~99}
+
+\Hypertarget{sensor__inputs_8h_ad53655e6cac4dfd2c67ecda5eea77a4e}\index{sensor\_inputs.h@{sensor\_inputs.h}!PWM\_RESOLUTION@{PWM\_RESOLUTION}}
+\index{PWM\_RESOLUTION@{PWM\_RESOLUTION}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PWM\_RESOLUTION}{PWM\_RESOLUTION}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ad53655e6cac4dfd2c67ecda5eea77a4e} 
+\#define PWM\+\_\+\+RESOLUTION~255}
+
+\Hypertarget{sensor__inputs_8h_aad4045bddaa07be5003b04f6954a54d2}\index{sensor\_inputs.h@{sensor\_inputs.h}!STATUS\_LED1@{STATUS\_LED1}}
+\index{STATUS\_LED1@{STATUS\_LED1}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_LED1}{STATUS\_LED1}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_aad4045bddaa07be5003b04f6954a54d2} 
+\#define STATUS\+\_\+\+LED1~GPIO\+\_\+\+PIN\+\_\+6}
+
+\Hypertarget{sensor__inputs_8h_a4dcddcb55f302add5252a68e1ad8a3e9}\index{sensor\_inputs.h@{sensor\_inputs.h}!STATUS\_LED2@{STATUS\_LED2}}
+\index{STATUS\_LED2@{STATUS\_LED2}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_LED2}{STATUS\_LED2}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a4dcddcb55f302add5252a68e1ad8a3e9} 
+\#define STATUS\+\_\+\+LED2~GPIO\+\_\+\+PIN\+\_\+7}
+
+\Hypertarget{sensor__inputs_8h_af40be5233e229acc58afed9e2e52f0aa}\index{sensor\_inputs.h@{sensor\_inputs.h}!STATUS\_LED3@{STATUS\_LED3}}
+\index{STATUS\_LED3@{STATUS\_LED3}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_LED3}{STATUS\_LED3}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_af40be5233e229acc58afed9e2e52f0aa} 
+\#define STATUS\+\_\+\+LED3~GPIO\+\_\+\+PIN\+\_\+11}
+
+\Hypertarget{sensor__inputs_8h_a231130a4e31824c114dc193af3555bc7}\index{sensor\_inputs.h@{sensor\_inputs.h}!STATUS\_LED4@{STATUS\_LED4}}
+\index{STATUS\_LED4@{STATUS\_LED4}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_LED4}{STATUS\_LED4}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a231130a4e31824c114dc193af3555bc7} 
+\#define STATUS\+\_\+\+LED4~GPIO\+\_\+\+PIN\+\_\+12}
+
+\Hypertarget{sensor__inputs_8h_a10e642e6eb22db120aefdc555fd61b64}\index{sensor\_inputs.h@{sensor\_inputs.h}!STATUS\_LED5@{STATUS\_LED5}}
+\index{STATUS\_LED5@{STATUS\_LED5}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_LED5}{STATUS\_LED5}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a10e642e6eb22db120aefdc555fd61b64} 
+\#define STATUS\+\_\+\+LED5~GPIO\+\_\+\+PIN\+\_\+13}
+
+\Hypertarget{sensor__inputs_8h_adc773d198cfe9589b42d479bffbfe839}\index{sensor\_inputs.h@{sensor\_inputs.h}!TACH\_TIMER\_CLK\_HZ@{TACH\_TIMER\_CLK\_HZ}}
+\index{TACH\_TIMER\_CLK\_HZ@{TACH\_TIMER\_CLK\_HZ}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{TACH\_TIMER\_CLK\_HZ}{TACH\_TIMER\_CLK\_HZ}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_adc773d198cfe9589b42d479bffbfe839} 
+\#define TACH\+\_\+\+TIMER\+\_\+\+CLK\+\_\+\+HZ~16000000}
+
+\Hypertarget{sensor__inputs_8h_a4988fbfcf04b1a6c150418cf05e9a29e}\index{sensor\_inputs.h@{sensor\_inputs.h}!TEMP\_ACC1\_IN0@{TEMP\_ACC1\_IN0}}
+\index{TEMP\_ACC1\_IN0@{TEMP\_ACC1\_IN0}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_ACC1\_IN0}{TEMP\_ACC1\_IN0}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a4988fbfcf04b1a6c150418cf05e9a29e} 
+\#define TEMP\+\_\+\+ACC1\+\_\+\+IN0~0}
+
+\Hypertarget{sensor__inputs_8h_add8a44a0a2430896b0f0b37b40a1ebca}\index{sensor\_inputs.h@{sensor\_inputs.h}!TEMP\_ACC2\_IN1@{TEMP\_ACC2\_IN1}}
+\index{TEMP\_ACC2\_IN1@{TEMP\_ACC2\_IN1}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_ACC2\_IN1}{TEMP\_ACC2\_IN1}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_add8a44a0a2430896b0f0b37b40a1ebca} 
+\#define TEMP\+\_\+\+ACC2\+\_\+\+IN1~1}
+
+\Hypertarget{sensor__inputs_8h_aec8f89590b4c23ae20ec20e8157d80cc}\index{sensor\_inputs.h@{sensor\_inputs.h}!TEMP\_DUCT1\_IN2@{TEMP\_DUCT1\_IN2}}
+\index{TEMP\_DUCT1\_IN2@{TEMP\_DUCT1\_IN2}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_DUCT1\_IN2}{TEMP\_DUCT1\_IN2}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_aec8f89590b4c23ae20ec20e8157d80cc} 
+\#define TEMP\+\_\+\+DUCT1\+\_\+\+IN2~2}
+
+\Hypertarget{sensor__inputs_8h_a9d1028d59299d9b71dae05801270480a}\index{sensor\_inputs.h@{sensor\_inputs.h}!TEMP\_DUCT2\_IN3@{TEMP\_DUCT2\_IN3}}
+\index{TEMP\_DUCT2\_IN3@{TEMP\_DUCT2\_IN3}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_DUCT2\_IN3}{TEMP\_DUCT2\_IN3}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a9d1028d59299d9b71dae05801270480a} 
+\#define TEMP\+\_\+\+DUCT2\+\_\+\+IN3~3}
+
+
+
+\label{doc-func-members}
+\Hypertarget{sensor__inputs_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{sensor__inputs_8h_af2ef93d77fdef489d590c17236625490}\index{sensor\_inputs.h@{sensor\_inputs.h}!PWM\_SetAll@{PWM\_SetAll}}
+\index{PWM\_SetAll@{PWM\_SetAll}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{PWM\_SetAll()}{PWM\_SetAll()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_af2ef93d77fdef489d590c17236625490} 
+void PWM\+\_\+\+Set\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Apply the struct member duty cycles to TIM1 CH1, CH2 \& CH3. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_a7c54d187b42311d2d180b269ca9eba0e}\index{sensor\_inputs.h@{sensor\_inputs.h}!Sensors\_Init@{Sensors\_Init}}
+\index{Sensors\_Init@{Sensors\_Init}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Sensors\_Init()}{Sensors\_Init()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a7c54d187b42311d2d180b269ca9eba0e} 
+HAL\+\_\+\+Status\+Type\+Def Sensors\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc}{, }\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim}{}\end{DoxyParamCaption})}
+
+
+
+Sensor initialization function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc, TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_a3ddab797f4e1eed59e1b574ee5b88f1f}\index{sensor\_inputs.h@{sensor\_inputs.h}!Sensors\_Start@{Sensors\_Start}}
+\index{Sensors\_Start@{Sensors\_Start}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Sensors\_Start()}{Sensors\_Start()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a3ddab797f4e1eed59e1b574ee5b88f1f} 
+HAL\+\_\+\+Status\+Type\+Def Sensors\+\_\+\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Checks ADC DMA status and the status of all 3 PWM channels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_a7fddf50ee6bb74576da3b524cad11dd8}\index{sensor\_inputs.h@{sensor\_inputs.h}!Store\_Pressure\_Readings@{Store\_Pressure\_Readings}}
+\index{Store\_Pressure\_Readings@{Store\_Pressure\_Readings}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Store\_Pressure\_Readings()}{Store\_Pressure\_Readings()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a7fddf50ee6bb74576da3b524cad11dd8} 
+void Store\+\_\+\+Pressure\+\_\+\+Readings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Store converted p readings to pressure buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_a4ae8fc699c9612c77f53202143422fca}\index{sensor\_inputs.h@{sensor\_inputs.h}!Store\_Temperature\_Readings@{Store\_Temperature\_Readings}}
+\index{Store\_Temperature\_Readings@{Store\_Temperature\_Readings}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Store\_Temperature\_Readings()}{Store\_Temperature\_Readings()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a4ae8fc699c9612c77f53202143422fca} 
+void Store\+\_\+\+Temperature\+\_\+\+Readings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Store converted temperature readings to temperature buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_a3e3318485a102e9bbf67bc2844cee6e4}\index{sensor\_inputs.h@{sensor\_inputs.h}!Update\_ADC\_Buffers@{Update\_ADC\_Buffers}}
+\index{Update\_ADC\_Buffers@{Update\_ADC\_Buffers}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Update\_ADC\_Buffers()}{Update\_ADC\_Buffers()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_a3e3318485a102e9bbf67bc2844cee6e4} 
+void Update\+\_\+\+ADC\+\_\+\+Buffers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Performs a single ADC read and updates the adc voltage buffer (in V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8h_ac89c08962cef06037de8533eed6fbbbe}\index{sensor\_inputs.h@{sensor\_inputs.h}!Update\_Fan\_Speed@{Update\_Fan\_Speed}}
+\index{Update\_Fan\_Speed@{Update\_Fan\_Speed}!sensor\_inputs.h@{sensor\_inputs.h}}
+\doxysubsubsection{\texorpdfstring{Update\_Fan\_Speed()}{Update\_Fan\_Speed()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8h_ac89c08962cef06037de8533eed6fbbbe} 
+void Update\+\_\+\+Fan\+\_\+\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Call to update the fan speed into si-\/\texorpdfstring{$>$}{>}fan\+\_\+rpm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}

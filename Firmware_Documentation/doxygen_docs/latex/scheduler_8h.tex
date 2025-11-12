@@ -1,0 +1,54 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Inc/\+Other/scheduler.h File Reference}
+\hypertarget{scheduler_8h}{}\label{scheduler_8h}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/scheduler.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/scheduler.h}}
+{\ttfamily \#include "{}acc\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}} \{ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73ae57ac4cdcb8c33594a22803753c3ef77}{EXEC\+\_\+1\+MS}}
+, \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73a4171515c5c7565d11b5cd98657fcab04}{EXEC\+\_\+10\+MS}}
+, \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73ac55dabea2aabc4a5bb858fb47262779a}{EXEC\+\_\+100\+MS}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}} \mbox{\hyperlink{scheduler_8h_a0b1ccac58b12ac9aa00aad1f7674000d}{Schedule\+\_\+\+Tasks}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}timer\+\_\+ptr)
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{scheduler_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{scheduler_8h_ab270c311360e758658276bf944d00f73}\index{scheduler.h@{scheduler.h}!SchedulerState@{SchedulerState}}
+\index{SchedulerState@{SchedulerState}!scheduler.h@{scheduler.h}}
+\doxysubsubsection{\texorpdfstring{SchedulerState}{SchedulerState}}
+{\footnotesize\ttfamily \label{scheduler_8h_ab270c311360e758658276bf944d00f73} 
+enum \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXEC\_1MS@{EXEC\_1MS}!scheduler.h@{scheduler.h}}\index{scheduler.h@{scheduler.h}!EXEC\_1MS@{EXEC\_1MS}}}\Hypertarget{scheduler_8h_ab270c311360e758658276bf944d00f73ae57ac4cdcb8c33594a22803753c3ef77}\label{scheduler_8h_ab270c311360e758658276bf944d00f73ae57ac4cdcb8c33594a22803753c3ef77} 
+EXEC\+\_\+1\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXEC\_10MS@{EXEC\_10MS}!scheduler.h@{scheduler.h}}\index{scheduler.h@{scheduler.h}!EXEC\_10MS@{EXEC\_10MS}}}\Hypertarget{scheduler_8h_ab270c311360e758658276bf944d00f73a4171515c5c7565d11b5cd98657fcab04}\label{scheduler_8h_ab270c311360e758658276bf944d00f73a4171515c5c7565d11b5cd98657fcab04} 
+EXEC\+\_\+10\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXEC\_100MS@{EXEC\_100MS}!scheduler.h@{scheduler.h}}\index{scheduler.h@{scheduler.h}!EXEC\_100MS@{EXEC\_100MS}}}\Hypertarget{scheduler_8h_ab270c311360e758658276bf944d00f73ac55dabea2aabc4a5bb858fb47262779a}\label{scheduler_8h_ab270c311360e758658276bf944d00f73ac55dabea2aabc4a5bb858fb47262779a} 
+EXEC\+\_\+100\+MS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{scheduler_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{scheduler_8h_a0b1ccac58b12ac9aa00aad1f7674000d}\index{scheduler.h@{scheduler.h}!Schedule\_Tasks@{Schedule\_Tasks}}
+\index{Schedule\_Tasks@{Schedule\_Tasks}!scheduler.h@{scheduler.h}}
+\doxysubsubsection{\texorpdfstring{Schedule\_Tasks()}{Schedule\_Tasks()}}
+{\footnotesize\ttfamily \label{scheduler_8h_a0b1ccac58b12ac9aa00aad1f7674000d} 
+\mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}} Schedule\+\_\+\+Tasks (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{timer\+\_\+ptr}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,34 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Src/\+Other/scheduler.c File Reference}
+\hypertarget{scheduler_8c}{}\label{scheduler_8c}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Other/scheduler.c@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Other/scheduler.c}}
+{\ttfamily \#include "{}Other/scheduler.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}} \mbox{\hyperlink{scheduler_8c_a00efac3259e2792402bbd9098c2c37ce}{Schedule\+\_\+\+Task}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}timer\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Lightweight scheduler. Intended to be used with i.\+e., a (scaled) hardware timer variable or system tick variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{scheduler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{scheduler_8c_a00efac3259e2792402bbd9098c2c37ce}\index{scheduler.c@{scheduler.c}!Schedule\_Task@{Schedule\_Task}}
+\index{Schedule\_Task@{Schedule\_Task}!scheduler.c@{scheduler.c}}
+\doxysubsubsection{\texorpdfstring{Schedule\_Task()}{Schedule\_Task()}}
+{\footnotesize\ttfamily \label{scheduler_8c_a00efac3259e2792402bbd9098c2c37ce} 
+\mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State}} Schedule\+\_\+\+Task (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{timer\+\_\+ptr}{}\end{DoxyParamCaption})}
+
+
+
+Lightweight scheduler. Intended to be used with i.\+e., a (scaled) hardware timer variable or system tick variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \texorpdfstring{$\ast$}{*}timer\+\_\+ptr} & ({\bfseries{Must be in milliseconds!}}) -\/\texorpdfstring{$>$}{>} Must also be casted to integer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{scheduler_8h_ab270c311360e758658276bf944d00f73}{Scheduler\+State} (enum) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}

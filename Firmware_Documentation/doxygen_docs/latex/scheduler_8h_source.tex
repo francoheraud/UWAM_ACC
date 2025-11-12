@@ -1,0 +1,34 @@
+\doxysection{scheduler.\+h}
+\hypertarget{scheduler_8h_source}{}\label{scheduler_8h_source}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/scheduler.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/scheduler.h}}
+\mbox{\hyperlink{scheduler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INC\_SCHEDULER\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INC\_SCHEDULER\_H\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{acc__config_8h}{acc\_config.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ This\ is\ basically\ just\ a\ lightweight\ scheduler\ that\ implements\ some\ basic\ rate-\/grouping.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ Made\ up\ some\ arbitrary\ timing\ requirements.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ TODO:\ Double\ check\ w/\ electrical\ team\ if\ this\ should\ be\ adjusted.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73ae57ac4cdcb8c33594a22803753c3ef77}{EXEC\_1MS}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73a4171515c5c7565d11b5cd98657fcab04}{EXEC\_10MS}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73ac55dabea2aabc4a5bb858fb47262779a}{EXEC\_100MS}}}
+\DoxyCodeLine{00020\ \}\ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{SchedulerState}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{scheduler_8h_ab270c311360e758658276bf944d00f73}{SchedulerState}}\ \mbox{\hyperlink{scheduler_8h_a0b1ccac58b12ac9aa00aad1f7674000d}{Schedule\_Tasks}}(uint32\_t\ *timer\_ptr);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

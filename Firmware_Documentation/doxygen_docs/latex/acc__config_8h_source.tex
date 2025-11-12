@@ -1,0 +1,69 @@
+\doxysection{acc\+\_\+config.\+h}
+\hypertarget{acc__config_8h_source}{}\label{acc__config_8h_source}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/acc\_config.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Other/acc\_config.h}}
+\mbox{\hyperlink{acc__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ AUTO-\/GENERATED\ FILE.\ DO\ NOT\ EDIT.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Generated\ from\ acc\_config.yaml}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Project:\ UWA\ Motorsports\ Accumulator\ Cooling\ Control}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Version:\ 1.0.0}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Author:\ \ Franco\ Heraud}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Contributors:\ ...}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ACC\_ADC\_RES\_BITS\ \ \ \ \ \ 12}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ ACC\_ADC\_VREF\_VOLTS\ \ \ \ 3.3f}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ ACC\_TIMER\_TICK\_HZ\ \ \ \ \ 1000000u}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ ACC\_FAN\_COUNT\ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ ACC\_FAN\_PULSES\_PER\_REV\ 1}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ ACC\_FAN\_PWM\_MIN\_DUTY\ \ 0.2f}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ ACC\_FAN\_PWM\_MAX\_DUTY\ \ 0.95f}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ CAN\ IDs}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_BASE\ \ \ \ \ \ \ 0x440u}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_TEMP\ \ \ \ \ \ \ 0x441u}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_PRESSURE\ \ \ 0x442u}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_SEG\_TEMP\ \ \ 0x443u}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_TACH\ \ \ \ \ \ \ 0x444u}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ACC\_CAN\_ID\_ACC\_POWER\ \ \ \ \ \ 0x445u}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Pressure\ sensors}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ ACC\_PRESSURE\_SENSOR\_COUNT\ \ 4u}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P1\_ADC\_CH\ \ \ \ \ \ \ 1u}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P1\_MIN\_PSI\ \ \ \ \ \ \ 0f}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P1\_MAX\_PSI\ \ \ \ \ \ \ 100f}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P2\_ADC\_CH\ \ \ \ \ \ \ 2u}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P2\_MIN\_PSI\ \ \ \ \ \ \ 0f}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P2\_MAX\_PSI\ \ \ \ \ \ \ 100f}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P3\_ADC\_CH\ \ \ \ \ \ \ 3u}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P3\_MIN\_PSI\ \ \ \ \ \ \ 0f}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P3\_MAX\_PSI\ \ \ \ \ \ \ 100f}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P4\_ADC\_CH\ \ \ \ \ \ \ 4u}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P4\_MIN\_PSI\ \ \ \ \ \ \ 0f}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ACC\_PRESS\_P4\_MAX\_PSI\ \ \ \ \ \ \ 100f}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Thermistor\ (Steinhart-\/Hart)\ coefficients\ (common)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ACC\_TH\_A\ \ \ 0.003354016f}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ACC\_TH\_B\ \ \ 0.000250275f}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ACC\_TH\_C\ \ \ 2.42945e-\/06f}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ACC\_TH\_D\ \ \ -\/7.3121e-\/08f}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_SENSOR\_COUNT\ \ \ \ \ \ \ 4u}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_T1\_ADC\_CH\ \ \ \ \ \ \ 5u}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_T2\_ADC\_CH\ \ \ \ \ \ \ 6u}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_T3\_ADC\_CH\ \ \ \ \ \ \ 7u}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_T4\_ADC\_CH\ \ \ \ \ \ \ 8u}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ Control\ thresholds}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_THRESHOLD1\_DEGC\ \ \ 40f}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_THRESHOLD2\_DEGC\ \ \ 60f}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ ACC\_TEMP\_HYSTERESIS\_DEGC\ \ \ 3f}}
+
+\end{DoxyCode}

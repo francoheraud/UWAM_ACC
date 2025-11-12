@@ -6,6 +6,12 @@
 
 #include <Drivers/control_system.h>
 
+/**
+ * @brief Returns largest temperature out of all input temperatures going into MCU.
+* @param SensorInputs_t *si
+* @return float
+* @note Auto-gen: fill details.
+*/
 static float Highest_Input_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < 4; i++) {
@@ -15,6 +21,13 @@ static float Highest_Input_Temp(SensorInputs_t *si) {
 	return largest_temp;
 }
 
+/**
+ * @brief Returns largest temperature out of all segment temperatures recorded from
+ * the CAN bus.
+* @param SensorInputs_t *si
+* @return float
+* @note Auto-gen: fill details.
+*/
 static float Highest_Seg_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < AMS_SEGMENT_COUNT; i++) {
@@ -24,9 +37,15 @@ static float Highest_Seg_Temp(SensorInputs_t *si) {
 	return largest_temp;
 }
 
-
-// Send all the data in the temp + pressure buffers over to the relevant CAN bus
+/**
+ * @brief Sends all the data in the temp + pressure buffers over to the relevant CAN bus.
+* @param SensorInputs_t *si, CAN_Driver_t *can,
+* @return void
+* @note Auto-gen: fill details.
+*/
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
+	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
+
 	for (uint8_t i = 0; i < 8; i++) {
 		if (i >= 4) {
 			can->tx_data[i] = si->pressure_psi[i - 4];
@@ -34,9 +53,8 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 		}
 		can->tx_data[i] = si->temp_c[i];
 	}
-	CAN_TxHeaderTypeDef tx = {0};
-	tx.StdId 	= ACC_DOUT_CAN_ID1;
-	tx.DLC 		= 8;
+	can->tx2.StdId 	= ACC_DOUT_CAN_ID1;
+	can->tx2.DLC 	= 8;
 	CAN_Transmit2(can);
 
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
@@ -45,11 +63,9 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	}
 
 	can->tx_data[AMS_SEGMENT_COUNT] = si->fan_rpm;
-	tx.StdId 	= ACC_DOUT_CAN_ID2;
-	tx.DLC 		= AMS_SEGMENT_COUNT;
+	can->tx2.StdId 	= ACC_DOUT_CAN_ID2;
+	can->tx2.DLC 	= AMS_SEGMENT_COUNT;
 	CAN_Transmit2(can);
-
-	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 
 	return;
 }
@@ -60,7 +76,12 @@ typedef enum {
 	ABOVE_50DEG
 } State;
 
-// Uses a simple threshold algorithm with hysteresis
+/**
+ * @brief Main control loop. Uses a simple threshold algorithm with hysteresis.
+* @param ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can
+* @return void
+* @note Auto-gen: fill details.
+*/
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 
 	static State control_state = BASE_MODE;
@@ -109,22 +130,4 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	PWM_SetAll(si);
 	return ;
 }
-
-/*
-// Experimental PID Controller (probably wont be used)
-const float kp = 1.0f, ki = 1.0f, kd = 1.0f;
-static uint8_t PID_Controller(float setpoint_rpm, float actual_rpm) {
-	static uint8_t error_old = 0, error_old2 = 0, pwm_old = 0;
-	uint8_t error = (uint8_t)(setpoint_rpm - actual_rpm);
-	uint8_t pwm = pwm_old + (uint8_t)(kp * (float)(error - error_old))
-			+ (uint8_t)(ki * (float)(error + error_old)/2.0f)
-			+ (uint8_t)(kd * (float)(error - 2.0f * error_old + error_old2));
-
-	error_old2 = error_old;
-	error_old = error;
-	pwm_old = pwm;
-	return pwm;
-}
-*/
-
 

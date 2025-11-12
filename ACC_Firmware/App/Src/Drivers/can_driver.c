@@ -1,6 +1,5 @@
 /**
  * Dual CAN driver for the ACC
- * - Franco H
  */
 
 #include <Drivers/can_driver.h>
@@ -8,14 +7,30 @@
 extern CAN_HandleTypeDef hcan1;
 extern CAN_HandleTypeDef hcan2;
 
+
+// TODO: In the future, could reimplement this to work with the error codes of CAN?
+
+/**
+ * @brief Initializes the CAN driver. CAN_Init(...) should be automatically called in the MX_CAN_Init() in main.c.
+* @param CAN_Driver_t *drv
+* @return HAL_StatusTypeDef
+* @note Auto-gen: fill details.
+*/
 HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv) {
     if (!drv) return HAL_ERROR;
     if (hcan1.Instance == NULL || hcan2.Instance == NULL) return HAL_ERROR;
     drv->hcan1 = &hcan1;
     drv->hcan2 = &hcan2;
+    //drv->is_ready_to_read = false;
     return  HAL_CAN_Start(drv->hcan1) || HAL_CAN_Start(drv->hcan2);
 }
 
+/**
+ * @brief Transmits a CAN message over to the 1st CAN bus.
+* @param CAN_Driver_t *drv
+* @return HAL_StatusTypeDef
+* @note Auto-gen: fill details.
+*/
 HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *drv) {
 
     uint32_t mbox;
@@ -27,6 +42,12 @@ HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *drv) {
     return HAL_CAN_AddTxMessage(drv->hcan1, &drv->tx1, drv->tx_data, &mbox);
 }
 
+/**
+ * @brief Transmits a CAN message over to the 2nd CAN bus.
+* @param CAN_Driver_t *drv
+* @return HAL_StatusTypeDef
+* @note Auto-gen: fill details.
+*/
 HAL_StatusTypeDef CAN_Transmit2(CAN_Driver_t *drv) {
 
     uint32_t mbox;
@@ -38,6 +59,12 @@ HAL_StatusTypeDef CAN_Transmit2(CAN_Driver_t *drv) {
     return HAL_CAN_AddTxMessage(drv->hcan2, &drv->tx2, drv->tx_data, &mbox);
 }
 
+/**
+ * @brief Receives a CAN message from the 1st CAN bus. We only need 1 receive function for ACC.
+* @param CAN_Driver_t *drv
+* @return HAL_StatusTypeDef
+* @note Auto-gen: fill details.
+*/
 HAL_StatusTypeDef CAN_Receive1(CAN_Driver_t *drv) {
 
     drv->rx1.IDE = CAN_ID_STD;
@@ -49,9 +76,17 @@ HAL_StatusTypeDef CAN_Receive1(CAN_Driver_t *drv) {
     return HAL_CAN_GetRxMessage(drv->hcan1, CAN_RX_FIFO0, &drv->rx1, drv->rx_data);
 }
 
+
+/**
+ * @brief TODO: Re-implement CAN driver testing using CMock API?
+* @param void
+* @return void
+* @note Auto-gen: fill details.
+*/
 void CAN_Test(void)
 {
 	// add some shit here
+	return;
 }
 
 

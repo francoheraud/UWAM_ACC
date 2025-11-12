@@ -9,11 +9,13 @@
 #define INC_CONTROL_SYSTEM_H_
 
 #include "main.h"
-#include "can_driver.h"
-#include "sensor_inputs.h"
+#include "Drivers/can_driver.h"
+#include "Drivers/sensor_inputs.h"
+#include "Other/acc_config.h"
+
 #include <stdbool.h>
 #include <string.h>
-#include "acc_config.h"
+#include <limits.h>
 
 
 #define TEMP_THRESHOLD1		40.0f

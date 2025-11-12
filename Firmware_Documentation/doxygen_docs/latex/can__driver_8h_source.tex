@@ -1,0 +1,45 @@
+\doxysection{can\+\_\+driver.\+h}
+\hypertarget{can__driver_8h_source}{}\label{can__driver_8h_source}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/can\_driver.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/can\_driver.h}}
+\mbox{\hyperlink{can__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ INC\_CAN\_DRIVER\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ INC\_CAN\_DRIVER\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{acc__config_8h}{acc\_config.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ CAN\_HandleTypeDef\ *\mbox{\hyperlink{struct_c_a_n___driver__t_abe8a59933be3a9840cbca9751bd310c7}{hcan1}};}
+\DoxyCodeLine{00021\ \ \ \ \ CAN\_HandleTypeDef\ *\mbox{\hyperlink{struct_c_a_n___driver__t_a29e4388050ea392c84271232bc086d26}{hcan2}};}
+\DoxyCodeLine{00022\ \ \ \ \ CAN\_TxHeaderTypeDef\ \mbox{\hyperlink{struct_c_a_n___driver__t_a431ced3a0b8477002595fee16cbd8fb3}{tx1}};}
+\DoxyCodeLine{00023\ \ \ \ \ CAN\_TxHeaderTypeDef\ \mbox{\hyperlink{struct_c_a_n___driver__t_aabead7d329598905bae94355729de90e}{tx2}};}
+\DoxyCodeLine{00024\ \ \ \ \ CAN\_RxHeaderTypeDef\ \mbox{\hyperlink{struct_c_a_n___driver__t_a0019e3c5f9aa260a7e3f2989279c0e6a}{rx1}};}
+\DoxyCodeLine{00025\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_c_a_n___driver__t_a35c1158ccecb2f3700dc8e6dfc289a4f}{tx\_data}}[8];}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_c_a_n___driver__t_aae3139f2c2933a7144af45820b590638}{rx\_data}}[8];}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//bool\ is\_ready\_to\_read;}}
+\DoxyCodeLine{00028\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_c_a_n___driver__t_a20618fac39839a033f8165a996861d92}{id}};}
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_c_a_n___driver__t_a1af7e0e5d9c49542b9dcd1d8a24f1423}{len}};}
+\DoxyCodeLine{00030\ \}\ \mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ HAL\_StatusTypeDef\ \mbox{\hyperlink{can__driver_8h_adf6a5a714ae293f24c601a44eff06155}{CAN\_InitDriver}}(\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00033\ HAL\_StatusTypeDef\ \mbox{\hyperlink{can__driver_8h_ae5a76e1bdc444ebbdefcc0da5efebcab}{CAN\_Transmit1}}\ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00034\ HAL\_StatusTypeDef\ \mbox{\hyperlink{can__driver_8h_a519f1f5587ea0ec70d621a0f73c170e0}{CAN\_Transmit2}}\ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00035\ HAL\_StatusTypeDef\ \mbox{\hyperlink{can__driver_8h_aea6bcd41831f1b60f0c8194f72f53a09}{CAN\_Receive1}}\ \ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{can__driver_8h_a7835e49a5e779b3b4e39f8eeb77ef8f6}{CAN\_Test}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_CAN\_DRIVER\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

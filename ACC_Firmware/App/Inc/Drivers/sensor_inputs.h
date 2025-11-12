@@ -17,7 +17,6 @@ extern "C" {
 #endif
 
 #include "main.h"
-#include "can_driver.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <limits.h>
@@ -25,7 +24,9 @@ extern "C" {
 #include <math.h>
 #include <stdio.h>
 #include <math.h>
-#include "acc_config.h"
+
+#include "Drivers/can_driver.h"
+#include "Other/acc_config.h"
 
 
 
@@ -66,7 +67,7 @@ typedef struct {
 
 	// adc dma buffers
 	volatile uint16_t adc_raw[ADC_CH_COUNT];
-	volatile float adc_mV[ADC_CH_COUNT];
+	volatile float adc_V[ADC_CH_COUNT];
 
 	// data buffers for temperature and pressure values
 	float temp_c[4];
@@ -78,7 +79,6 @@ typedef struct {
 	float ch2_duty_cycle;
 	float ch3_duty_cycle;
 
-	// other
 	float fan_rpm;
 
 

@@ -1,0 +1,404 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Src/\+Drivers/sensor\+\_\+inputs.c File Reference}
+\hypertarget{sensor__inputs_8c}{}\label{sensor__inputs_8c}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/sensor\_inputs.c@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/sensor\_inputs.c}}
+{\ttfamily \#include $<$Drivers/sensor\+\_\+inputs.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_ad19770695768f7f01a3654fe2af5b8f3}{Constrain}} (float x, float low, float high)
+\begin{DoxyCompactList}\small\item\em Helper constrain function. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_ad85521aa06d2b04c0a7df37e97fee4f6}{Linear\+\_\+\+Map}} (float value, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Helper function which linearly maps a float value from one range to another. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_aa0ddd78d7ea85e5e46d1aee56304a78b}{Voltage\+\_\+\+To\+\_\+k\+Pa\+\_\+\+Bosch}} (float volts)
+\begin{DoxyCompactList}\small\item\em Converts output sensor voltage to k\+Pa for BOSCH 0 261 230 280. Assumes linear relationship in pressure calibration as found in spec sheet. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_a37bc93c41110d5b95621e83662535673}{Voltage\+\_\+\+To\+\_\+k\+Pa\+\_\+\+MIP}} (float volts)
+\begin{DoxyCompactList}\small\item\em Converts output sensor voltage to k\+Pa for MIP series pressure sensor. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_a3ec8d643d2ed439fafb098ecd4cb40cf}{Voltage\+\_\+\+To\+\_\+\+Deg\+C\+\_\+\+A1325}} (float volts)
+\begin{DoxyCompactList}\small\item\em Temperature sensor driver for the A-\/1325. Uses the Stein-\/\+Hart equation to compute the temperature. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{sensor__inputs_8c_aea701547a62827c9aeb1e27cb071280c}{Voltage\+\_\+\+To\+\_\+\+Deg\+C\+\_\+\+Bosch}} (float volts)
+\begin{DoxyCompactList}\small\item\em Temperature sensor driver for the BOSCH 0 261 230 280. Uses beta parameter equation to compute the temperature. Beta found from\+: \href{https://www.ametherm.com/thermistor/ntc-thermistor-beta}{\texttt{https\+://www.\+ametherm.\+com/thermistor/ntc-\/thermistor-\/beta}}. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{sensor__inputs_8c_a7c54d187b42311d2d180b269ca9eba0e}{Sensors\+\_\+\+Init}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc, TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim)
+\begin{DoxyCompactList}\small\item\em Sensor initialization function. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{sensor__inputs_8c_a3ddab797f4e1eed59e1b574ee5b88f1f}{Sensors\+\_\+\+Start}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Checks ADC DMA status and the status of all 3 PWM channels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_a3e3318485a102e9bbf67bc2844cee6e4}{Update\+\_\+\+ADC\+\_\+\+Buffers}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Performs a single ADC read and updates the adc voltage buffer (in V). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_a4ae8fc699c9612c77f53202143422fca}{Store\+\_\+\+Temperature\+\_\+\+Readings}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Store converted temperature readings to temperature buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_a7fddf50ee6bb74576da3b524cad11dd8}{Store\+\_\+\+Pressure\+\_\+\+Readings}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Store converted p readings to pressure buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_af2ef93d77fdef489d590c17236625490}{PWM\+\_\+\+Set\+All}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Apply the struct member duty cycles to TIM1 CH1, CH2 \& CH3. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{sensor__inputs_8c_a1cde97ff03dfb1e35c24cd2e3e422a4a}{Update\+\_\+\+Segment\+\_\+\+Temperature\+\_\+\+Values}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si, \mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}can)
+\begin{DoxyCompactList}\small\item\em Read segment temperature data coming from CAN bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback}} (uint16\+\_\+t GPIO\+\_\+\+Pin)
+\begin{DoxyCompactList}\small\item\em ISR callback function used for the fan speed logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensor__inputs_8c_ac89c08962cef06037de8533eed6fbbbe}{Update\+\_\+\+Fan\+\_\+\+Speed}} (\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}si)
+\begin{DoxyCompactList}\small\item\em Call to update the fan speed into si-\/\texorpdfstring{$>$}{>}fan\+\_\+rpm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{sensor__inputs_8c_a2c80fd5510e2990a59a5c90d745c716c}{htim2}}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{sensor__inputs_8c_aa264d57a22ac2739fe9939670fade567}{PULSES\+\_\+\+PER\+\_\+\+REVOLUTION}} = 1
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{sensor__inputs_8c_a219613af8f2bf27dbd8375ad367b0038}{tach\+\_\+last\+\_\+ticks}} = 0
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{sensor__inputs_8c_a1088d4eb0e36a1e11ef111562e6d817c}{tach\+\_\+delta\+\_\+ticks}} = 0
+\item 
+static volatile uint8\+\_\+t \mbox{\hyperlink{sensor__inputs_8c_aa2a1b26e6d19352a2b292da19ff3e593}{tach\+\_\+new\+\_\+period}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{sensor__inputs_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{sensor__inputs_8c_ad19770695768f7f01a3654fe2af5b8f3}\index{sensor\_inputs.c@{sensor\_inputs.c}!Constrain@{Constrain}}
+\index{Constrain@{Constrain}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Constrain()}{Constrain()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_ad19770695768f7f01a3654fe2af5b8f3} 
+float Constrain (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{low}{, }\item[{float}]{high}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Helper constrain function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & x, float low, float high \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x -\/\texorpdfstring{$>$}{>} Constrained between low and high. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}\index{sensor\_inputs.c@{sensor\_inputs.c}!HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}}
+\index{HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_GPIO\_EXTI\_Callback()}{HAL\_GPIO\_EXTI\_Callback()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a0cd91fd3a9608559c2a87a8ba6cba55f} 
+void HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{GPIO\+\_\+\+Pin}{}\end{DoxyParamCaption})}
+
+
+
+ISR callback function used for the fan speed logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uint16\+\_\+t} & GPIO\+\_\+\+Pin \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_ad85521aa06d2b04c0a7df37e97fee4f6}\index{sensor\_inputs.c@{sensor\_inputs.c}!Linear\_Map@{Linear\_Map}}
+\index{Linear\_Map@{Linear\_Map}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Linear\_Map()}{Linear\_Map()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_ad85521aa06d2b04c0a7df37e97fee4f6} 
+float Linear\+\_\+\+Map (\begin{DoxyParamCaption}\item[{float}]{value}{, }\item[{float}]{in\+\_\+min}{, }\item[{float}]{in\+\_\+max}{, }\item[{float}]{out\+\_\+min}{, }\item[{float}]{out\+\_\+max}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Helper function which linearly maps a float value from one range to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & value, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return\+\_\+type 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_af2ef93d77fdef489d590c17236625490}\index{sensor\_inputs.c@{sensor\_inputs.c}!PWM\_SetAll@{PWM\_SetAll}}
+\index{PWM\_SetAll@{PWM\_SetAll}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{PWM\_SetAll()}{PWM\_SetAll()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_af2ef93d77fdef489d590c17236625490} 
+void PWM\+\_\+\+Set\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Apply the struct member duty cycles to TIM1 CH1, CH2 \& CH3. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a7c54d187b42311d2d180b269ca9eba0e}\index{sensor\_inputs.c@{sensor\_inputs.c}!Sensors\_Init@{Sensors\_Init}}
+\index{Sensors\_Init@{Sensors\_Init}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Sensors\_Init()}{Sensors\_Init()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a7c54d187b42311d2d180b269ca9eba0e} 
+HAL\+\_\+\+Status\+Type\+Def Sensors\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc}{, }\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim}{}\end{DoxyParamCaption})}
+
+
+
+Sensor initialization function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc, TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a3ddab797f4e1eed59e1b574ee5b88f1f}\index{sensor\_inputs.c@{sensor\_inputs.c}!Sensors\_Start@{Sensors\_Start}}
+\index{Sensors\_Start@{Sensors\_Start}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Sensors\_Start()}{Sensors\_Start()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a3ddab797f4e1eed59e1b574ee5b88f1f} 
+HAL\+\_\+\+Status\+Type\+Def Sensors\+\_\+\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Checks ADC DMA status and the status of all 3 PWM channels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a7fddf50ee6bb74576da3b524cad11dd8}\index{sensor\_inputs.c@{sensor\_inputs.c}!Store\_Pressure\_Readings@{Store\_Pressure\_Readings}}
+\index{Store\_Pressure\_Readings@{Store\_Pressure\_Readings}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Store\_Pressure\_Readings()}{Store\_Pressure\_Readings()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a7fddf50ee6bb74576da3b524cad11dd8} 
+void Store\+\_\+\+Pressure\+\_\+\+Readings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Store converted p readings to pressure buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a4ae8fc699c9612c77f53202143422fca}\index{sensor\_inputs.c@{sensor\_inputs.c}!Store\_Temperature\_Readings@{Store\_Temperature\_Readings}}
+\index{Store\_Temperature\_Readings@{Store\_Temperature\_Readings}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Store\_Temperature\_Readings()}{Store\_Temperature\_Readings()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a4ae8fc699c9612c77f53202143422fca} 
+void Store\+\_\+\+Temperature\+\_\+\+Readings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Store converted temperature readings to temperature buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a3e3318485a102e9bbf67bc2844cee6e4}\index{sensor\_inputs.c@{sensor\_inputs.c}!Update\_ADC\_Buffers@{Update\_ADC\_Buffers}}
+\index{Update\_ADC\_Buffers@{Update\_ADC\_Buffers}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Update\_ADC\_Buffers()}{Update\_ADC\_Buffers()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a3e3318485a102e9bbf67bc2844cee6e4} 
+void Update\+\_\+\+ADC\+\_\+\+Buffers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Performs a single ADC read and updates the adc voltage buffer (in V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_ac89c08962cef06037de8533eed6fbbbe}\index{sensor\_inputs.c@{sensor\_inputs.c}!Update\_Fan\_Speed@{Update\_Fan\_Speed}}
+\index{Update\_Fan\_Speed@{Update\_Fan\_Speed}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Update\_Fan\_Speed()}{Update\_Fan\_Speed()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_ac89c08962cef06037de8533eed6fbbbe} 
+void Update\+\_\+\+Fan\+\_\+\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{}\end{DoxyParamCaption})}
+
+
+
+Call to update the fan speed into si-\/\texorpdfstring{$>$}{>}fan\+\_\+rpm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a1cde97ff03dfb1e35c24cd2e3e422a4a}\index{sensor\_inputs.c@{sensor\_inputs.c}!Update\_Segment\_Temperature\_Values@{Update\_Segment\_Temperature\_Values}}
+\index{Update\_Segment\_Temperature\_Values@{Update\_Segment\_Temperature\_Values}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Update\_Segment\_Temperature\_Values()}{Update\_Segment\_Temperature\_Values()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a1cde97ff03dfb1e35c24cd2e3e422a4a} 
+bool Update\+\_\+\+Segment\+\_\+\+Temperature\+\_\+\+Values (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{si}{, }\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{can}{}\end{DoxyParamCaption})}
+
+
+
+Read segment temperature data coming from CAN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_sensor_inputs__t}{Sensor\+Inputs\+\_\+t}} & \texorpdfstring{$\ast$}{*}si, \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t} \texorpdfstring{$\ast$}{*}can \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a3ec8d643d2ed439fafb098ecd4cb40cf}\index{sensor\_inputs.c@{sensor\_inputs.c}!Voltage\_To\_DegC\_A1325@{Voltage\_To\_DegC\_A1325}}
+\index{Voltage\_To\_DegC\_A1325@{Voltage\_To\_DegC\_A1325}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Voltage\_To\_DegC\_A1325()}{Voltage\_To\_DegC\_A1325()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a3ec8d643d2ed439fafb098ecd4cb40cf} 
+float Voltage\+\_\+\+To\+\_\+\+Deg\+C\+\_\+\+A1325 (\begin{DoxyParamCaption}\item[{float}]{volts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Temperature sensor driver for the A-\/1325. Uses the Stein-\/\+Hart equation to compute the temperature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Output} & voltage from sensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float temp\+\_\+degC -\/\texorpdfstring{$>$}{>} Temperature in degrees Celsius 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_aea701547a62827c9aeb1e27cb071280c}\index{sensor\_inputs.c@{sensor\_inputs.c}!Voltage\_To\_DegC\_Bosch@{Voltage\_To\_DegC\_Bosch}}
+\index{Voltage\_To\_DegC\_Bosch@{Voltage\_To\_DegC\_Bosch}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Voltage\_To\_DegC\_Bosch()}{Voltage\_To\_DegC\_Bosch()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_aea701547a62827c9aeb1e27cb071280c} 
+float Voltage\+\_\+\+To\+\_\+\+Deg\+C\+\_\+\+Bosch (\begin{DoxyParamCaption}\item[{float}]{volts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Temperature sensor driver for the BOSCH 0 261 230 280. Uses beta parameter equation to compute the temperature. Beta found from\+: \href{https://www.ametherm.com/thermistor/ntc-thermistor-beta}{\texttt{https\+://www.\+ametherm.\+com/thermistor/ntc-\/thermistor-\/beta}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & volts -\/\texorpdfstring{$>$}{>} Output voltage from sensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float temp\+\_\+degC -\/\texorpdfstring{$>$}{>} Temperature in degrees Celsius 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_aa0ddd78d7ea85e5e46d1aee56304a78b}\index{sensor\_inputs.c@{sensor\_inputs.c}!Voltage\_To\_kPa\_Bosch@{Voltage\_To\_kPa\_Bosch}}
+\index{Voltage\_To\_kPa\_Bosch@{Voltage\_To\_kPa\_Bosch}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Voltage\_To\_kPa\_Bosch()}{Voltage\_To\_kPa\_Bosch()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_aa0ddd78d7ea85e5e46d1aee56304a78b} 
+float Voltage\+\_\+\+To\+\_\+k\+Pa\+\_\+\+Bosch (\begin{DoxyParamCaption}\item[{float}]{volts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts output sensor voltage to k\+Pa for BOSCH 0 261 230 280. Assumes linear relationship in pressure calibration as found in spec sheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & volts \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float p\+\_\+abs\+\_\+k\+Pa 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{sensor__inputs_8c_a37bc93c41110d5b95621e83662535673}\index{sensor\_inputs.c@{sensor\_inputs.c}!Voltage\_To\_kPa\_MIP@{Voltage\_To\_kPa\_MIP}}
+\index{Voltage\_To\_kPa\_MIP@{Voltage\_To\_kPa\_MIP}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{Voltage\_To\_kPa\_MIP()}{Voltage\_To\_kPa\_MIP()}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a37bc93c41110d5b95621e83662535673} 
+float Voltage\+\_\+\+To\+\_\+k\+Pa\+\_\+\+MIP (\begin{DoxyParamCaption}\item[{float}]{volts}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts output sensor voltage to k\+Pa for MIP series pressure sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & volts \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float p\+\_\+abs\+\_\+k\+Pa 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+
+
+\label{doc-var-members}
+\Hypertarget{sensor__inputs_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{sensor__inputs_8c_a2c80fd5510e2990a59a5c90d745c716c}\index{sensor\_inputs.c@{sensor\_inputs.c}!htim2@{htim2}}
+\index{htim2@{htim2}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{htim2}{htim2}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a2c80fd5510e2990a59a5c90d745c716c} 
+TIM\+\_\+\+Handle\+Type\+Def htim2\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{sensor__inputs_8c_aa264d57a22ac2739fe9939670fade567}\index{sensor\_inputs.c@{sensor\_inputs.c}!PULSES\_PER\_REVOLUTION@{PULSES\_PER\_REVOLUTION}}
+\index{PULSES\_PER\_REVOLUTION@{PULSES\_PER\_REVOLUTION}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{PULSES\_PER\_REVOLUTION}{PULSES\_PER\_REVOLUTION}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_aa264d57a22ac2739fe9939670fade567} 
+const uint8\+\_\+t PULSES\+\_\+\+PER\+\_\+\+REVOLUTION = 1}
+
+\Hypertarget{sensor__inputs_8c_a1088d4eb0e36a1e11ef111562e6d817c}\index{sensor\_inputs.c@{sensor\_inputs.c}!tach\_delta\_ticks@{tach\_delta\_ticks}}
+\index{tach\_delta\_ticks@{tach\_delta\_ticks}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{tach\_delta\_ticks}{tach\_delta\_ticks}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a1088d4eb0e36a1e11ef111562e6d817c} 
+volatile uint32\+\_\+t tach\+\_\+delta\+\_\+ticks = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{sensor__inputs_8c_a219613af8f2bf27dbd8375ad367b0038}\index{sensor\_inputs.c@{sensor\_inputs.c}!tach\_last\_ticks@{tach\_last\_ticks}}
+\index{tach\_last\_ticks@{tach\_last\_ticks}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{tach\_last\_ticks}{tach\_last\_ticks}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_a219613af8f2bf27dbd8375ad367b0038} 
+volatile uint32\+\_\+t tach\+\_\+last\+\_\+ticks = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{sensor__inputs_8c_aa2a1b26e6d19352a2b292da19ff3e593}\index{sensor\_inputs.c@{sensor\_inputs.c}!tach\_new\_period@{tach\_new\_period}}
+\index{tach\_new\_period@{tach\_new\_period}!sensor\_inputs.c@{sensor\_inputs.c}}
+\doxysubsubsection{\texorpdfstring{tach\_new\_period}{tach\_new\_period}}
+{\footnotesize\ttfamily \label{sensor__inputs_8c_aa2a1b26e6d19352a2b292da19ff3e593} 
+volatile uint8\+\_\+t tach\+\_\+new\+\_\+period = 0\hspace{0.3cm}{\ttfamily [static]}}
+

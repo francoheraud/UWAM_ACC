@@ -1,0 +1,49 @@
+\doxysection{control\+\_\+system.\+h}
+\hypertarget{control__system_8h_source}{}\label{control__system_8h_source}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/control\_system.h@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/control\_system.h}}
+\mbox{\hyperlink{control__system_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ control\_system.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Nov\ 3,\ 2025}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ Franc}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ INC\_CONTROL\_SYSTEM\_H\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ INC\_CONTROL\_SYSTEM\_H\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{can__driver_8h}{Drivers/can\_driver.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__inputs_8h}{Drivers/sensor\_inputs.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{acc__config_8h}{Other/acc\_config.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TEMP\_THRESHOLD1\ \ \ \ \ 40.0f}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TEMP\_THRESHOLD2\ \ \ \ \ 50.0f}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ HYSTERESIS\_WIDTH\ \ \ \ 3.0f}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ACC\_DOUT\_CAN\_ID1\ \ \ \ (uint16\_t)0x4A2}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ACC\_DOUT\_CAN\_ID2\ \ \ \ (uint16\_t)0x4A3}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_a_c_c__t_a14ee9e84ba1d864d8f015a06d891451f}{setpoint\_temperature}};\ \ \ \ \ \textcolor{comment}{//\ deg\ C}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_a_c_c__t_a1f573f1acc9f1a068c1eaa9972d7e95a}{setpoint\_pressure}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pa}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_a_c_c__t_a4bede80272d1befdef1b952dba09822f}{actual\_temperature}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_a_c_c__t_a5c91c5f03f7f34b3aa2b94e49f18e85b}{actual\_pressure}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \}\ \mbox{\hyperlink{struct_a_c_c__t}{ACC\_t}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_CONTROL\_SYSTEM\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

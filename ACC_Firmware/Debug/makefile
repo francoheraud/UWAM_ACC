@@ -12,7 +12,8 @@ RM := rm -rf
 -include Drivers/STM32F4xx_HAL_Driver/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
--include App/Src/subdir.mk
+-include App/Src/Other/subdir.mk
+-include App/Src/Drivers/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -61,8 +62,8 @@ all: main-build
 main-build: ACC_Firmware_2.elf secondary-outputs
 
 # Tool invocations
-ACC_Firmware_2.elf ACC_Firmware_2.map: $(OBJS) $(USER_OBJS) C:\Users\Franc\OneDrive\Documents\stm32_proj_plz\ACC_Firmware_2\STM32F412RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ACC_Firmware_2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Franc\OneDrive\Documents\stm32_proj_plz\ACC_Firmware_2\STM32F412RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ACC_Firmware_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ACC_Firmware_2.elf ACC_Firmware_2.map: $(OBJS) $(USER_OBJS) C:\Users\Franc\OneDrive\Documents\GitHub\UWAM_ACC\ACC_Firmware\STM32F412RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ACC_Firmware_2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Franc\OneDrive\Documents\GitHub\UWAM_ACC\ACC_Firmware\STM32F412RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ACC_Firmware_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

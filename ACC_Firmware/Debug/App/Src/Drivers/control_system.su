@@ -1,0 +1,4 @@
+../App/Src/Drivers/control_system.c:15:14:Highest_Input_Temp	24	static
+../App/Src/Drivers/control_system.c:31:14:Highest_Seg_Temp	24	static
+../App/Src/Drivers/control_system.c:46:6:CAN_TransmitAll_SensorData	32	static
+../App/Src/Drivers/control_system.c:85:6:ACC_Control_Loop	40	static

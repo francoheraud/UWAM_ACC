@@ -1,0 +1,150 @@
+\doxysection{C\+:/\+Users/\+Franc/\+One\+Drive/\+Documents/\+Github/\+UWAM\+\_\+\+ACC/\+ACC\+\_\+\+Firmware/\+App/\+Src/\+Drivers/can\+\_\+driver.c File Reference}
+\hypertarget{can__driver_8c}{}\label{can__driver_8c}\index{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/can\_driver.c@{C:/Users/Franc/OneDrive/Documents/Github/UWAM\_ACC/ACC\_Firmware/App/Src/Drivers/can\_driver.c}}
+{\ttfamily \#include $<$Drivers/can\+\_\+driver.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{can__driver_8c_adf6a5a714ae293f24c601a44eff06155}{CAN\+\_\+\+Init\+Driver}} (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}drv)
+\begin{DoxyCompactList}\small\item\em Initializes the CAN driver. CAN\+\_\+\+Init(...) should be automatically called in the MX\+\_\+\+CAN\+\_\+\+Init() in main.\+c. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{can__driver_8c_ae5a76e1bdc444ebbdefcc0da5efebcab}{CAN\+\_\+\+Transmit1}} (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}drv)
+\begin{DoxyCompactList}\small\item\em Transmits a CAN message over to the 1st CAN bus. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{can__driver_8c_a519f1f5587ea0ec70d621a0f73c170e0}{CAN\+\_\+\+Transmit2}} (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}drv)
+\begin{DoxyCompactList}\small\item\em Transmits a CAN message over to the 2nd CAN bus. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{can__driver_8c_aea6bcd41831f1b60f0c8194f72f53a09}{CAN\+\_\+\+Receive1}} (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}drv)
+\begin{DoxyCompactList}\small\item\em Receives a CAN message from the 1st CAN bus. We only need 1 receive function for ACC. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{can__driver_8c_a7835e49a5e779b3b4e39f8eeb77ef8f6}{CAN\+\_\+\+Test}} (void)
+\begin{DoxyCompactList}\small\item\em TODO\+: Re-\/implement CAN driver testing using CMock API? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+CAN\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{can__driver_8c_a1618d731d18d69e906e8a357b7cd3c8d}{hcan1}}
+\item 
+CAN\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{can__driver_8c_ab77168d14df04ccca5d48612ee21ced8}{hcan2}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{can__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{can__driver_8c_adf6a5a714ae293f24c601a44eff06155}\index{can\_driver.c@{can\_driver.c}!CAN\_InitDriver@{CAN\_InitDriver}}
+\index{CAN\_InitDriver@{CAN\_InitDriver}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_InitDriver()}{CAN\_InitDriver()}}
+{\footnotesize\ttfamily \label{can__driver_8c_adf6a5a714ae293f24c601a44eff06155} 
+HAL\+\_\+\+Status\+Type\+Def CAN\+\_\+\+Init\+Driver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{drv}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the CAN driver. CAN\+\_\+\+Init(...) should be automatically called in the MX\+\_\+\+CAN\+\_\+\+Init() in main.\+c. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} & \texorpdfstring{$\ast$}{*}drv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{can__driver_8c_aea6bcd41831f1b60f0c8194f72f53a09}\index{can\_driver.c@{can\_driver.c}!CAN\_Receive1@{CAN\_Receive1}}
+\index{CAN\_Receive1@{CAN\_Receive1}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_Receive1()}{CAN\_Receive1()}}
+{\footnotesize\ttfamily \label{can__driver_8c_aea6bcd41831f1b60f0c8194f72f53a09} 
+HAL\+\_\+\+Status\+Type\+Def CAN\+\_\+\+Receive1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{drv}{}\end{DoxyParamCaption})}
+
+
+
+Receives a CAN message from the 1st CAN bus. We only need 1 receive function for ACC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} & \texorpdfstring{$\ast$}{*}drv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{can__driver_8c_a7835e49a5e779b3b4e39f8eeb77ef8f6}\index{can\_driver.c@{can\_driver.c}!CAN\_Test@{CAN\_Test}}
+\index{CAN\_Test@{CAN\_Test}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_Test()}{CAN\_Test()}}
+{\footnotesize\ttfamily \label{can__driver_8c_a7835e49a5e779b3b4e39f8eeb77ef8f6} 
+void CAN\+\_\+\+Test (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TODO\+: Re-\/implement CAN driver testing using CMock API? 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{can__driver_8c_ae5a76e1bdc444ebbdefcc0da5efebcab}\index{can\_driver.c@{can\_driver.c}!CAN\_Transmit1@{CAN\_Transmit1}}
+\index{CAN\_Transmit1@{CAN\_Transmit1}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_Transmit1()}{CAN\_Transmit1()}}
+{\footnotesize\ttfamily \label{can__driver_8c_ae5a76e1bdc444ebbdefcc0da5efebcab} 
+HAL\+\_\+\+Status\+Type\+Def CAN\+\_\+\+Transmit1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{drv}{}\end{DoxyParamCaption})}
+
+
+
+Transmits a CAN message over to the 1st CAN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} & \texorpdfstring{$\ast$}{*}drv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+\Hypertarget{can__driver_8c_a519f1f5587ea0ec70d621a0f73c170e0}\index{can\_driver.c@{can\_driver.c}!CAN\_Transmit2@{CAN\_Transmit2}}
+\index{CAN\_Transmit2@{CAN\_Transmit2}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAN\_Transmit2()}{CAN\_Transmit2()}}
+{\footnotesize\ttfamily \label{can__driver_8c_a519f1f5587ea0ec70d621a0f73c170e0} 
+HAL\+\_\+\+Status\+Type\+Def CAN\+\_\+\+Transmit2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{drv}{}\end{DoxyParamCaption})}
+
+
+
+Transmits a CAN message over to the 2nd CAN bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \doxylink{struct_c_a_n___driver__t}{CAN\+\_\+\+Driver\+\_\+t}} & \texorpdfstring{$\ast$}{*}drv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+Status\+Type\+Def 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Auto-\/gen\+: fill details. 
+\end{DoxyNote}
+
+
+\label{doc-var-members}
+\Hypertarget{can__driver_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{can__driver_8c_a1618d731d18d69e906e8a357b7cd3c8d}\index{can\_driver.c@{can\_driver.c}!hcan1@{hcan1}}
+\index{hcan1@{hcan1}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hcan1}{hcan1}}
+{\footnotesize\ttfamily \label{can__driver_8c_a1618d731d18d69e906e8a357b7cd3c8d} 
+CAN\+\_\+\+Handle\+Type\+Def hcan1\hspace{0.3cm}{\ttfamily [extern]}}
+
+Dual CAN driver for the ACC \Hypertarget{can__driver_8c_ab77168d14df04ccca5d48612ee21ced8}\index{can\_driver.c@{can\_driver.c}!hcan2@{hcan2}}
+\index{hcan2@{hcan2}!can\_driver.c@{can\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hcan2}{hcan2}}
+{\footnotesize\ttfamily \label{can__driver_8c_ab77168d14df04ccca5d48612ee21ced8} 
+CAN\+\_\+\+Handle\+Type\+Def hcan2\hspace{0.3cm}{\ttfamily [extern]}}
+
