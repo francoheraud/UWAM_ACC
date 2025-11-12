@@ -12,17 +12,17 @@ extern CAN_HandleTypeDef hcan2;
 
 /**
  * @brief Initializes the CAN driver. CAN_Init(...) should be automatically called in the MX_CAN_Init() in main.c.
-* @param CAN_Driver_t *drv
+* @param CAN_Driver_t *can
 * @return HAL_StatusTypeDef
 * @note Auto-gen: fill details.
 */
-HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv) {
-    if (!drv) return HAL_ERROR;
+HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *can) {
+    if (!can) return HAL_ERROR;
     if (hcan1.Instance == NULL || hcan2.Instance == NULL) return HAL_ERROR;
-    drv->hcan1 = &hcan1;
-    drv->hcan2 = &hcan2;
-    //drv->is_ready_to_read = false;
-    return  HAL_CAN_Start(drv->hcan1) || HAL_CAN_Start(drv->hcan2);
+    can->hcan1 = &hcan1;
+    can->hcan2 = &hcan2;
+    //can->is_ready_to_read = false;
+    return  HAL_CAN_Start(can->hcan1) || HAL_CAN_Start(can->hcan2);
 }
 
 
@@ -57,53 +57,53 @@ void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]) {
 
 /**
  * @brief Transmits a CAN message over to the 1st CAN bus.
- * @param CAN_Driver_t *drv
+ * @param CAN_Driver_t *can
  * @return HAL_StatusTypeDef
  * @note Auto-gen: fill details.
  */
-HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *drv) {
+HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *can) {
 
     uint32_t mbox;
-    drv->tx1.IDE  = CAN_ID_STD;
-    drv->tx1.RTR  = CAN_RTR_DATA;
-    drv->tx1.DLC  = drv->len;
-    drv->tx1.StdId= drv->id;
+    can->tx1.IDE  = CAN_ID_STD;
+    can->tx1.RTR  = CAN_RTR_DATA;
+    can->tx1.DLC  = can->len;
+    can->tx1.StdId= can->id;
 
-    return HAL_CAN_AddTxMessage(drv->hcan1, &drv->tx1, drv->tx_data, &mbox);
+    return HAL_CAN_AddTxMessage(can->hcan1, &can->tx1, can->tx_data, &mbox);
 }
 
 /**
  * @brief Transmits a CAN message over to the 2nd CAN bus.
-* @param CAN_Driver_t *drv
+* @param CAN_Driver_t *can
 * @return HAL_StatusTypeDef
 * @note Auto-gen: fill details.
 */
-HAL_StatusTypeDef CAN_Transmit2(CAN_Driver_t *drv) {
+HAL_StatusTypeDef CAN_Transmit2(CAN_Driver_t *can) {
 
     uint32_t mbox;
-    drv->tx2.IDE  = CAN_ID_STD;
-    drv->tx2.RTR  = CAN_RTR_DATA;
-    drv->tx2.DLC  = drv->len;
-    drv->tx2.StdId= drv->id;
+    can->tx2.IDE  = CAN_ID_STD;
+    can->tx2.RTR  = CAN_RTR_DATA;
+    can->tx2.DLC  = can->len;
+    can->tx2.StdId= can->id;
 
-    return HAL_CAN_AddTxMessage(drv->hcan2, &drv->tx2, drv->tx_data, &mbox);
+    return HAL_CAN_AddTxMessage(can->hcan2, &can->tx2, can->tx_data, &mbox);
 }
 
 /**
  * @brief Receives a CAN message from the 1st CAN bus. We only need 1 receive function for ACC.
-* @param CAN_Driver_t *drv
+* @param CAN_Driver_t *can
 * @return HAL_StatusTypeDef
 * @note Auto-gen: fill details.
 */
-HAL_StatusTypeDef CAN_Receive1(CAN_Driver_t *drv) {
+HAL_StatusTypeDef CAN_Receive1(CAN_Driver_t *can) {
 
-    drv->rx1.IDE = CAN_ID_STD;
-    drv->rx1.RTR = CAN_RTR_DATA;
-    drv->rx1.DLC = drv->len;
-    drv->rx1.StdId = drv->id;
+    can->rx1.IDE = CAN_ID_STD;
+    can->rx1.RTR = CAN_RTR_DATA;
+    can->rx1.DLC = can->len;
+    can->rx1.StdId = can->id;
 
-    while (HAL_CAN_GetRxFifoFillLevel(drv->hcan1, CAN_RX_FIFO0) == 0) { /* spin or add timeout */ }
-    return HAL_CAN_GetRxMessage(drv->hcan1, CAN_RX_FIFO0, &drv->rx1, drv->rx_data);
+    while (HAL_CAN_GetRxFifoFillLevel(can->hcan1, CAN_RX_FIFO0) == 0) { /* spin or add timeout */ }
+    return HAL_CAN_GetRxMessage(can->hcan1, CAN_RX_FIFO0, &can->rx1, can->rx_data);
 }
 
 

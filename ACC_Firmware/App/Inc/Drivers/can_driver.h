@@ -27,10 +27,11 @@ typedef struct {
     uint8_t  len;
 } CAN_Driver_t;
 
-HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv);
-HAL_StatusTypeDef CAN_Transmit1	(CAN_Driver_t *drv);
-HAL_StatusTypeDef CAN_Transmit2	(CAN_Driver_t *drv);
-HAL_StatusTypeDef CAN_Receive1	(CAN_Driver_t *drv);
+
+HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *can);
+HAL_StatusTypeDef CAN_Transmit1	(CAN_Driver_t *can);
+HAL_StatusTypeDef CAN_Transmit2	(CAN_Driver_t *can);
+HAL_StatusTypeDef CAN_Receive1	(CAN_Driver_t *can);
 
 void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]);
 void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]);
