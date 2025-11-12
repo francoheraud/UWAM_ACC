@@ -8,8 +8,6 @@
 
 #include "Other/scheduler.h"
 
-
-
 __weak void _10ms_TaskSet_Callback(void) {
 	// do something
 }
@@ -37,10 +35,10 @@ inline void Scheduler_Init(uint32_t *millis_ptr) {
  * @brief Lightweight scheduler. Intended to be used with i.e.,
  * a (scaled) hardware timer variable or system tick variable.
  *
-* @param *millis_ptr 		Must be in milliseconds
-* @return SchedulerState 	Enum for timing definitions.
-* @note Auto-gen: fill details.
-*/
+ * @param *millis_ptr 		Must be in milliseconds
+ * @return SchedulerState 	Enum for timing definitions.
+ * @note Auto-gen: fill details.
+ */
 void Schedule_Tasks(uint32_t *millis_ptr) {
 
 	uint32_t now = *millis_ptr;
