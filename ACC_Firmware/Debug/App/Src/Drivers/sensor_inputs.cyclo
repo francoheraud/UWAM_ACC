@@ -1,0 +1,15 @@
+../App/Src/Drivers/sensor_inputs.c:17:14:Constrain	3
+../App/Src/Drivers/sensor_inputs.c:29:14:Linear_Map	1
+../App/Src/Drivers/sensor_inputs.c:42:14:Voltage_To_kPa_Bosch	1
+../App/Src/Drivers/sensor_inputs.c:54:14:Voltage_To_kPa_MIP	1
+../App/Src/Drivers/sensor_inputs.c:77:14:Voltage_To_DegC_A1325	1
+../App/Src/Drivers/sensor_inputs.c:102:14:Voltage_To_DegC_Bosch	1
+../App/Src/Drivers/sensor_inputs.c:124:19:Sensors_Init	4
+../App/Src/Drivers/sensor_inputs.c:149:19:Sensors_Start	8
+../App/Src/Drivers/sensor_inputs.c:171:6:Update_ADC_Buffers	2
+../App/Src/Drivers/sensor_inputs.c:185:6:Store_Temperature_Readings	3
+../App/Src/Drivers/sensor_inputs.c:199:6:Store_Pressure_Readings	3
+../App/Src/Drivers/sensor_inputs.c:213:6:PWM_SetAll	3
+../App/Src/Drivers/sensor_inputs.c:239:6:Update_Segment_Temperature_Values	5
+../App/Src/Drivers/sensor_inputs.c:281:6:HAL_GPIO_EXTI_Callback	3
+../App/Src/Drivers/sensor_inputs.c:301:6:Update_Fan_Speed	3

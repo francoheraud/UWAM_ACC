@@ -251,7 +251,12 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	//FIXME: Assumed that we're receiving unsigned 16 bit data here?
 	// Double check endianness aw?
-	CAN_16Bit_Deserializer(si->seg_temp_c, can->rx_data);
+	uint16_t deserialized_buf[ACC_NUM_SEG_TEMPS];
+	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
+		deserialized_buf[i] = (uint16_t)lroundf(si->seg_temp_c[i]);
+	}
+
+	CAN_16Bit_Deserializer(deserialized_buf, can->rx_data);
 
 	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
 		si->seg_temp_c[i] = (float)can->rx_data[i];
