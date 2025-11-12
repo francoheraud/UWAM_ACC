@@ -93,13 +93,13 @@ bottom=2.54cm}
         \begin{flushleft}
         {\textbf{\fontsize{22}{30}\selectfont 2025 ACC Firmware Documentation}}
         \end{flushleft}
-        
+
         \begin{flushright}
             \begin{flushright}
             \includegraphics[scale=0.22]{Motorsport_Logo.jpg}
             \end{flushright}
         \end{flushright}
-    
+
     \end{multicols}
     Nov 2025
 
@@ -113,13 +113,16 @@ bottom=2.54cm}
             Signed off by: \hrulefill
         \end{flushleft}
     \end{multicols}
-    
+
+    \tableofcontents
+    \newpage
+
 \section{Introduction}
 \subsection{Overview}
+The Accumulator Cooling Controller (ACC) firmware is responsible for regulating the accumulator thermal management system on the 2025 UWA Motorsport electric vehicle. The microcontroller must acquire measurements from a distributed sensor network, coordinate with the accumulator management system (AMS) over CAN, and drive the cooling hardware while satisfying the Formula SAE safety constraints. This document captures the architectural intent of the firmware and the rationale behind critical design decisions so future contributors can iterate with confidence.
 
-
-
-
+\subsection{Document Structure}
+Section~\ref{sec:architecture} outlines the embedded architecture and execution model that the firmware implements. Sections~\ref{sec:drivers} and~\ref{sec:control} cover device drivers and control logic respectively, while Section~\ref{sec:testing} documents the verification strategy and available tooling. Each subsection is designed to be consumed independently so that developers working on a specific module can quickly locate the relevant background information and implementation notes.
 
 \subsection{Requirements}
 The main functional requirements for the onboard MCU are as follows:
@@ -151,6 +154,23 @@ The main functional requirements for the onboard MCU are as follows:
 
 \textit{Any feedback + additional notes would be greatly appreciated.}
 
+
+\section{Firmware Architecture}
+\label{sec:architecture}
+\subsection{Execution Model}
+The firmware executes on an STM32F412 microcontroller using the HAL abstraction layer generated via STM32CubeMX. A cooperative scheduler running from the \texttt{main()} loop coordinates initialization, periodic polling tasks, and interrupt driven updates. Time-critical paths such as tachometer capture and ADC sampling leverage hardware peripherals with DMA to minimise CPU latency and ensure deterministic response.
+
+\subsection{Data Flow}
+Figure~\ref{fig:dataflow} (conceptual) illustrates the primary data paths. Sensor inputs enter the system either as analogue voltages sampled through \texttt{ADC2} or as CAN frames received via \texttt{FDCAN1}. The data is normalised into the \texttt{SensorInputs\_t} structure, which is the single source of truth for downstream control modules. Control outputs are subsequently published to the fan drivers (PWM) and to the vehicle network through CAN transmissions.
+
+\begin{figure}[H]
+    \centering
+    \caption{High level firmware data flow between sensors, processing, and actuators.}
+    \label{fig:dataflow}
+\end{figure}
+
+\subsection{Safety Hooks}
+All actuator facing code paths must pass through the \texttt{acc\_safety.c} guard rails. These hooks enforce sanity ranges, fail-safe timeouts, and diagnostics counters. Developers adding new outputs should extend the guard rails instead of bypassing them to maintain the safety case for the accumulator cooling package.
 
 \section{Sensors}
 \subsection{Fan RPM reading logic}
@@ -209,14 +229,78 @@ void Update_Fan_Speed(SensorInputs_t *si) {
 
 
 \subsection{Temperature sensor reading logic}
-The ACC internal/external temperature inputs come from a temperature sensor with an in-built thermistor. Given the non-linear relationship between the thermistor temperature and resistance, we must use the provided constants and calibration values from the data sheet [] to accurately convert the input voltage from the ADC inputs to a temperature value in degrees Celsius.
+Each coolant loop segment is instrumented using thermistors packaged with the fans. The device behaves as a 10~k$\Omega$ NTC element forming a voltage divider against a precision pull-up resistor. The ADC reading therefore reflects the thermistor resistance, which in turn maps non-linearly to temperature. The conversion pipeline implemented in \texttt{sensor\_inputs.c} performs the following steps for every DMA sample:
 
+\begin{enumerate}
+    \item Convert the raw ADC count to an input voltage based on the configured reference voltage and ADC resolution.
+    \item Derive the thermistor resistance via $R_{\text{therm}} = R_{\text{pull-up}} \left(\frac{V_{\text{ref}}}{V_{\text{adc}}}-1\right)$.
+    \item Apply the Steinhart--Hart approximation using the calibration constants provided in the device data sheet to compute the temperature in Kelvin.
+    \item Convert to degrees Celsius and clamp the value to the valid operating range reported by the sensor vendor to guard against transient spikes.
+\end{enumerate}
 
-...
+The coefficients $A$, $B$, and $C$ of the Steinhart--Hart model are stored in firmware so they can be updated as the hardware team refines the sensor selection. A lookup-table shortcut is also supported for low-power modes; the firmware selects between the analytical and table driven approaches based on a compile-time flag.
 
-(WIP)
+\subsection{Pressure sensor reading logic}
+Four analogue pressure transducers monitor coolant circuit pressure and the accumulator inlet manifold. The transducers provide ratiometric outputs, therefore the ADC conversion first normalises the reading against the current rail voltage sampled through the housekeeping ADC channel. A linear calibration derived from bench testing translates the normalised value into kilopascals. Calibration data lives in \texttt{pressure\_calibration.h} so that each chassis can ship with its specific offsets.
 
+\section{Device Drivers}
+\label{sec:drivers}
+\subsection{CAN Interface}
+The CAN driver exposes a double-buffered mailbox API that separates application level frame composition from the low-level HAL interactions. Outgoing frames are enqueued into a ring buffer and flushed inside the \texttt{HAL\_CAN\_TxMailbox1CompleteCallback} handler. This design prevents the control loop from blocking whenever the transceiver is busy. Received frames are parsed into structured messages defined in \texttt{acc\_messages.h}. Adding a new CAN topic requires updating the message definition, extending the parser, and documenting the payload format in Section~\ref{sec:can-map}.
 
+\subsection{PWM Fan Driver}
+PWM generation is performed by \texttt{TIM1} using complementary channels with dead-time insertion disabled. The driver abstracts timer register programming into \texttt{FanDriver\_SetDutyCycle()} which validates the requested duty cycle against calibrated minimum and maximum values. Interrupt safe updates allow the control algorithm to adjust speeds from either the main loop or PID callbacks without data races.
+
+\section{Control Logic}
+\label{sec:control}
+\subsection{Thermal Control Strategy}
+The firmware implements a two-tier strategy. A hysteresis layer prevents rapid toggling of the fans around the thermal limits, while a PID controller refines the duty cycle to track the temperature set-point broadcast by the AMS. The PID loop is computed every 50~ms inside the sensor processing task. The input to the controller is the hottest temperature reported by either the hard-wired thermistors or the CAN-fed segment probes. The output is a duty-cycle request bounded by the fan driver guard rails.
+
+\subsection{Fail-safe Behaviour}
+If the tachometer reports a zero RPM reading while the duty cycle command exceeds 40\%, the controller triggers a diagnostic fault and ramps to maximum speed for redundancy. The fault is latched and mirrored on the CAN telemetry stream so that the vehicle controller can initiate backup cooling if required.
+
+\section{Testing and Verification}
+\label{sec:testing}
+Verification is split between hardware-in-the-loop validation and host-based unit tests. The \texttt{Test/} directory now ships with a self-contained Unity/CMock harness that demonstrates how to isolate hardware dependencies. Developers can clone the template and replace the mocked interfaces with the module under test.
+
+\subsection{Running the CMock Template}
+Within \texttt{ACC\_Firmware/Test/cmock\_example} a \texttt{Makefile} orchestrates compilation of Unity, the simplified CMock runtime, the generated mock, and the module under test. The example test exercises a fan control hysteresis helper:
+
+\begin{minted}[fontsize=\small]{c}
+void test_FanControl_Hysteresis(void) {
+    const int sequence[] = {60, 54, 48};
+    TemperatureSensor_Read_ExpectAndReturnSequence(sequence, 3);
+
+    TEST_ASSERT_TRUE(FanControl_ShouldEnableCooling());
+    TEST_ASSERT_TRUE(FanControl_ShouldEnableCooling());
+    TEST_ASSERT_FALSE(FanControl_ShouldEnableCooling());
+}
+\end{minted}
+
+Executing \texttt{make run} builds the harness and runs the unit tests directly on the developer workstation, removing the need for target hardware during logic development. The mock registers itself with the lightweight CMock runtime to ensure that call expectations are verified automatically during \texttt{tearDown()}.
+
+\section{CAN Messaging Map}
+\label{sec:can-map}
+Table~\ref{tab:canmap} summarises the CAN payloads emitted by the ACC controller. Each entry should be kept in sync with the DBC files maintained by the vehicle controls team.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Message ID} & \textbf{Periodicity} & \textbf{Payload} & \textbf{Notes} \\
+        \hline
+        0x601 & 20~ms & Fan duty cycle, fan RPM & Diagnostic flags in byte~7 \\
+        0x602 & 50~ms & Segment temperatures (4x int16) & Values in 0.1$^\circ$C \\
+        0x603 & 100~ms & Pressure readings (4x int16) & Values in 0.1~kPa \\
+        0x604 & Event & Fault/event code & Published on state transitions \\
+        \hline
+    \end{tabular}
+    \caption{Accumulator cooling CAN messages.}
+    \label{tab:canmap}
+\end{table}
+
+\section{Change Control}
+The firmware team maintains this document alongside the source code repository. When introducing new peripherals or modifying the control algorithms, update the relevant sections and increment the revision metadata at the front of the document. Including diagrams of state machines or timing waveforms greatly assists the test and integration teams in validating behaviour on the vehicle.
 
 \end{document}
 
