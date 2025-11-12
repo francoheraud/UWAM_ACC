@@ -34,12 +34,12 @@
 #define ACC_PWM_RESOLUTION        255u
 
 // CAN IDs
-#define ACC_CAN_ID_ACC_BASE       0x440u
-#define ACC_CAN_ID_ACC_TEMP       0x441u
-#define ACC_CAN_ID_ACC_PRESSURE   0x442u
-#define ACC_CAN_ID_ACC_SEG_TEMP   0x443u
-#define ACC_CAN_ID_ACC_TACH       0x444u
-#define ACC_CAN_ID_ACC_POWER      0x445u
+#define ACC_CAN_ID_BASE           0x440u
+#define ACC_CAN_ID_TEMP           0x441u
+#define ACC_CAN_ID_PRESSURE       0x442u
+#define ACC_CAN_ID_SEG_TEMP       0x443u
+#define ACC_CAN_ID_TACH           0x444u
+#define ACC_CAN_ID_POWER          0x445u
 
 // Pressure sensors
 #define ACC_PRESSURE_SENSOR_COUNT 4u

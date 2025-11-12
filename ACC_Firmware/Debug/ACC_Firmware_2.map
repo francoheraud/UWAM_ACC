@@ -252,7 +252,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/can_driver.o
  .debug_macro   0x00000000       0xbe ./App/Src/Drivers/can_driver.o
  .debug_line    0x00000000      0xc9f ./App/Src/Drivers/can_driver.o
- .debug_str     0x00000000    0xcb5bd ./App/Src/Drivers/can_driver.o
+ .debug_str     0x00000000    0xcb5a5 ./App/Src/Drivers/can_driver.o
  .comment       0x00000000       0x44 ./App/Src/Drivers/can_driver.o
  .debug_frame   0x00000000      0x10c ./App/Src/Drivers/can_driver.o
  .ARM.attributes
@@ -339,13 +339,13 @@ Discarded input sections
  .text.Highest_Seg_Temp
                 0x00000000       0x60 ./App/Src/Drivers/control_system.o
  .text.CAN_TransmitAll_SensorData
-                0x00000000      0x10e ./App/Src/Drivers/control_system.o
+                0x00000000      0x11a ./App/Src/Drivers/control_system.o
  .text.ACC_Control_Loop
                 0x00000000      0x134 ./App/Src/Drivers/control_system.o
  .bss.control_state.0
                 0x00000000        0x1 ./App/Src/Drivers/control_system.o
- .debug_info    0x00000000     0x1154 ./App/Src/Drivers/control_system.o
- .debug_abbrev  0x00000000      0x256 ./App/Src/Drivers/control_system.o
+ .debug_info    0x00000000     0x1174 ./App/Src/Drivers/control_system.o
+ .debug_abbrev  0x00000000      0x23e ./App/Src/Drivers/control_system.o
  .debug_aranges
                 0x00000000       0x38 ./App/Src/Drivers/control_system.o
  .debug_rnglists
@@ -425,8 +425,8 @@ Discarded input sections
  .debug_macro   0x00000000      0x126 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0xbe ./App/Src/Drivers/control_system.o
- .debug_line    0x00000000      0xcb4 ./App/Src/Drivers/control_system.o
- .debug_str     0x00000000    0xcbd10 ./App/Src/Drivers/control_system.o
+ .debug_line    0x00000000      0xcbd ./App/Src/Drivers/control_system.o
+ .debug_str     0x00000000    0xcbd05 ./App/Src/Drivers/control_system.o
  .comment       0x00000000       0x44 ./App/Src/Drivers/control_system.o
  .debug_frame   0x00000000       0xa8 ./App/Src/Drivers/control_system.o
  .ARM.attributes
@@ -773,7 +773,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0xbe ./App/Src/Other/scheduler.o
  .debug_line    0x00000000      0xae4 ./App/Src/Other/scheduler.o
- .debug_str     0x00000000    0xcb189 ./App/Src/Other/scheduler.o
+ .debug_str     0x00000000    0xcb171 ./App/Src/Other/scheduler.o
  .comment       0x00000000       0x44 ./App/Src/Other/scheduler.o
  .debug_frame   0x00000000       0x38 ./App/Src/Other/scheduler.o
  .ARM.attributes
@@ -4860,24 +4860,24 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x0000b829     0x3910 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
  .debug_line    0x0000f139     0x1afb ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_str      0x00000000    0xcf581
- .debug_str     0x00000000    0xcf581 ./App/Src/Drivers/sensor_inputs.o
-                              0xcbe88 (size before relaxing)
- .debug_str     0x000cf581    0xc7c5a ./Core/Src/main.o
- .debug_str     0x000cf581    0xc7380 ./Core/Src/stm32f4xx_hal_msp.o
- .debug_str     0x000cf581    0xc6b42 ./Core/Src/stm32f4xx_it.o
- .debug_str     0x000cf581    0xc6971 ./Core/Src/system_stm32f4xx.o
- .debug_str     0x000cf581       0x89 ./Core/Startup/startup_stm32f412retx.o
- .debug_str     0x000cf581    0xc7508 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_str     0x000cf581    0xc6f73 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_str     0x000cf581    0xc7080 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_str     0x000cf581    0xc7260 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_str     0x000cf581    0xc6da0 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_str     0x000cf581    0xc6b2b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_str     0x000cf581    0xc6de3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_str     0x000cf581    0xc6ce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_str     0x000cf581    0xc7d10 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_str     0x000cf581    0xc751c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_str      0x00000000    0xcf569
+ .debug_str     0x00000000    0xcf569 ./App/Src/Drivers/sensor_inputs.o
+                              0xcbe70 (size before relaxing)
+ .debug_str     0x000cf569    0xc7c5a ./Core/Src/main.o
+ .debug_str     0x000cf569    0xc7380 ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_str     0x000cf569    0xc6b42 ./Core/Src/stm32f4xx_it.o
+ .debug_str     0x000cf569    0xc6971 ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x000cf569       0x89 ./Core/Startup/startup_stm32f412retx.o
+ .debug_str     0x000cf569    0xc7508 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_str     0x000cf569    0xc6f73 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_str     0x000cf569    0xc7080 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_str     0x000cf569    0xc7260 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_str     0x000cf569    0xc6da0 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_str     0x000cf569    0xc6b2b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_str     0x000cf569    0xc6de3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_str     0x000cf569    0xc6ce3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_str     0x000cf569    0xc7d10 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_str     0x000cf569    0xc751c ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./App/Src/Drivers/sensor_inputs.o

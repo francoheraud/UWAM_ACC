@@ -23,12 +23,12 @@ hardware:
 communication:
   type: "CAN 2.0A"
   can_ids:
-    acc_base: 0x440
-    acc_temp: 0x441
-    acc_pressure: 0x442
-    acc_seg_temp: 0x443
-    acc_tach: 0x444
-    acc_power: 0x445
+    base: 0x440
+    temp: 0x441
+    pressure: 0x442
+    seg_temp: 0x443
+    tach: 0x444
+    power: 0x445
 
 sensors:
   pressure:

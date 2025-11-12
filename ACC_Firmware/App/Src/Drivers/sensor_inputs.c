@@ -128,7 +128,7 @@ HAL_StatusTypeDef Sensors_Init(SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_H
 	memset((void*)si->adc_raw, 0, sizeof(si->adc_raw));
 	memset((void*)si->adc_V, 0, sizeof(si->adc_V));
 	memset((void*)si->temp_c, 0, sizeof(si->temp_c));
-	memset((void*)si->pressure_psi, 0, sizeof(si->pressure_psi));
+	memset((void*)si->pressure_kpa, 0, sizeof(si->pressure_kpa));
 
 	si->adc = adc;
 	si->tim = tim;
@@ -238,7 +238,7 @@ void PWM_SetAll(SensorInputs_t *si) {
 */
 bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
-	can->rx1.StdId 	= ACC_CAN_ID_ACC_SEG_TEMP;
+	can->rx1.StdId 	= ACC_CAN_ID_SEG_TEMP;
 	can->rx1.DLC	= 8;			// TODO: Assume 8 for now, check intended CAN IDs with elec team...
 	HAL_StatusTypeDef can_rx_status = CAN_Receive1(can);
 

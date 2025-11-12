@@ -29,7 +29,7 @@ typedef struct {
 
 	// data buffers for temperature and pressure values
 	float temp_c[ACC_TEMP_SENSOR_COUNT];
-	float pressure_psi[ACC_PRESSURE_SENSOR_COUNT]; // (what unit??)
+	float pressure_kpa[ACC_PRESSURE_SENSOR_COUNT];
 	float seg_temp_c[ACC_NUM_SEG_TEMPS];
 
 	// pwm

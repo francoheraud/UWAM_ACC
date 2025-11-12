@@ -44,28 +44,33 @@ static float Highest_Seg_Temp(SensorInputs_t *si) {
 * @note Auto-gen: fill details.
 */
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
-	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
+	// TODO: Add better error detection >:(
 
-	for (uint8_t i = 0; i < 8; i++) {
-		if (i >= 4) {
-			can->tx_data[i] = si->pressure_psi[i - 4];
-			continue;
-		}
-		can->tx_data[i] = si->temp_c[i];
+	// Serializing pressure inputs + Transmit them:
+	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
+	for (uint8_t i = 0; i < 4; i++) {
+		CAN_16Bit_Serializer(si->pressure_kpa[i], &can->tx_data[i*2]);
 	}
-	can->tx2.StdId 	= ACC_CAN_ID_ACC_TEMP;
+	can->tx2.StdId 	= ACC_CAN_ID_PRESSURE;
 	can->tx2.DLC 	= 8;
 	CAN_Transmit2(can);
 
+	// Serializing temperature inputs + Transmit them:
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
-	for (uint8_t j = 0; j < ACC_NUM_SEG_TEMPS; j++) {
-		can->tx_data[j] = si->seg_temp_c[j];
+	for (uint8_t i = 0; i < 4; i++) {
+		CAN_16Bit_Serializer(si->temp_c[i], &can->tx_data[i*2]);
 	}
+	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
+	can->tx2.DLC 	= 8;
+	CAN_Transmit2(can);
 
-	// TODO: Fix all this bullshit here
-	can->tx_data[ACC_NUM_SEG_TEMPS] = (uint8_t)lroundf(si->fan_rpm);
-	can->tx2.StdId 	= ACC_CAN_ID_ACC_SEG_TEMP;
-	can->tx2.DLC 	= ACC_NUM_SEG_TEMPS;
+	// Assume seg temp values are in ideal format:
+	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
+	for (uint8_t i = 0; i < 4; i++) {
+		CAN_16Bit_Serializer(si->seg_temp_c[i], &can->tx_data[i*2]);
+	}
+	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
+	can->tx2.DLC 	= 8;
 	CAN_Transmit2(can);
 
 	return;
