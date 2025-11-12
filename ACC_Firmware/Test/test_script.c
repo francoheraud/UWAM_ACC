@@ -1,10 +1,3 @@
-/**
- * Simply just for storage...
- */
-
-
-
-
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -35,6 +28,7 @@
 #include <string.h>
 #include <math.h>
 #include "sensor_inputs.h"
+#include "can_driver.h"
 
 /* USER CODE END Includes */
 
@@ -57,6 +51,8 @@
 ADC_HandleTypeDef hadc2;
 DMA_HandleTypeDef hdma_adc2;
 
+CAN_HandleTypeDef hcan;
+
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
@@ -65,6 +61,10 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 
 SensorInputs_t si;
+CAN_Driver_t can;
+CAN_TxHeaderTypeDef tx;
+CAN_RxHeaderTypeDef rx;
+CAN_FilterTypeDef fil;
 
 /* USER CODE END PV */
 
@@ -76,6 +76,7 @@ static void MX_USART2_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC2_Init(void);
+static void MX_CAN_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -105,8 +106,6 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
-  HAL_StatusTypeDef si_status = Sensors_Init(&si, &hadc2, &htim1);
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -123,9 +122,15 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM1_Init();
   MX_ADC2_Init();
+  MX_CAN_Init();
   /* USER CODE BEGIN 2 */
-  HAL_StatusTypeDef tim_status = HAL_TIM_Base_Start(&htim2);
-  HAL_StatusTypeDef si_start_status = Sensors_Start(&si);
+  //HAL_StatusTypeDef tim_status = HAL_TIM_Base_Start(&htim2);
+  //HAL_StatusTypeDef si_status = Sensors_Init(&si, &hadc2, &htim1);
+  //HAL_StatusTypeDef si_start_status = Sensors_Start(&si);
+
+  // init can for testing
+  HAL_StatusTypeDef can_status = CAN_InitDriver(&can, &hcan);
+
 
   // start dma after clocks are configured:
   //HAL_ADC_Start_DMA(&hadc2, (uint32_t *)si.adc_raw, 8);
@@ -134,13 +139,23 @@ int main(void)
   char buffer[50];
   memset(buffer,0,sizeof(buffer));
 
-  if (tim_status == HAL_OK && (si_status == HAL_OK))
-	  sprintf(buffer, "Internal Timer + Sensors Initialized!\r\n");
+  if (can_status != HAL_OK)
+	  sprintf(buffer, "Error w/ CAN initialization!\r\n");
   else
-	  sprintf(buffer, "Error w/ Initialization!\r\n");
+	  sprintf(buffer, "CAN initialized successfully!\r\n");
 
   HAL_UART_Transmit(&huart2, (uint8_t *)buffer, 50, HAL_MAX_DELAY);
-  char adc_msg_buf[60];
+
+  //if (tim_status == HAL_OK && (si_status == HAL_OK))
+	//  sprintf(buffer, "Internal Timer + Sensors Initialized!\r\n");
+  //else
+	//  sprintf(buffer, "Error w/ Initialization!\r\n");
+
+  //HAL_UART_Transmit(&huart2, (uint8_t *)buffer, 50, HAL_MAX_DELAY);
+  //char adc_msg_buf[60];
+  //si.ch1_duty_cycle = 0.5f;
+  //si.ch2_duty_cycle = 0.5f;
+  //si.ch3_duty_cycle = 0.5f;
 
   /* USER CODE END 2 */
 
@@ -150,8 +165,31 @@ int main(void)
   {
 	  //Update_Fan_Speed(&si);
 	  //char speed_msg_buf[50];
+	  char can_buf[50];
+	  memset(can_buf, 0, sizeof(can_buf));
 
-	  Update_ADC_Buffers(&si);
+	  //Update_ADC_Buffers(&si);
+
+	  // Testing PWM:
+	  //PWM_SetAll(&si);
+
+
+	  // Testing CAN logic
+	  can.id = 0x440;
+	  can.len = 1;
+	  can.tx_data[0] = 200;
+	  can.tx_data[1] = 2;
+	  HAL_StatusTypeDef can_tx_status = CAN_Transmit1(&can, &tx);
+	  uint32_t err = HAL_CAN_GetError(&hcan);
+
+	  if (can_tx_status == HAL_OK && err == HAL_CAN_ERROR_NONE) {
+	      sprintf(can_buf, "CAN TX OK, ID: 0x%03lX\r\n", (unsigned long)can.id);
+	  } else {
+	      sprintf(can_buf, "CAN TX ERR: status=%d, err=0x%08lX\r\n",
+	              can_tx_status, (unsigned long)err);
+	  }
+	  HAL_UART_Transmit(&huart2, (uint8_t *)can_buf, strlen(can_buf), HAL_MAX_DELAY);
+	  HAL_Delay(20);
 
 
 	  //memset(adc_msg_buf,0,sizeof(adc_msg_buf));
@@ -208,9 +246,9 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV16;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
@@ -349,6 +387,48 @@ static void MX_ADC2_Init(void)
 }
 
 /**
+  * @brief CAN Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CAN_Init(void)
+{
+
+  /* USER CODE BEGIN CAN_Init 0 */
+
+
+
+  /* USER CODE END CAN_Init 0 */
+
+  /* USER CODE BEGIN CAN_Init 1 */
+
+  /* USER CODE END CAN_Init 1 */
+  hcan.Instance = CAN;
+  hcan.Init.Prescaler = 8;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_2TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_1TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = DISABLE;
+  hcan.Init.AutoWakeUp = DISABLE;
+  hcan.Init.AutoRetransmission = ENABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = ENABLE;
+  if (HAL_CAN_Init(&hcan) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CAN_Init 2 */
+
+
+  if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK)
+	  Error_Handler();
+  /* USER CODE END CAN_Init 2 */
+
+}
+
+/**
   * @brief TIM1 Initialization Function
   * @param None
   * @retval None
@@ -357,6 +437,7 @@ static void MX_TIM1_Init(void)
 {
 
   /* USER CODE BEGIN TIM1_Init 0 */
+
 
   /* USER CODE END TIM1_Init 0 */
 
@@ -370,10 +451,10 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = 320;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
   {
     Error_Handler();
@@ -385,7 +466,7 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.OCMode = TIM_OCMODE_ASSYMETRIC_PWM1;
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
@@ -420,6 +501,8 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM1_Init 2 */
+
+  //HAL_TIM_Base_Start(&htim1);
 
   /* USER CODE END TIM1_Init 2 */
   HAL_TIM_MspPostInit(&htim1);
@@ -586,6 +669,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+
   }
   /* USER CODE END Error_Handler_Debug */
 }

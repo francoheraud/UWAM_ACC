@@ -37,7 +37,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	CAN_TxHeaderTypeDef tx = {0};
 	tx.StdId 	= ACC_DOUT_CAN_ID1;
 	tx.DLC 		= 8;
-	CAN_Transmit2(can, &tx);
+	CAN_Transmit2(can);
 
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 	for (uint8_t j = 0; j < AMS_SEGMENT_COUNT; j++) {
@@ -47,7 +47,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	can->tx_data[AMS_SEGMENT_COUNT] = si->fan_rpm;
 	tx.StdId 	= ACC_DOUT_CAN_ID2;
 	tx.DLC 		= AMS_SEGMENT_COUNT;
-	CAN_Transmit2(can, &tx);
+	CAN_Transmit2(can);
 
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 

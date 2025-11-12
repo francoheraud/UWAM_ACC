@@ -1,6 +1,5 @@
-../App/Src/can_driver.c:8:19:CAN_InitDriver	8
-../App/Src/can_driver.c:19:19:CAN_Transmit1	4
-../App/Src/can_driver.c:31:19:CAN_Transmit2	4
-../App/Src/can_driver.c:43:19:CAN_Receive	5
-../App/Src/can_driver.c:55:6:CAN_Test	1
-../App/Src/can_driver.c:60:26:Config_CAN_Filter	1
+../App/Src/can_driver.c:11:19:CAN_InitDriver	6
+../App/Src/can_driver.c:19:19:CAN_Transmit1	1
+../App/Src/can_driver.c:30:19:CAN_Transmit2	1
+../App/Src/can_driver.c:41:19:CAN_Receive1	2
+../App/Src/can_driver.c:52:6:CAN_Test	1

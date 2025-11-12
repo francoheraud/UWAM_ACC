@@ -126,13 +126,10 @@ void PWM_SetAll(SensorInputs_t *si) {
 	__HAL_TIM_SET_COMPARE(si->tim, TIM_CHANNEL_2, d2_scaled);
 	__HAL_TIM_SET_COMPARE(si->tim, TIM_CHANNEL_3, d3_scaled);
 
-	/* If CCR preload is enabled, latch all three together */
-	//__HAL_TIM_GENERATE_EVENT(si->tim, TIM_EVENTSOURCE_UPDATE);
-	HAL_TIM_GenerateEvent(si->tim, TIM_EVENTSOURCE_UPDATE);
 }
 
 
-/*
+
 // TODO: Add a specific can filter config in the near future??
 // Read segment temperature data on the CAN bus coming from AMS
 bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
@@ -140,8 +137,6 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	CAN_RxHeaderTypeDef rx = {0};
 
-	if (CAN_Receive(can, &rx) != HAL_OK)
-		return false;
 	if (HAL_CAN_GetRxFifoFillLevel(can->hcan1, CAN_RX_FIFO0) == 0)
 	    return false;
 	if (rx.IDE != CAN_ID_STD || rx.DLC < AMS_SEGMENT_COUNT || rx.StdId != AMS_SEG_TEMP_CAN_ID) // how many segs? + whats the id
@@ -153,7 +148,6 @@ bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	return true;
 }
-*/
 
 
 //TODO: Verify PULSES_PER_REVOLUTION plz!!

@@ -15,19 +15,24 @@ extern "C" {
 #include <stdint.h>
 #include "acc_config.h"
 
+
 typedef struct {
     CAN_HandleTypeDef *hcan1;
     CAN_HandleTypeDef *hcan2;
+    CAN_TxHeaderTypeDef tx1;
+    CAN_TxHeaderTypeDef tx2;
+    CAN_RxHeaderTypeDef rx1;
     uint8_t  tx_data[8];
     uint8_t  rx_data[8];
     uint32_t id;
     uint8_t  len;
 } CAN_Driver_t;
 
-HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv, CAN_HandleTypeDef *hcan1,  CAN_HandleTypeDef *hcan2);
-HAL_StatusTypeDef CAN_Transmit1(CAN_Driver_t *drv, CAN_TxHeaderTypeDef *tx);
-HAL_StatusTypeDef CAN_Transmit2(CAN_Driver_t *drv, CAN_TxHeaderTypeDef *tx);
-HAL_StatusTypeDef CAN_Receive(CAN_Driver_t *drv, CAN_RxHeaderTypeDef *rx);
+HAL_StatusTypeDef CAN_InitDriver(CAN_Driver_t *drv);
+HAL_StatusTypeDef CAN_Transmit1	(CAN_Driver_t *drv);
+HAL_StatusTypeDef CAN_Transmit2	(CAN_Driver_t *drv);
+HAL_StatusTypeDef CAN_Receive1	(CAN_Driver_t *drv);
+
 void              CAN_Test(void);
 
 #ifdef __cplusplus
