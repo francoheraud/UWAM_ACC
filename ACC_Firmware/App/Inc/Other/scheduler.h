@@ -13,15 +13,9 @@ extern "C" {
  * Made up some arbitrary timing requirements.
  * TODO: Double check w/ electrical team if this should be adjusted.
  */
-typedef enum {
-	EXEC_1MS,
-	EXEC_10MS,
-	EXEC_100MS,
-	BUSY
-} SchedulerState;
 
-SchedulerState Schedule_Tasks(uint32_t *timer_ptr);
-
+void Scheduler_Init(uint32_t *millis_ptr);
+void Schedule_Tasks(uint32_t *millis_ptr);
 
 #ifdef __cplusplus
 }

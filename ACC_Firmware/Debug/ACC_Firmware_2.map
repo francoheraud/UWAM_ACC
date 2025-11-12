@@ -689,14 +689,32 @@ Discarded input sections
  .text          0x00000000        0x0 ./App/Src/Other/scheduler.o
  .data          0x00000000        0x0 ./App/Src/Other/scheduler.o
  .bss           0x00000000        0x0 ./App/Src/Other/scheduler.o
- .text.Schedule_Task
-                0x00000000       0x46 ./App/Src/Other/scheduler.o
- .debug_info    0x00000000      0x108 ./App/Src/Other/scheduler.o
- .debug_abbrev  0x00000000       0x8e ./App/Src/Other/scheduler.o
+ .text._10ms_TaskSet_Callback
+                0x00000000        0xe ./App/Src/Other/scheduler.o
+ .text._50ms_TaskSet_Callback
+                0x00000000        0xe ./App/Src/Other/scheduler.o
+ .text._100ms_TaskSet_Callback
+                0x00000000        0xe ./App/Src/Other/scheduler.o
+ .bss.millis_prev1
+                0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .bss.millis_prev2
+                0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .bss.millis_prev3
+                0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .rodata._10ms  0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .rodata._50ms  0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .rodata._100ms
+                0x00000000        0x4 ./App/Src/Other/scheduler.o
+ .text.Scheduler_Init
+                0x00000000       0x30 ./App/Src/Other/scheduler.o
+ .text.Schedule_Tasks
+                0x00000000       0x84 ./App/Src/Other/scheduler.o
+ .debug_info    0x00000000      0x1a4 ./App/Src/Other/scheduler.o
+ .debug_abbrev  0x00000000       0xda ./App/Src/Other/scheduler.o
  .debug_aranges
-                0x00000000       0x20 ./App/Src/Other/scheduler.o
+                0x00000000       0x40 ./App/Src/Other/scheduler.o
  .debug_rnglists
-                0x00000000       0x13 ./App/Src/Other/scheduler.o
+                0x00000000       0x2c ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x39e ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x22 ./App/Src/Other/scheduler.o
@@ -772,10 +790,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x126 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0xbe ./App/Src/Other/scheduler.o
- .debug_line    0x00000000      0xae4 ./App/Src/Other/scheduler.o
- .debug_str     0x00000000    0xcb171 ./App/Src/Other/scheduler.o
+ .debug_line    0x00000000      0xb58 ./App/Src/Other/scheduler.o
+ .debug_str     0x00000000    0xcb1d0 ./App/Src/Other/scheduler.o
  .comment       0x00000000       0x44 ./App/Src/Other/scheduler.o
- .debug_frame   0x00000000       0x38 ./App/Src/Other/scheduler.o
+ .debug_frame   0x00000000       0xbc ./App/Src/Other/scheduler.o
  .ARM.attributes
                 0x00000000       0x34 ./App/Src/Other/scheduler.o
  .group         0x00000000        0xc ./Core/Src/main.o
