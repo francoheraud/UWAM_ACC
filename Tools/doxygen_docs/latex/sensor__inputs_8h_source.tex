@@ -1,0 +1,103 @@
+\doxysection{sensor\+\_\+inputs.\+h}
+\hypertarget{sensor__inputs_8h_source}{}\label{sensor__inputs_8h_source}\index{C:/Users/Franc/OneDrive/Desktop/UWAM\_Projects/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/sensor\_inputs.h@{C:/Users/Franc/OneDrive/Desktop/UWAM\_Projects/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/sensor\_inputs.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{*\ sensor\_inputs.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*\ Created\ on:\ Nov\ 1,\ 2025}}
+\DoxyCodeLine{00005\ \textcolor{comment}{*\ Author:\ Franc}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*}}
+\DoxyCodeLine{00007\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ INC\_SENSOR\_INPUTS\_H\_}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ INC\_SENSOR\_INPUTS\_H\_}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}can\_driver.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}acc\_config.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ pc8\ adc\ no\ worky\ >:(}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ADC\_CH\_COUNT\ \ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ADC\_RESOLUTION\ \ \ \ \ \ \ \ \ \ 4095}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PWM\_RESOLUTION\ \ \ \ \ \ \ \ \ \ 255}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TEMP\_ACC1\_IN0\ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TEMP\_ACC2\_IN1\ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TEMP\_DUCT1\_IN2\ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TEMP\_DUCT2\_IN3\ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ PRES\_ACC1\_IN7\ \ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ PRES\_ACC2\_IN8\ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ PRES\_DUCT1\_IN9\ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ PRES\_DUCT2\_INX\ \ \ \ \ \ \ \ \ \ 99\ \ \ \ \ \ }\textcolor{comment}{//\ placeholder\ for\ now...}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ STATUS\_LED1\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_6}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ STATUS\_LED2\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_7}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ STATUS\_LED3\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_11}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ STATUS\_LED4\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_12}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ STATUS\_LED5\ \ \ \ \ \ \ \ \ \ \ \ \ GPIO\_PIN\_13}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ P\_SENSOR\_VSUP1\ \ \ \ \ \ \ \ \ \ 4.5f\ \ \ \ }\textcolor{comment}{//\ V}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ P\_SENSOR\_PMAX1\ \ \ \ \ \ \ \ \ \ 50.0f\ \ \ }\textcolor{comment}{//\ psi}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ P\_SENSOR\_PMIN1\ \ \ \ \ \ \ \ \ \ 0.0f\ \ \ \ }\textcolor{comment}{//\ psi}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ AMS\_SEGMENT\_COUNT\ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ AMS\_SEG\_TEMP\_CAN\_ID\ \ \ \ \ (uint16\_t)0x00000000}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ TACH\_TIMER\_CLK\_HZ\ \ \ \ \ \ \ 16000000\ }\textcolor{comment}{//\ 16\ MHz}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00064\ \ \ \ \ ADC\_HandleTypeDef\ *adc;}
+\DoxyCodeLine{00065\ \ \ \ \ TIM\_HandleTypeDef\ *tim;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ adc\ dma\ buffers}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{volatile}\ uint16\_t\ adc\_raw[ADC\_CH\_COUNT];}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{float}\ adc\_mV[ADC\_CH\_COUNT];}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ data\ buffers\ for\ temperature\ and\ pressure\ values}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{float}\ temp\_c[4];}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{float}\ pressure\_psi[4];\ \textcolor{comment}{//\ (what\ unit??)}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ seg\_temp\_c[AMS\_SEGMENT\_COUNT];}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ pwm}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{float}\ ch1\_duty\_cycle;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ ch2\_duty\_cycle;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ ch3\_duty\_cycle;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ other}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{float}\ fan\_rpm;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ HAL\_StatusTypeDef\ Sensors\_Init(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si,\ ADC\_HandleTypeDef\ *adc,\ TIM\_HandleTypeDef\ *tim);}
+\DoxyCodeLine{00088\ HAL\_StatusTypeDef\ Sensors\_Start(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{void}\ Store\_Temperature\_Readings(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ Store\_Pressure\_Readings(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ PWM\_SetAll(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ Update\_Fan\_Speed(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ Update\_ADC\_Buffers(\mbox{\hyperlink{struct_sensor_inputs__t}{SensorInputs\_t}}\ *si);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_SENSOR\_INPUTS\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

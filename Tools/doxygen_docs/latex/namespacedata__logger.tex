@@ -1,0 +1,60 @@
+\doxysection{data\+\_\+logger Namespace Reference}
+\hypertarget{namespacedata__logger}{}\label{namespacedata__logger}\index{data\_logger@{data\_logger}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedata__logger_a3c97c7467ee61c7eed901322f332858e}\label{namespacedata__logger_a3c97c7467ee61c7eed901322f332858e} 
+{\bfseries ser} = serial.\+Serial(port=\textquotesingle{}/dev/tty\+ACM0\textquotesingle{}, baudrate=115200, timeout=1)
+\item 
+\Hypertarget{namespacedata__logger_a27f9f0d5b8b6458ee77003084700a3f8}\label{namespacedata__logger_a27f9f0d5b8b6458ee77003084700a3f8} 
+{\bfseries fig}
+\item 
+\Hypertarget{namespacedata__logger_a32445645e3963edf966c39de8d1fcc7e}\label{namespacedata__logger_a32445645e3963edf966c39de8d1fcc7e} 
+{\bfseries ax}
+\item 
+\Hypertarget{namespacedata__logger_a04e359e38aa450ca95105a7e1686385a}\label{namespacedata__logger_a04e359e38aa450ca95105a7e1686385a} 
+{\bfseries desired\+Velocity}
+\item 
+\Hypertarget{namespacedata__logger_aee428fa1d3f236d64a3f4d089377b08b}\label{namespacedata__logger_aee428fa1d3f236d64a3f4d089377b08b} 
+{\bfseries actual\+Velocity}
+\item 
+\Hypertarget{namespacedata__logger_aa4c0f3544b07c0034f24800142a52655}\label{namespacedata__logger_aa4c0f3544b07c0034f24800142a52655} 
+{\bfseries x\+Data}
+\item 
+\Hypertarget{namespacedata__logger_a2ba5b8d6957bf48849895de11a4beecb}\label{namespacedata__logger_a2ba5b8d6957bf48849895de11a4beecb} 
+{\bfseries label}
+\item 
+\Hypertarget{namespacedata__logger_a1e4f2435c1232d01e82eff3517117b1f}\label{namespacedata__logger_a1e4f2435c1232d01e82eff3517117b1f} 
+{\bfseries bottom}
+\item 
+\Hypertarget{namespacedata__logger_ad9956676c69a86f288d35c468fd4df01}\label{namespacedata__logger_ad9956676c69a86f288d35c468fd4df01} 
+{\bfseries top}
+\item 
+\Hypertarget{namespacedata__logger_a3a49b51616304260afb0aa46ffcd49a4}\label{namespacedata__logger_a3a49b51616304260afb0aa46ffcd49a4} 
+int {\bfseries inc} = 0
+\item 
+\Hypertarget{namespacedata__logger_ac2c0866abf3fc7c508d57818cb3fac20}\label{namespacedata__logger_ac2c0866abf3fc7c508d57818cb3fac20} 
+{\bfseries line} = ser.\+readline().decode().strip()
+\item 
+\Hypertarget{namespacedata__logger_a276874f9779d8efca10fc253b346f6fe}\label{namespacedata__logger_a276874f9779d8efca10fc253b346f6fe} 
+list {\bfseries float\+Data} = \mbox{[}float(x) for x in line.\+split(\textquotesingle{},\textquotesingle{})\mbox{]}
+\item 
+\Hypertarget{namespacedata__logger_a5653f6e34922eefe22ecb32b772bba06}\label{namespacedata__logger_a5653f6e34922eefe22ecb32b772bba06} 
+{\bfseries tight}
+\item 
+\Hypertarget{namespacedata__logger_a016395bb4e43d3b9a93e8ce4613cd7e0}\label{namespacedata__logger_a016395bb4e43d3b9a93e8ce4613cd7e0} 
+{\bfseries True}
+\item 
+\Hypertarget{namespacedata__logger_a23033309b5b1b3ced5ef9ce2a3e9e4ca}\label{namespacedata__logger_a23033309b5b1b3ced5ef9ce2a3e9e4ca} 
+{\bfseries scalex}
+\item 
+\Hypertarget{namespacedata__logger_af900db39e358ac0154ca91a85a6ee836}\label{namespacedata__logger_af900db39e358ac0154ca91a85a6ee836} 
+{\bfseries scaley}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Reading raw data from /dev/ttyACM0 port for graphing purposes.
+- Franco H
+\end{DoxyVerb}
+ 

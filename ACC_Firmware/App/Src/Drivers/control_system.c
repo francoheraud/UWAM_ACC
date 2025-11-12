@@ -4,7 +4,7 @@
  */
 
 
-#include "control_system.h"
+#include <Drivers/control_system.h>
 
 static float Highest_Input_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;

@@ -1,0 +1,44 @@
+\doxysection{can\+\_\+driver.\+h}
+\hypertarget{can__driver_8h_source}{}\label{can__driver_8h_source}\index{C:/Users/Franc/OneDrive/Desktop/UWAM\_Projects/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/can\_driver.h@{C:/Users/Franc/OneDrive/Desktop/UWAM\_Projects/Github/UWAM\_ACC/ACC\_Firmware/App/Inc/Drivers/can\_driver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ INC\_CAN\_DRIVER\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ INC\_CAN\_DRIVER\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}acc\_config.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ CAN\_HandleTypeDef\ *hcan1;}
+\DoxyCodeLine{00021\ \ \ \ \ CAN\_HandleTypeDef\ *hcan2;}
+\DoxyCodeLine{00022\ \ \ \ \ CAN\_TxHeaderTypeDef\ tx1;}
+\DoxyCodeLine{00023\ \ \ \ \ CAN\_TxHeaderTypeDef\ tx2;}
+\DoxyCodeLine{00024\ \ \ \ \ CAN\_RxHeaderTypeDef\ rx1;}
+\DoxyCodeLine{00025\ \ \ \ \ uint8\_t\ \ tx\_data[8];}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ \ rx\_data[8];}
+\DoxyCodeLine{00027\ \ \ \ \ uint32\_t\ id;}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ \ len;}
+\DoxyCodeLine{00029\ \}\ \mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ HAL\_StatusTypeDef\ CAN\_InitDriver(\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00032\ HAL\_StatusTypeDef\ CAN\_Transmit1\ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00033\ HAL\_StatusTypeDef\ CAN\_Transmit2\ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00034\ HAL\_StatusTypeDef\ CAN\_Receive1\ \ (\mbox{\hyperlink{struct_c_a_n___driver__t}{CAN\_Driver\_t}}\ *drv);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ CAN\_Test(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_CAN\_DRIVER\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

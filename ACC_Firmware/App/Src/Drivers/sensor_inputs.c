@@ -4,7 +4,7 @@
 * Author: Franc
 */
 
-#include "sensor_inputs.h"
+#include <Drivers/sensor_inputs.h>
 
 extern TIM_HandleTypeDef htim2;
 
