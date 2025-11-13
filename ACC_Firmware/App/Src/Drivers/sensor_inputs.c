@@ -173,7 +173,7 @@ void Update_ADC_Buffers(SensorInputs_t *si) {
 	HAL_ADC_Start(si->adc);
 
 	for (uint8_t i = 0; i < ADC_CH_COUNT; i++)
-		si->adc_V[i] = (si->adc_raw[i] / ((float)pow(10,ACC_ADC_RES_BITS)) - 1.0f) * 3.30f;
+		si->adc_V[i] = (si->adc_raw[i] / ((float)pow(2,ACC_ADC_RES_BITS) - 1.0f)) * 3.30f;
 }
 
 /**

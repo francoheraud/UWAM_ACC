@@ -525,7 +525,7 @@ Discarded input sections
  .text.Sensors_Start
                 0x00000000       0x8e ./App/Src/Drivers/sensor_inputs.o
  .text.Update_ADC_Buffers
-                0x00000000       0x70 ./App/Src/Drivers/sensor_inputs.o
+                0x00000000       0x68 ./App/Src/Drivers/sensor_inputs.o
  .text.Store_Temperature_Readings
                 0x00000000       0x8a ./App/Src/Drivers/sensor_inputs.o
  .text.Store_Pressure_Readings
@@ -689,32 +689,14 @@ Discarded input sections
  .text          0x00000000        0x0 ./App/Src/Other/scheduler.o
  .data          0x00000000        0x0 ./App/Src/Other/scheduler.o
  .bss           0x00000000        0x0 ./App/Src/Other/scheduler.o
- .text._10ms_TaskSet_Callback
-                0x00000000        0xe ./App/Src/Other/scheduler.o
- .text._50ms_TaskSet_Callback
-                0x00000000        0xe ./App/Src/Other/scheduler.o
- .text._100ms_TaskSet_Callback
-                0x00000000        0xe ./App/Src/Other/scheduler.o
- .bss.millis_prev1
-                0x00000000        0x4 ./App/Src/Other/scheduler.o
- .bss.millis_prev2
-                0x00000000        0x4 ./App/Src/Other/scheduler.o
- .bss.millis_prev3
-                0x00000000        0x4 ./App/Src/Other/scheduler.o
- .rodata._10ms  0x00000000        0x4 ./App/Src/Other/scheduler.o
- .rodata._50ms  0x00000000        0x4 ./App/Src/Other/scheduler.o
- .rodata._100ms
-                0x00000000        0x4 ./App/Src/Other/scheduler.o
- .text.Scheduler_Init
-                0x00000000       0x30 ./App/Src/Other/scheduler.o
  .text.Schedule_Tasks
-                0x00000000       0x84 ./App/Src/Other/scheduler.o
- .debug_info    0x00000000      0x1a4 ./App/Src/Other/scheduler.o
- .debug_abbrev  0x00000000       0xda ./App/Src/Other/scheduler.o
+                0x00000000       0x74 ./App/Src/Other/scheduler.o
+ .debug_info    0x00000000      0x19f ./App/Src/Other/scheduler.o
+ .debug_abbrev  0x00000000       0xdb ./App/Src/Other/scheduler.o
  .debug_aranges
-                0x00000000       0x40 ./App/Src/Other/scheduler.o
+                0x00000000       0x20 ./App/Src/Other/scheduler.o
  .debug_rnglists
-                0x00000000       0x2c ./App/Src/Other/scheduler.o
+                0x00000000       0x13 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0x39e ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000      0xad8 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x22 ./App/Src/Other/scheduler.o
@@ -790,10 +772,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x126 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0x16 ./App/Src/Other/scheduler.o
  .debug_macro   0x00000000       0xbe ./App/Src/Other/scheduler.o
- .debug_line    0x00000000      0xb58 ./App/Src/Other/scheduler.o
- .debug_str     0x00000000    0xcb1d0 ./App/Src/Other/scheduler.o
+ .debug_line    0x00000000      0xb0f ./App/Src/Other/scheduler.o
+ .debug_str     0x00000000    0xcb1a8 ./App/Src/Other/scheduler.o
  .comment       0x00000000       0x44 ./App/Src/Other/scheduler.o
- .debug_frame   0x00000000       0xbc ./App/Src/Other/scheduler.o
+ .debug_frame   0x00000000       0x34 ./App/Src/Other/scheduler.o
  .ARM.attributes
                 0x00000000       0x34 ./App/Src/Other/scheduler.o
  .group         0x00000000        0xc ./Core/Src/main.o
@@ -4860,23 +4842,23 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00001d42      0x1f7 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
  .debug_macro   0x00001f39      0x1f6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
-.debug_line     0x00000000    0x10c66
- .debug_line    0x00000000      0xfd0 ./App/Src/Drivers/sensor_inputs.o
- .debug_line    0x00000fd0      0xbaa ./Core/Src/main.o
- .debug_line    0x00001b7a      0xa1f ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x00002599      0x94f ./Core/Src/stm32f4xx_it.o
- .debug_line    0x00002ee8      0x8e6 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x000037ce       0x7a ./Core/Startup/startup_stm32f412retx.o
- .debug_line    0x00003848      0xb9b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
- .debug_line    0x000043e3     0x12e6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
- .debug_line    0x000056c9     0x135a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
- .debug_line    0x00006a23      0xe6b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
- .debug_line    0x0000788e     0x1107 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
- .debug_line    0x00008995      0xca3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
- .debug_line    0x00009638      0xfb4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
- .debug_line    0x0000a5ec     0x126f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
- .debug_line    0x0000b85b     0x3910 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
- .debug_line    0x0000f16b     0x1afb ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
+.debug_line     0x00000000    0x10c63
+ .debug_line    0x00000000      0xfcd ./App/Src/Drivers/sensor_inputs.o
+ .debug_line    0x00000fcd      0xbaa ./Core/Src/main.o
+ .debug_line    0x00001b77      0xa1f ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x00002596      0x94f ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x00002ee5      0x8e6 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x000037cb       0x7a ./Core/Startup/startup_stm32f412retx.o
+ .debug_line    0x00003845      0xb9b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o
+ .debug_line    0x000043e0     0x12e6 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.o
+ .debug_line    0x000056c6     0x135a ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_can.o
+ .debug_line    0x00006a20      0xe6b ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000788b     0x1107 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o
+ .debug_line    0x00008992      0xca3 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o
+ .debug_line    0x00009635      0xfb4 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000a5e9     0x126f ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o
+ .debug_line    0x0000b858     0x3910 ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o
+ .debug_line    0x0000f168     0x1afb ./Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o
 
 .debug_str      0x00000000    0xcf599
  .debug_str     0x00000000    0xcf599 ./App/Src/Drivers/sensor_inputs.o

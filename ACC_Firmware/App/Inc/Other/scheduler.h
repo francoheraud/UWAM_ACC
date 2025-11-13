@@ -10,12 +10,19 @@ extern "C" {
 #include <stdint.h>
 /*
  * This is basically just a lightweight scheduler that implements some basic rate-grouping.
- * Made up some arbitrary timing requirements.
+ * Feel free to make up some arbitrary timing requirements.
  * TODO: Double check w/ electrical team if this should be adjusted.
  */
 
-void Scheduler_Init(uint32_t *millis_ptr);
-void Schedule_Tasks(uint32_t *millis_ptr);
+typedef void (*Task_Cb_t)(void);
+
+typedef struct SchedulerConfig {
+	Task_Cb_t callback;
+	uint32_t period_ms;
+	uint32_t last_run_ms;
+} Task_t;
+
+void Schedule_Tasks(Task_t *tasks, uint32_t *now, uint8_t num_tasks);
 
 #ifdef __cplusplus
 }

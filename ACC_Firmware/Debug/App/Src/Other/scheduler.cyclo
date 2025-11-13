@@ -1,5 +1,1 @@
-../App/Src/Other/scheduler.c:11:13:_10ms_TaskSet_Callback	1
-../App/Src/Other/scheduler.c:14:13:_50ms_TaskSet_Callback	1
-../App/Src/Other/scheduler.c:17:13:_100ms_TaskSet_Callback	1
-../App/Src/Other/scheduler.c:29:13:Scheduler_Init	1
-../App/Src/Other/scheduler.c:42:6:Schedule_Tasks	4
+../App/Src/Other/scheduler.c:23:6:Schedule_Tasks	5
