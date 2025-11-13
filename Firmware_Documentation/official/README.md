@@ -18,6 +18,33 @@
 
 * (Officially) flash the ACC board using NUCLEO board/ST-LINK for final integration test
 
+# STM32 Configuration
+
+I need to save a record of how exactly I endeavour to configure the STM32.
+
+## Timers
+
+
+## EXTI3
+
+
+## ADC
+
+
+## Clocks
+
+
+## CAN
+
+
+## Other
+
+
+
+time to go to bed
+
+```
+
 
 
 
