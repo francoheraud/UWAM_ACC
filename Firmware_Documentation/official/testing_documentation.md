@@ -34,6 +34,24 @@
 * *I have successfully configured the bit timing in CAN and learned how to use the canalyzer to debug CAN messages*
 
 
+### 12/11/25: Tested newly implemented scheduler + A bunch of firmware dev
+
+* This scheduler is to be used for polling tasks at different rates, likely based on their priorities. It works, not much to say here.
+
+### 13/11/25: Tested pressure sensor and temperature sensor (Bosch)
+
+* Pressure sensor works fine. It outputs 96-98 kPa by default. For reference, the average atmospheric pressure at sea level is 101.325 kPa.
+
+* Hooked up NTC temp sense circuit, and, it *almost* works. It returned a base temperature of 35 deg C where the room I was in felt more like 20-22 deg C. I used an external pull-up res of 10k ohms.
+
+* Moving the sensor closer to a lit candle increased it to 39-42 deg C.
+
+* For now, I'll just do a dumb subtraction, i.e., `recorded_temp - 13` until I find the root cause. Hence why it *almost* works.
+
+* Although now I'm worried that we're not accounting for the external pull-up resistor that needs to be added before the thermistor within the temperature sensor. Will need to check w/ elec team in the near future. This isn't in the altium schematic??
+
+### 14/11/25: Testing the other pressure sensor (MIP) and temperature sensor (A-1325).
+
 ## Appendix:
 
 ### STM32 CAN Error Codes:
