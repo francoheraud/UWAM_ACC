@@ -40,6 +40,7 @@ void Schedule_Tasks(Task_t *tasks, uint32_t *now, uint8_t num_tasks) {
 
 
 /**
+ * ```
  * Example Usage (Pseudocode):
  * static Task_t tasks;
  *
@@ -63,6 +64,7 @@ void Schedule_Tasks(Task_t *tasks, uint32_t *now, uint8_t num_tasks) {
  * Schedule_Tasks(&tasks, now, 2);
  * ...
  * ...
+ * ```
  */
 
 

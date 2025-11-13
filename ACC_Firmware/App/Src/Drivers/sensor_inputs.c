@@ -4,7 +4,7 @@
 * Author: Franc
 */
 
-#include <Drivers/sensor_inputs.h>
+#include "sensor_inputs.h"
 
 extern TIM_HandleTypeDef htim2;
 
@@ -26,10 +26,16 @@ static float Constrain(float x, float low, float high) {
 * @return return_type
 * @note Auto-gen: fill details.
 */
-static float Linear_Map(float value, float in_min, float in_max, float out_min, float out_max) {
-    float normalized_value = (value - in_min) / (in_max - in_min);
-    float mapped_value = out_min + (normalized_value * (out_max - out_min));
-    return mapped_value;
+static inline float Linear_Map(float x,
+                               float in_min,  float in_max,
+                               float out_min, float out_max)
+{
+    // Protect against divide-by-zero
+    if (in_max - in_min == 0.0f)
+        return out_min;
+
+    float scaled = (x - in_min) / (in_max - in_min);
+    return out_min + scaled * (out_max - out_min);
 }
 
 /**
@@ -82,7 +88,6 @@ static float Voltage_To_DegC_A1325(float volts) {
 	float ratio 			= r_therm / r_25;
 	float ln_ratio 			= log(ratio);
 
-	// assumption made here: will need to physically test the Rt/25 value
 	const float a = 0.003354016f, b = 0.000250275f, c = 2.42945e-6f, d = -7.3121e-8f;
 
 	float temp_inv_K	= a + b * ln_ratio + c * ln_ratio * ln_ratio + d * ln_ratio * ln_ratio * ln_ratio;
@@ -101,17 +106,16 @@ static float Voltage_To_DegC_A1325(float volts) {
 */
 static float Voltage_To_DegC_Bosch(float volts) {
 	const float r_25 		= 2057.0f;
-	const float temp_ref 	= 298.15f;		// 25 deg C
-	const float beta 		= 3491.03f;
+	const float temp_ref 	= 298.15f;		// 21 deg C
+	const float beta 		= 3463.0f;		// changed
 	const float v_supply 	= 5.0f;
 
-	// assuming some random value for reference series res - doesn't come built in:
-	const float r_ref 	= 1000.0f;
+	const float r_ref 	= 10000.0f;			// 10kohms
 	const float r_therm = (volts * r_ref) / (v_supply - volts);
 
 	float temp_inv_K 	=  (1 / temp_ref) + (1 / beta) * log(r_therm / r_25);
 	float temp_degC 	=  (1 / temp_inv_K) - 273.15f;
-	return temp_degC;
+	return temp_degC - 13.0f; // quick and dirty calibration offset -> yes i know, i dont like this either
 }
 
 
@@ -157,7 +161,7 @@ HAL_StatusTypeDef Sensors_Start(SensorInputs_t *si) {
 	if (HAL_TIM_PWM_Start(si->tim, TIM_CHANNEL_2) != HAL_OK) return HAL_ERROR;
 	if (HAL_TIM_PWM_Start(si->tim, TIM_CHANNEL_3) != HAL_OK) return HAL_ERROR;
 
-	PWM_SetAll(si);
+	//PWM_SetAll(si);
 
 	return HAL_OK;
 }
@@ -172,7 +176,7 @@ void Update_ADC_Buffers(SensorInputs_t *si) {
 
 	HAL_ADC_Start(si->adc);
 
-	for (uint8_t i = 0; i < ADC_CH_COUNT; i++)
+	for (uint8_t i = 0; i < ADC_CH_COUNT; i++) // CHANGED THIS CRAP HERE
 		si->adc_V[i] = (si->adc_raw[i] / ((float)pow(2,ACC_ADC_RES_BITS) - 1.0f)) * 3.30f;
 }
 
@@ -197,11 +201,11 @@ void Store_Temperature_Readings(SensorInputs_t *si) {
 * @note Auto-gen: fill details.
 */
 void Store_Pressure_Readings(SensorInputs_t *si) {
-	for (uint8_t i = 4; i < 6; i++)
-		si->temp_c[i] = Voltage_To_kPa_Bosch(si->adc_V[i]);
+	for (uint8_t i = 0; i < 2; i++)
+		si->pressure_kpa[i] = Voltage_To_kPa_Bosch(si->adc_V[i + 4]);
 
-	for (uint8_t i = 6; i < ADC_CH_COUNT; i++)
-		si->temp_c[i] = Voltage_To_kPa_MIP(si->adc_V[i]);
+	for (uint8_t i = 2; i < 4; i++)
+		si->pressure_kpa[i] = Voltage_To_kPa_MIP(si->adc_V[i + 4]);
 }
 
 /**
@@ -278,6 +282,8 @@ static volatile uint8_t  tach_new_period  = 0;
 * @return void
 * @note Auto-gen: fill details.
 */
+
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == TACH_IN_Pin) {
         uint32_t now = __HAL_TIM_GET_COUNTER(&htim2);
@@ -292,6 +298,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     }
 }
 
+
 /**
  * @brief Call to update the fan speed into si->fan_rpm.
 * @param SensorInputs_t *si
@@ -304,5 +311,6 @@ void Update_Fan_Speed(SensorInputs_t *si) {
 	float pulse_freq_hz = tick_freq_hz / (float)tach_delta_ticks;
 	si->fan_rpm = (pulse_freq_hz * 60) / (float)PULSES_PER_REVOLUTION;
 }
+
 
 

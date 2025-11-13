@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000500c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000dd78  00000000  00000000  0000503c  2**0
+ 12 .debug_info   0000dd6a  00000000  00000000  0000503c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00002326  00000000  00000000  00012db4  2**0
+ 13 .debug_abbrev 00002326  00000000  00000000  00012da6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000d58  00000000  00000000  000150e0  2**3
+ 14 .debug_aranges 00000d58  00000000  00000000  000150d0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000a50  00000000  00000000  00015e38  2**0
+ 15 .debug_rnglists 00000a51  00000000  00000000  00015e28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0000212f  00000000  00000000  00016888  2**0
+ 16 .debug_macro  0000212f  00000000  00000000  00016879  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00010c63  00000000  00000000  000189b7  2**0
+ 17 .debug_line   00010c58  00000000  00000000  000189a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000cf599  00000000  00000000  0002961a  2**0
+ 18 .debug_str    000cf57b  00000000  00000000  00029600  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000f8bb3  2**0
+ 19 .comment      00000043  00000000  00000000  000f8b7b  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003828  00000000  00000000  000f8bf8  2**2
+ 20 .debug_frame  00003828  00000000  00000000  000f8bc0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000fc420  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000fc3e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -370,11 +370,11 @@ Disassembly of section .text:
  800052e:	bf00      	nop
 
 08000530 <HAL_GPIO_EXTI_Callback>:
- * @brief ISR callback function used for the fan speed logic.
-* @param uint16_t GPIO_Pin
 * @return void
 * @note Auto-gen: fill details.
 */
+
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
  8000530:	b480      	push	{r7}
  8000532:	b085      	sub	sp, #20
