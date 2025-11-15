@@ -39,11 +39,10 @@ static inline float Linear_Map(float x,
 }
 
 /**
- * @brief Converts output sensor voltage to kPa for BOSCH 0 261 230 280.
- * Assumes linear relationship in pressure calibration as found in spec sheet.
-* @param float volts
-* @return float p_abs_kPa
-* @note Auto-gen: fill details.
+ * @brief 	Converts output sensor voltage to kPa for BOSCH 0 261 230 280. Assumes linear relationship in pressure calibration as found in spec sheet.
+* @param 	float volts
+* @return 	float p_abs_kPa
+* @note		Tested and verified.
 */
 static float Voltage_To_kPa_Bosch(float volts) {
 	float p_abs_kPa = Linear_Map(volts, 0.4f, 4.65f, 20.0f, 300.0f);
@@ -52,10 +51,10 @@ static float Voltage_To_kPa_Bosch(float volts) {
 
 
 /**
- * @brief Converts output sensor voltage to kPa for MIP series pressure sensor.
-* @param float volts
-* @return float p_abs_kPa
-* @note Auto-gen: fill details.
+ * @brief 	Converts output sensor voltage to kPa for MIP series pressure sensor.
+* @param 	float volts
+* @return 	float p_abs_kPa
+* @note 	Under testing.
 */
 static float Voltage_To_kPa_MIP(float volts) {
     const float v_supply    = 5.0f;		// volts
@@ -63,13 +62,11 @@ static float Voltage_To_kPa_MIP(float volts) {
     const float p_max  		= 100.0f;   // psi
 
     float ratio 	= (volts / v_supply - 0.10f) / 0.80f;
-    ratio 			= Constrain(ratio, 0.0f, 1.0f);
+    //ratio 			= Constrain(ratio, 0.0f, 1.0f);
     float p_psi 	= p_min + ratio * (p_max - p_min);
 
-    const float psi_to_pa = 6894.757f;
-    float p_abs_kPa = (psi_to_pa * p_psi) / 1000.0f;
-
-    return p_abs_kPa;
+    const float psi_to_kpa = 6.894757f;
+    return psi_to_kpa * p_psi;
 }
 
 

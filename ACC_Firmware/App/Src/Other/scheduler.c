@@ -9,6 +9,10 @@
 #include "Other/scheduler.h"
 
 
+__weak void Scheduler_Default_Callback(void) {
+
+}
+
 
 /**
  * @brief Lightweight scheduler to implement some basic rate-grouping. Intended to be
@@ -23,6 +27,8 @@
 void Schedule_Tasks(Task_t *tasks, uint32_t *now, uint8_t num_tasks) {
 
 	if ((tasks = NULL) || (num_tasks == 0)) return;
+
+	Scheduler_Default_Callback();
 
 	uint32_t current = *now;
 
