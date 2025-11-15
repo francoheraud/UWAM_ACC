@@ -28,9 +28,7 @@ static float Constrain(float x, float low, float high) {
 */
 static inline float Linear_Map(float x,
                                float in_min,  float in_max,
-                               float out_min, float out_max)
-{
-    // Protect against divide-by-zero
+                               float out_min, float out_max) {
     if (in_max - in_min == 0.0f)
         return out_min;
 
@@ -52,17 +50,17 @@ static float Voltage_To_kPa_Bosch(float volts) {
 
 /**
  * @brief 	Converts output sensor voltage to kPa for MIP series pressure sensor.
-* @param 	float volts
-* @return 	float p_abs_kPa
-* @note 	Under testing.
-*/
+ * @param 	float volts
+ * @return 	float p_abs_kPa
+ * @note 	Tested and verified.
+ */
 static float Voltage_To_kPa_MIP(float volts) {
-    const float v_supply    = 5.0f;		// volts
-    const float p_min  		= 0.0f;     // psi
-    const float p_max  		= 100.0f;   // psi
+    const float v_supply    = 5.0f;			// volts
+    const float p_min  		= 0.0f;     	// psi
+    const float p_max  		= 52.973f;   	// psi (new, calibrated value)
 
     float ratio 	= (volts / v_supply - 0.10f) / 0.80f;
-    //ratio 			= Constrain(ratio, 0.0f, 1.0f);
+    ratio 			= Constrain(ratio, 0.0f, 1.0f);
     float p_psi 	= p_min + ratio * (p_max - p_min);
 
     const float psi_to_kpa = 6.894757f;
@@ -71,16 +69,15 @@ static float Voltage_To_kPa_MIP(float volts) {
 
 
 /**
- * @brief Temperature sensor driver for the A-1325.
- * Uses the Stein-Hart equation to compute the temperature.
-* @param Output voltage from sensor
-* @return float temp_degC -> Temperature in degrees Celsius
-* @note Auto-gen: fill details.
-*/
+ * @brief 	Temperature sensor driver for the A-1325. Uses the Stein-Hart equation to compute the temperature.
+ * @param 	Output voltage from sensor
+ * @return 	float temp_degC -> Temperature in degrees Celsius
+ * @note 	Tested and verified.
+ */
 static float Voltage_To_DegC_A1325(float volts) {
-	const float r_ref = 280.0f, r_25 = 2752.0f;				// ohms
+	const float r_ref = 10000.0f, r_25 = 2752.0f;					// ohms
 
-	const float v_supply 	= 5.0f;							// volts
+	const float v_supply 	= 3.3f;									// volts
 	float r_therm 			= (volts * r_ref) / (v_supply - volts);	// ohms
 	float ratio 			= r_therm / r_25;
 	float ln_ratio 			= log(ratio);
@@ -94,34 +91,35 @@ static float Voltage_To_DegC_A1325(float volts) {
 }
 
 /**
- * @brief Temperature sensor driver for the BOSCH 0 261 230 280.
+ * @brief 	Temperature sensor driver for the BOSCH 0 261 230 280.
  * Uses beta parameter equation to compute the temperature.
  * Beta found from: https://www.ametherm.com/thermistor/ntc-thermistor-beta
-* @param float volts -> Output voltage from sensor
-* @return float temp_degC -> Temperature in degrees Celsius
-* @note Auto-gen: fill details.
-*/
+ * @param 	float volts -> Output voltage from sensor
+ * @return 	float temp_degC -> Temperature in degrees Celsius
+ * @note 	Tested and Verified
+ */
 static float Voltage_To_DegC_Bosch(float volts) {
-	const float r_25 		= 2057.0f;
-	const float temp_ref 	= 298.15f;		// 21 deg C
-	const float beta 		= 3463.0f;		// changed
-	const float v_supply 	= 5.0f;
+	const float r_25 = 2057.0f, r_ref = 10000.0f;	// ohms
 
-	const float r_ref 	= 10000.0f;			// 10kohms
+	const float temp_ref 	= 298.15f;		// 21 deg C
+	const float beta 		= 3463.0f;
+	const float v_supply 	= 3.3f;
+
 	const float r_therm = (volts * r_ref) / (v_supply - volts);
 
 	float temp_inv_K 	=  (1 / temp_ref) + (1 / beta) * log(r_therm / r_25);
 	float temp_degC 	=  (1 / temp_inv_K) - 273.15f;
-	return temp_degC - 13.0f; // quick and dirty calibration offset -> yes i know, i dont like this either
+
+	return temp_degC;
 }
 
 
 /**
  * @brief Sensor initialization function.
-* @param SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_HandleTypeDef *tim
-* @return HAL_StatusTypeDef
-* @note Auto-gen: fill details.
-*/
+ * @param SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_HandleTypeDef *tim
+ * @return HAL_StatusTypeDef
+ * @note Auto-gen: fill details.
+ */
 HAL_StatusTypeDef Sensors_Init(SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_HandleTypeDef *tim) {
 
 	if (!si || !adc || !tim) return HAL_ERROR;
@@ -185,10 +183,10 @@ void Update_ADC_Buffers(SensorInputs_t *si) {
 */
 void Store_Temperature_Readings(SensorInputs_t *si) {
 	for (uint8_t i = 0; i < 2; i++)
-		si->temp_c[i] = Voltage_To_DegC_Bosch(si->adc_V[i]);
+		si->temp_c[i] = Voltage_To_DegC_A1325(si->adc_V[i]);
 
 	for (uint8_t i = 2; i < 4; i++)
-		si->temp_c[i] = Voltage_To_DegC_A1325(si->adc_V[i]);
+		si->temp_c[i] = Voltage_To_DegC_Bosch(si->adc_V[i]);
 }
 
 /**

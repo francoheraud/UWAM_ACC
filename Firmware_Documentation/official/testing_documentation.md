@@ -50,7 +50,32 @@
 
 * Although now I'm worried that we're not accounting for the external pull-up resistor that needs to be added before the thermistor within the temperature sensor. Will need to check w/ elec team in the near future. This isn't in the altium schematic??
 
-### 14/11/25: Testing the other pressure sensor (MIP) and temperature sensor (A-1325).
+### 15/11/25: Testing the other pressure sensor (MIP) and temperature sensor (A-1325).
+
+* Had to recalibrate the MIP pressure sensor by adjusting the max pressure (in psi) assuming the
+desired psi is 101.25 kPa. I'm now reading 101.2 - 101.4 kPa. Seems to be working just fine?
+
+* Although I may need to maybe re-adjust the pressure reading on the Bosch pressure sensor so that
+both pressure sensors match well.
+
+* Fixed the temperature scaling issue. Previously in the `sensor_inputs.c` driver, my adc code (0-4095)
+output gets scaled to 0-3.3V. The NTC beta and Stein-Hart equations rely on a thermal resistance calculation
+involving the supply voltage parameter, which I had previously set to 5V. Both temperature sensors returned
+a value of 30-33 deg C despite ambient temp being 20-23 deg C. 
+
+* Changing the supply voltage parameter to 3.3V allowed the function to return the correct values as the
+formulas are *radiometric*, meaning it only cares about Vout as a fraction of Vs.
+
+* All sensors seem to be working just fine. The next step would be to test the CAN 
+serialization/deserialization logic and double-check the receive logic. Although I should probably go
+ask an elec team member for directions on reading CAN messages...
+
+### 16/11/25: Checking CAN serialization logic + Prepare for 1st integration test
+
+* ...
+
+...
+
 
 ## Appendix:
 
