@@ -49,7 +49,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	const uint8_t serialization_bytes = 1;
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 	for (uint8_t i = 0; i < ACC_PRESSURE_SENSOR_COUNT; i++) {
-		CAN_N_Bit_Serializer(serialization_bytes, si->pressure_kpa[i], &can->tx_data[i*serialization_bytes]);
+		CAN_N_Byte_Serializer(serialization_bytes, si->pressure_kpa[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_PRESSURE;
 	can->tx2.DLC 	= 8;
@@ -58,7 +58,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	// Serializing temperature inputs + Transmit them:
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 	for (uint8_t i = 0; i < ACC_TEMP_SENSOR_COUNT; i++) {
-		CAN_N_Bit_Serializer(serialization_bytes, si->temp_c[i], &can->tx_data[i*serialization_bytes]);
+		CAN_N_Byte_Serializer(serialization_bytes, si->temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
 	can->tx2.DLC 	= 8;
@@ -67,7 +67,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	// Assume seg temp values are in ideal format:
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
 	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
-		CAN_N_Bit_Serializer(serialization_bytes, si->seg_temp_c[i], &can->tx_data[i*serialization_bytes]);
+		CAN_N_Byte_Serializer(serialization_bytes, si->seg_temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
 	can->tx2.DLC 	= 8;

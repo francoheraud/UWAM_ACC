@@ -51,22 +51,24 @@ void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]) {
  * @return 	void
  * @note 	This was made due to not knowing exactly how to serialize the CAN data. This may be depreciated in the future.
  */
-void CAN_N_Bit_Serializer(uint8_t n, float data_in, uint8_t output_buf[2]) {
+void CAN_N_Byte_Serializer(uint8_t n, float data_in, uint8_t *output_buf) {
 	switch (n) {
-	case 1:
+	case 1: {
 		// 8-bit truncation is a concern
 		data_in 		= (data_in > 255.0f) ? 255.0f : data_in;
 		data_in 		= (data_in < 0.0f) ? 0.0f : data_in;
 		uint8_t data 	= (uint8_t)lroundf(data_in);
 		output_buf[0] 	= data;
 		break;
-	case 2:
+	}
+	case 2: {
 		uint16_t data_in_16u 	= (uint16_t)lroundf(data_in);
 		uint8_t high_byte 		= (uint8_t)(data_in_16u >> 8);
 		uint8_t low_byte 		= (uint8_t)(data_in_16u & 0xff);
 		output_buf[0] = low_byte;
 		output_buf[1] = high_byte;
 		break;
+	}
 	default:
 		// invalid choice
 		return;

@@ -10,6 +10,6 @@
 ../App/Src/Drivers/sensor_inputs.c:184:6:Store_Temperature_Readings	32	static
 ../App/Src/Drivers/sensor_inputs.c:198:6:Store_Pressure_Readings	32	static
 ../App/Src/Drivers/sensor_inputs.c:212:6:PWM_SetAll	40	static
-../App/Src/Drivers/sensor_inputs.c:238:18:Update_Segment_Temperature_Values	32	static
-../App/Src/Drivers/sensor_inputs.c:275:6:HAL_GPIO_EXTI_Callback	24	static
-../App/Src/Drivers/sensor_inputs.c:296:6:Update_Fan_Speed	24	static
+../App/Src/Drivers/sensor_inputs.c:237:18:Update_Segment_Temperature_Values	32	static
+../App/Src/Drivers/sensor_inputs.c:274:6:HAL_GPIO_EXTI_Callback	24	static
+../App/Src/Drivers/sensor_inputs.c:295:6:Update_Fan_Speed	24	static

@@ -228,7 +228,6 @@ void PWM_SetAll(SensorInputs_t *si) {
 }
 
 
-
 /**
  * @brief Read segment temperature data coming from CAN bus.
 * @param SensorInputs_t *si, CAN_Driver_t *can

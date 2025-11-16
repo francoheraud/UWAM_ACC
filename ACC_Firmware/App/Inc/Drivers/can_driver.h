@@ -45,7 +45,7 @@ HAL_StatusTypeDef CAN_Transmit2	(CAN_Driver_t *can);
 HAL_StatusTypeDef CAN_Receive1	(CAN_Driver_t *can);
 
 //void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]);
-void CAN_N_Bit_Serializer(uint8_t n, float data_in, uint8_t output_buf[2]);
+void CAN_N_Byte_Serializer(uint8_t n, float data_in, uint8_t *output_buf);
 void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]);
 
 void CAN_Test(void);
