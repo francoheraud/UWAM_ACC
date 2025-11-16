@@ -22,6 +22,7 @@ extern "C" {
 typedef struct {
 	ADC_HandleTypeDef *adc;
 	TIM_HandleTypeDef *tim;
+	GPIO_TypeDef *gpio;
 
 	// adc dma buffers
 	volatile uint16_t adc_raw[ADC_CH_COUNT];
@@ -39,6 +40,10 @@ typedef struct {
 
 	float fan_rpm;
 
+	// power consumption
+	float switch_current;
+	float switch_voltage;
+	float switch_power;
 
 } SensorInputs_t;
 

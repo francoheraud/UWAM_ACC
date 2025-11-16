@@ -99,7 +99,7 @@ static float Voltage_To_DegC_A1325(float volts) {
  * Beta found from: https://www.ametherm.com/thermistor/ntc-thermistor-beta
  * @param 	float volts -> Output voltage from sensor
  * @return 	float temp_degC -> Temperature in degrees Celsius
- * @note 	Tested and Verified.  Altered so that the calcs match the actual circuit in the schematic.
+ * @note 	Tested and Verified. Altered so that the calcs match the actual circuit in the schematic.
  */
 static float Voltage_To_DegC_Bosch(float volts) {
 	const float r_25 = 2057.0f;				// ohms
@@ -118,6 +118,11 @@ static float Voltage_To_DegC_Bosch(float volts) {
 	return temp_degC;
 }
 
+// TODO: Double check the pull down resistor value in the voltage dividers currently
+// present on the ACC PCB?
+
+// FIXME: Once the ACC gets re-manufactured, theres a good chance the pull down resistors
+// will actually be 57.6k -> remember to change!
 
 /**
  * @brief Sensor initialization function.
@@ -190,7 +195,7 @@ void Store_Temperature_Readings(SensorInputs_t *si) {
 	for (uint8_t i = 0; i < 2; i++)
 		si->temp_c[i] = Voltage_To_DegC_A1325(si->adc_V[i]);
 
-	for (uint8_t i = 2; i < 4; i++)
+	for (uint8_t i = 2; i < ACC_TEMP_SENSOR_COUNT; i++)
 		si->temp_c[i] = Voltage_To_DegC_Bosch(si->adc_V[i]);
 }
 
@@ -204,7 +209,7 @@ void Store_Pressure_Readings(SensorInputs_t *si) {
 	for (uint8_t i = 0; i < 2; i++)
 		si->pressure_kpa[i] = Voltage_To_kPa_Bosch(si->adc_V[i + 4]);
 
-	for (uint8_t i = 2; i < 4; i++)
+	for (uint8_t i = 2; i < ACC_PRESSURE_SENSOR_COUNT; i++)
 		si->pressure_kpa[i] = Voltage_To_kPa_MIP(si->adc_V[i + 4]);
 }
 
@@ -293,18 +298,45 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 /**
  * @brief Call to update the fan speed into si->fan_rpm.
-* @param SensorInputs_t *si
-* @return void
-* @note Auto-gen: fill details.
-*/
+ * @param SensorInputs_t *si
+ * @return void
+ * @note Auto-gen: fill details.
+ */
 void Update_Fan_Speed(SensorInputs_t *si) {
 	if (!tach_new_period || tach_delta_ticks == 0) si->fan_rpm = 0.0f;
 	const float tick_freq_hz = (float)pow(10, 6);
 	float pulse_freq_hz = tick_freq_hz / (float)tach_delta_ticks;
 	si->fan_rpm = (pulse_freq_hz * 60) / (float)PULSES_PER_REVOLUTION;
+	return;
 }
 
 
+/**
+ * @brief Measures current from the switch circuit. This translates the output from the
+ * current sense amplifier.
+ * @param SensorInputs_t *si
+ */
+static void Measure_SwitchCircuit_Current(SensorInputs_t *si) {
+	const float gain = 50.0f;
+	const float max_voltage = 2.262f, saturation_voltage = 3.3f; // V
+
+	float current_sense_out = si->adc_V[8];
+
+}
+
+
+
+/**
+ *
+ * @param si
+ * @note Updated ch count to 10
+ */
+void Store_PowerConsumption_Data(SensorInputs_t *si) {
+	si->switch_current = si->adc_V[8];
+	si->switch_voltage = si->adc_V[9];
+	si->switch_power = si->switch_current * si->switch_voltage;
+	return;
+}
 
 
 

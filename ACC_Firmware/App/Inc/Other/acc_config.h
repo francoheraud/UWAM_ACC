@@ -18,7 +18,7 @@
 #include <limits.h>
 #include "main.h"
 
-#define ADC_CH_COUNT              8u
+#define ADC_CH_COUNT              10u
 #define ACC_ADC_RES_BITS          12
 #define ACC_ADC_VREF_VOLTS        3.3f
 #define ACC_TIMER_TICK_HZ         1000000u
