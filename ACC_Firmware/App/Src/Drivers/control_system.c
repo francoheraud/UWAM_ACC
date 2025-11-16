@@ -6,6 +6,8 @@
 
 #include <Drivers/control_system.h>
 
+extern bool has_can_failed = false;
+
 /**
  * @brief Returns largest temperature out of all input temperatures going into MCU.
  * @param SensorInputs_t *si
@@ -52,7 +54,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 		CAN_N_Byte_Serializer(serialization_bytes, si->pressure_kpa[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_PRESSURE;
-	can->tx2.DLC 	= 8;
+	can->tx2.DLC 	= 4;
 	CAN_Transmit2(can);
 
 	// Serializing temperature inputs + Transmit them:
@@ -61,7 +63,7 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 		CAN_N_Byte_Serializer(serialization_bytes, si->temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
-	can->tx2.DLC 	= 8;
+	can->tx2.DLC 	= 4;
 	CAN_Transmit2(can);
 
 	// Assume seg temp values are in ideal format:
@@ -70,8 +72,36 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 		CAN_N_Byte_Serializer(serialization_bytes, si->seg_temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
-	can->tx2.DLC 	= 8;
+	can->tx2.DLC 	= 4;
 	CAN_Transmit2(can);
+
+	return;
+}
+
+
+/**
+ * @brief Logs and processes power consumption data via CAN.
+ * @param acc
+ * @param si
+ * @param can
+ */
+void CAN_Transmit_PowerConsumption(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
+
+	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
+	uint8_t switch_power_u = (uint8_t)lroundf(si->switch_power);
+	uint8_t switch_voltage_u = (uint8_t)lroundf(si->switch_voltage);
+	uint8_t switch_current_u = (uint8_t)lroundf(si->switch_current);
+
+	can->tx_data[0] = switch_power_u;
+	can->tx_data[1] = switch_voltage_u;
+	can->tx_data[2] = switch_current_u;
+	can->tx2.StdId = ACC_CAN_ID_POWER;
+	can->tx2.DLC = 3;
+	CAN_Transmit2(can);
+
+	const float max_allowed_current = 60.0f;
+	if (si->switch_current > max_allowed_current)
+		acc->led = SW_OVERCURRENT;
 
 	return;
 }
@@ -134,12 +164,34 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	return ;
 }
 
+void Set_SwitchEnable(ACC_t *acc) {
+	ACC_State_t state = acc->flag;
+	if (state == SWITCH_ENABLE) {
+		acc->led = SW_EN_LED_ON;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+	}
+	else if (state == SWITCH_DISABLE) {
+		acc->led = SW_EN_LED_OFF;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	}
+	return;
+}
+
+
 /**
- * @brief 	Accepts
+ * @brief
  * @param 	acc
  * @return 	void
  */
 void Toggle_Status_LEDs(ACC_t *acc) {
+	switch (acc->led) {
+	case SW_EN_LED_ON:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+		break;
+	case SW_EN_LED_OFF:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+		break;
+	}
 
 }
 

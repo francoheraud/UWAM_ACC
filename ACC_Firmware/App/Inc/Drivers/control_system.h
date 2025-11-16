@@ -24,19 +24,26 @@ typedef enum {
 
 
 typedef enum {
-	TRANSMITTED_SENSOR_DATA=0,
-	RECEIVED_SENSOR_DATA=1,
-	CONTROL_STATE_CHANGED=2,
-	OVERCURRENT_WARNING=3,
-	SWITCH_ENABLE=4
+	CONTROL_STATE_CHANGED,
+	OVERCURRENT_WARNING,
+	SWITCH_ENABLE,
+	SWITCH_DISABLE
 	// WIP...
 
 } ACC_State_t;
 
+typedef enum {
+	SW_EN_LED_ON,
+	SW_EN_LED_OFF,
+	SW_OVERCURRENT
+} LED_t;
+
 typedef struct {
 	Ctrl_State_t ctrl;
 	ACC_State_t flag;
+	LED_t led;
 } ACC_t;
+
 
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can);
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can);

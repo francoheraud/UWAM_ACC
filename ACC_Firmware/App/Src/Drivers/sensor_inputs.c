@@ -125,7 +125,7 @@ static float Voltage_To_DegC_Bosch(float volts) {
 // will actually be 57.6k -> remember to change!
 
 /**
- * @brief Sensor initialization function.
+ * @brief Sensor initialization function. Acts as a constructor for ACC_t.
  * @param SensorInputs_t *si, ADC_HandleTypeDef *adc, TIM_HandleTypeDef *tim
  * @return HAL_StatusTypeDef
  * @note Auto-gen: fill details.
