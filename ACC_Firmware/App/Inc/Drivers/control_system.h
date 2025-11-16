@@ -19,14 +19,14 @@
 typedef enum {
 	BASE_MODE,  /**< BASE_MODE */
 	ABOVE_40DEG,/**< ABOVE_40DEG */
-	ABOVE_50DEG /**< ABOVE_50DEG */
+	ABOVE_50DEG, /**< ABOVE_50DEG */
+	OVERCURRENT_FAULT
 } Ctrl_State_t;
 
 
 typedef enum {
-	SW_EN_LED_ON,
-	SW_EN_LED_OFF,
-	SW_OVERCURRENT
+	SW_OVERCURRENT,
+	SW_UNDERCURRENT
 } LED_t;
 
 typedef struct {
@@ -39,5 +39,8 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can);
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can);
 void Set_SwitchEnable(ACC_t *acc, bool en);
 void Toggle_Status_LEDs(ACC_t *acc);
+void CAN_Transmit_PowerConsumption(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can);
+void Set_SwitchEnable(ACC_t *acc, bool en);
+
 
 #endif /* INC_CONTROL_SYSTEM_H_ */

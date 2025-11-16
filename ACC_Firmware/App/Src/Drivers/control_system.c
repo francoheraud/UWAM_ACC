@@ -7,8 +7,8 @@
 #include <Drivers/control_system.h>
 
 // Intended for some future error debugging...
-extern bool has_can_failed = false;
-
+bool has_can_failed = false;
+volatile bool over_current_warning = false;
 /**
  * @brief Returns largest temperature out of all input temperatures going into MCU.
  * @param SensorInputs_t *si
@@ -101,8 +101,13 @@ void CAN_Transmit_PowerConsumption(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t 
 	CAN_Transmit2(can);
 
 	const float max_allowed_current = 60.0f;
-	if (si->switch_current > max_allowed_current)
+	if (si->switch_current > max_allowed_current) {
 		acc->led = SW_OVERCURRENT;
+		over_current_warning = true;
+	} else {
+		acc->led = SW_UNDERCURRENT;
+		over_current_warning = false;
+	}
 
 	return;
 }
@@ -111,15 +116,17 @@ void CAN_Transmit_PowerConsumption(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t 
 /**
  * Capable of setting/resetting the switch circuit pin and updating the corresponding led state in the acc struct...
  * @param acc
- * @param en
+ * @param en -> Set low when there is
  */
 void Set_SwitchEnable(ACC_t *acc, bool en) {
 	if (en) {
-		acc->led = SW_EN_LED_ON;
+		acc->led = SW_UNDERCURRENT;
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 	}
 	else {
-		acc->led = SW_EN_LED_OFF;
+		acc->led = SW_OVERCURRENT;
+
+		// IMMEDIATE SHUTDOWN
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 	}
 	return;
@@ -133,22 +140,21 @@ void Set_SwitchEnable(ACC_t *acc, bool en) {
  */
 void Toggle_Status_LEDs(ACC_t *acc) {
 	switch (acc->led) {
-	case SW_EN_LED_ON:
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-		break;
-	case SW_EN_LED_OFF:
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-		break;
 	case SW_OVERCURRENT:
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
 		break;
-	default:
+	case SW_UNDERCURRENT:
 		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+		break;
 	}
 	return;
 }
 
 
+
+__weak void ACC_OverCurrent_Handler(void) {
+	//...
+}
 
 /**
  * @brief Main control loop. Uses a simple threshold algorithm with hysteresis.
@@ -159,7 +165,9 @@ void Toggle_Status_LEDs(ACC_t *acc) {
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 
 	static Ctrl_State_t control_state = BASE_MODE;
-	acc->ctrl = control_state;
+
+	// handle over current warning flag
+	control_state = (over_current_warning) ? OVERCURRENT_FAULT : control_state;
 
 	Store_Temperature_Readings(si);
 	Store_Pressure_Readings(si);
@@ -191,6 +199,7 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 			control_state = BASE_MODE;
 
 		break;
+
 	case (ABOVE_50DEG):
 		si->ch1_duty_cycle = 1.0f;
 		si->ch2_duty_cycle = 1.0f;
@@ -200,11 +209,16 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 			control_state = ABOVE_40DEG;
 
 		break;
+
+	case (OVERCURRENT_FAULT) :
+		ACC_OverCurrent_Handler();
+		if (!over_current_warning)
+			control_state = BASE_MODE;
+		break;
 	}
 
 	PWM_SetAll(si);
 	return ;
 }
 
-// TODO: must tidy up everything
 
