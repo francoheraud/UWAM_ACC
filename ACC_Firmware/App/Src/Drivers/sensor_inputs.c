@@ -171,7 +171,7 @@ void Update_ADC_Buffers(SensorInputs_t *si) {
 
 	HAL_ADC_Start(si->adc);
 
-	for (uint8_t i = 0; i < ADC_CH_COUNT; i++) // CHANGED THIS CRAP HERE
+	for (uint8_t i = 0; i < ADC_CH_COUNT; i++)
 		si->adc_V[i] = (si->adc_raw[i] / ((float)pow(2,ACC_ADC_RES_BITS) - 1.0f)) * 3.30f;
 }
 
@@ -235,32 +235,25 @@ void PWM_SetAll(SensorInputs_t *si) {
 * @return bool
 * @note Auto-gen: fill details.
 */
-bool Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
+Receive_Status_t Update_Segment_Temperature_Values(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	can->rx1.StdId 	= ACC_CAN_ID_SEG_TEMP;
-	can->rx1.DLC	= 8;			// TODO: Assume 8 for now, check intended CAN IDs with elec team...
+	can->rx1.DLC	= 8;
 	HAL_StatusTypeDef can_rx_status = CAN_Receive1(can);
 
 	if (can_rx_status != HAL_OK)
-		return false;
+		return _HAL_ERROR;
 
-	// check if rx fifo is full
 	if (HAL_CAN_GetRxFifoFillLevel(can->hcan1, CAN_RX_FIFO0) == 0)
-	    return false;
+	    return FULL_RXFIFO;
 
-	//FIXME: Assumed that we're receiving unsigned 16 bit data here?
-	// Double check endianness aw?
-	uint16_t deserialized_buf[ACC_NUM_SEG_TEMPS];
-	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
-		deserialized_buf[i] = (uint16_t)lroundf(si->seg_temp_c[i]);
-	}
-
+	uint16_t deserialized_buf[ACC_NUM_SEG_TEMPS] = {0};
 	CAN_16Bit_Deserializer(deserialized_buf, can->rx_data);
 
 	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
 		si->seg_temp_c[i] = (float)can->rx_data[i];
 	}
-	return true;
+	return OK;
 }
 
 

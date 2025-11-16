@@ -1,4 +1,4 @@
 ../App/Src/Drivers/control_system.c:15:14:Highest_Input_Temp	3
 ../App/Src/Drivers/control_system.c:31:14:Highest_Seg_Temp	3
 ../App/Src/Drivers/control_system.c:46:6:CAN_TransmitAll_SensorData	4
-../App/Src/Drivers/control_system.c:91:6:ACC_Control_Loop	10
+../App/Src/Drivers/control_system.c:94:6:ACC_Control_Loop	10

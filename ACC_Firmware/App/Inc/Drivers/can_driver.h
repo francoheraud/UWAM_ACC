@@ -14,6 +14,20 @@ extern "C" {
 #include "Other/acc_config.h"
 
 
+/**
+ * @brief Check error status of can receive for debugging purposes.
+ */
+typedef enum {
+	OK=0,                  	/**< OK */
+	FULL_RXFIFO=1,         	/**< FULL_RXFIFO */
+	_HAL_ERROR=2,           	/**< HAL_ERROR */
+	INVALID_SERIALIZATION=3	/**< INVALID_SERIALIZATION */
+} Receive_Status_t;
+
+
+/**
+ * @brief Generic CAN driver struct wrapper.
+ */
 typedef struct CAN_Driver_t {
     CAN_HandleTypeDef *hcan1;
     CAN_HandleTypeDef *hcan2;
@@ -30,7 +44,8 @@ HAL_StatusTypeDef CAN_Transmit1	(CAN_Driver_t *can);
 HAL_StatusTypeDef CAN_Transmit2	(CAN_Driver_t *can);
 HAL_StatusTypeDef CAN_Receive1	(CAN_Driver_t *can);
 
-void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]);
+//void CAN_16Bit_Serializer(float data_in, uint8_t output_buf[2]);
+void CAN_N_Bit_Serializer(uint8_t n, float data_in, uint8_t output_buf[2]);
 void CAN_16Bit_Deserializer(uint16_t data_in_buf[4], uint8_t rx_data[8]);
 
 void CAN_Test(void);

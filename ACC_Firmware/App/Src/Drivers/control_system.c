@@ -8,10 +8,10 @@
 
 /**
  * @brief Returns largest temperature out of all input temperatures going into MCU.
-* @param SensorInputs_t *si
-* @return float
-* @note Auto-gen: fill details.
-*/
+ * @param SensorInputs_t *si
+ * @return float
+ * @note Auto-gen: fill details.
+ */
 static float Highest_Input_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < 4; i++) {
@@ -24,10 +24,10 @@ static float Highest_Input_Temp(SensorInputs_t *si) {
 /**
  * @brief Returns largest temperature out of all segment temperatures recorded from
  * the CAN bus.
-* @param SensorInputs_t *si
-* @return float
-* @note Auto-gen: fill details.
-*/
+ * @param SensorInputs_t *si
+ * @return float
+ * @note Auto-gen: fill details.
+ */
 static float Highest_Seg_Temp(SensorInputs_t *si) {
 	float largest_temp = -1000.0f;
 	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
@@ -39,17 +39,17 @@ static float Highest_Seg_Temp(SensorInputs_t *si) {
 
 /**
  * @brief Sends all the data in the temp + pressure buffers over to the relevant CAN bus.
-* @param SensorInputs_t *si, CAN_Driver_t *can,
-* @return void
-* @note Auto-gen: fill details.
-*/
+ * @param SensorInputs_t *si, CAN_Driver_t *can,
+ * @return void
+ * @note Auto-gen: fill details.
+ */
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
-	// TODO: Add better error detection >:(
 
 	// Serializing pressure inputs + Transmit them:
+	const uint8_t serialization_bytes = 1;
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
-	for (uint8_t i = 0; i < 4; i++) {
-		CAN_16Bit_Serializer(si->pressure_kpa[i], &can->tx_data[i*2]);
+	for (uint8_t i = 0; i < ACC_PRESSURE_SENSOR_COUNT; i++) {
+		CAN_N_Bit_Serializer(serialization_bytes, si->pressure_kpa[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_PRESSURE;
 	can->tx2.DLC 	= 8;
@@ -57,8 +57,8 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	// Serializing temperature inputs + Transmit them:
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
-	for (uint8_t i = 0; i < 4; i++) {
-		CAN_16Bit_Serializer(si->temp_c[i], &can->tx_data[i*2]);
+	for (uint8_t i = 0; i < ACC_TEMP_SENSOR_COUNT; i++) {
+		CAN_N_Bit_Serializer(serialization_bytes, si->temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
 	can->tx2.DLC 	= 8;
@@ -66,8 +66,8 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 
 	// Assume seg temp values are in ideal format:
 	memset((void*)can->tx_data, 0, sizeof(can->tx_data));
-	for (uint8_t i = 0; i < 4; i++) {
-		CAN_16Bit_Serializer(si->seg_temp_c[i], &can->tx_data[i*2]);
+	for (uint8_t i = 0; i < ACC_NUM_SEG_TEMPS; i++) {
+		CAN_N_Bit_Serializer(serialization_bytes, si->seg_temp_c[i], &can->tx_data[i*serialization_bytes]);
 	}
 	can->tx2.StdId 	= ACC_CAN_ID_TEMP;
 	can->tx2.DLC 	= 8;
@@ -76,18 +76,21 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 	return;
 }
 
+
+
 typedef enum {
 	BASE_MODE,
 	ABOVE_40DEG,
 	ABOVE_50DEG
 } State;
 
+
 /**
  * @brief Main control loop. Uses a simple threshold algorithm with hysteresis.
-* @param ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can
-* @return void
-* @note Auto-gen: fill details.
-*/
+ * @param ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can
+ * @return void
+ * @note Intended to be polled over and over again.
+ */
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 
 	static State control_state = BASE_MODE;
