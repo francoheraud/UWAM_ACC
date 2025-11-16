@@ -78,13 +78,6 @@ void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can) {
 
 
 
-typedef enum {
-	BASE_MODE,
-	ABOVE_40DEG,
-	ABOVE_50DEG
-} State;
-
-
 /**
  * @brief Main control loop. Uses a simple threshold algorithm with hysteresis.
  * @param ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can
@@ -93,7 +86,8 @@ typedef enum {
  */
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 
-	static State control_state = BASE_MODE;
+	static Ctrl_State_t control_state = BASE_MODE;
+	acc->ctrl = control_state;
 
 	Store_Temperature_Readings(si);
 	Store_Pressure_Readings(si);
@@ -139,4 +133,14 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	PWM_SetAll(si);
 	return ;
 }
+
+/**
+ * @brief 	Accepts
+ * @param 	acc
+ * @return 	void
+ */
+void Toggle_Status_LEDs(ACC_t *acc) {
+
+}
+
 

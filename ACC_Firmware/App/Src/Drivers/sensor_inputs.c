@@ -72,13 +72,16 @@ static float Voltage_To_kPa_MIP(float volts) {
  * @brief 	Temperature sensor driver for the A-1325. Uses the Stein-Hart equation to compute the temperature.
  * @param 	Output voltage from sensor
  * @return 	float temp_degC -> Temperature in degrees Celsius
- * @note 	Tested and verified.
+ * @note 	Tested and verified. Altered so that the calcs match the actual circuit in the schematic.
  */
 static float Voltage_To_DegC_A1325(float volts) {
-	const float r_ref = 10000.0f, r_25 = 2752.0f;					// ohms
+	const float r_25 		= 2752.0f;					// ohms
+	const float v_supply 	= 3.067f;					// V (formula is radiometric)
+	const float r_series = 30e3f, r_pulldown = 47.6e3f; // ohms (voltage divider)
 
-	const float v_supply 	= 3.3f;									// volts
-	float r_therm 			= (volts * r_ref) / (v_supply - volts);	// ohms
+	float r_therm = (v_supply * r_series * r_pulldown)	// ohms -> thermal resistance
+				/ ((v_supply - volts) * r_pulldown - r_series * volts);
+
 	float ratio 			= r_therm / r_25;
 	float ln_ratio 			= log(ratio);
 
@@ -96,16 +99,18 @@ static float Voltage_To_DegC_A1325(float volts) {
  * Beta found from: https://www.ametherm.com/thermistor/ntc-thermistor-beta
  * @param 	float volts -> Output voltage from sensor
  * @return 	float temp_degC -> Temperature in degrees Celsius
- * @note 	Tested and Verified
+ * @note 	Tested and Verified.  Altered so that the calcs match the actual circuit in the schematic.
  */
 static float Voltage_To_DegC_Bosch(float volts) {
-	const float r_25 = 2057.0f, r_ref = 10000.0f;	// ohms
+	const float r_25 = 2057.0f;				// ohms
+	const float temp_ref 	= 298.15f;		// 25 deg C
+	const float v_supply 	= 3.067f;		// V (formula is radiometric)
+	const float beta 		= 3463.0f;		// (ratio)
 
-	const float temp_ref 	= 298.15f;		// 21 deg C
-	const float beta 		= 3463.0f;
-	const float v_supply 	= 3.3f;
+	const float r_series = 30e3f, r_pulldown = 47.6e3f; // ohms (voltage divider)
 
-	const float r_therm = (volts * r_ref) / (v_supply - volts);
+	float r_therm = (v_supply * r_series * r_pulldown) 	// ohms -> thermal resistance
+			/ ((v_supply - volts) * r_pulldown - r_series * volts);
 
 	float temp_inv_K 	=  (1 / temp_ref) + (1 / beta) * log(r_therm / r_25);
 	float temp_degC 	=  (1 / temp_inv_K) - 273.15f;
@@ -298,6 +303,9 @@ void Update_Fan_Speed(SensorInputs_t *si) {
 	float pulse_freq_hz = tick_freq_hz / (float)tach_delta_ticks;
 	si->fan_rpm = (pulse_freq_hz * 60) / (float)PULSES_PER_REVOLUTION;
 }
+
+
+
 
 
 
