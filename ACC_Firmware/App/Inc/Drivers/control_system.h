@@ -47,6 +47,7 @@ typedef struct {
 
 void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can);
 void CAN_TransmitAll_SensorData(SensorInputs_t *si, CAN_Driver_t *can);
+void Set_SwitchEnable(ACC_t *acc, bool en);
 void Toggle_Status_LEDs(ACC_t *acc);
 
 #endif /* INC_CONTROL_SYSTEM_H_ */

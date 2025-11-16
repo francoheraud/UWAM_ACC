@@ -344,15 +344,15 @@ Discarded input sections
                 0x00000000      0x136 ./App/Src/Drivers/control_system.o
  .text.CAN_Transmit_PowerConsumption
                 0x00000000       0xa8 ./App/Src/Drivers/control_system.o
+ .text.Set_SwitchEnable
+                0x00000000       0x40 ./App/Src/Drivers/control_system.o
+ .text.Toggle_Status_LEDs
+                0x00000000       0x60 ./App/Src/Drivers/control_system.o
  .text.ACC_Control_Loop
                 0x00000000      0x140 ./App/Src/Drivers/control_system.o
- .text.Set_SwitchEnable
-                0x00000000       0x4c ./App/Src/Drivers/control_system.o
- .text.Toggle_Status_LEDs
-                0x00000000       0x40 ./App/Src/Drivers/control_system.o
  .bss.control_state.0
                 0x00000000        0x1 ./App/Src/Drivers/control_system.o
- .debug_info    0x00000000     0x13f9 ./App/Src/Drivers/control_system.o
+ .debug_info    0x00000000     0x13f8 ./App/Src/Drivers/control_system.o
  .debug_abbrev  0x00000000      0x270 ./App/Src/Drivers/control_system.o
  .debug_aranges
                 0x00000000       0x50 ./App/Src/Drivers/control_system.o
@@ -433,8 +433,8 @@ Discarded input sections
  .debug_macro   0x00000000      0x126 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0x16 ./App/Src/Drivers/control_system.o
  .debug_macro   0x00000000       0xbe ./App/Src/Drivers/control_system.o
- .debug_line    0x00000000      0xd71 ./App/Src/Drivers/control_system.o
- .debug_str     0x00000000    0xcbeb3 ./App/Src/Drivers/control_system.o
+ .debug_line    0x00000000      0xd6a ./App/Src/Drivers/control_system.o
+ .debug_str     0x00000000    0xcbead ./App/Src/Drivers/control_system.o
  .comment       0x00000000       0x44 ./App/Src/Drivers/control_system.o
  .debug_frame   0x00000000      0x114 ./App/Src/Drivers/control_system.o
  .ARM.attributes

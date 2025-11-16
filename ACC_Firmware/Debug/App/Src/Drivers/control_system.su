@@ -1,7 +1,7 @@
-../App/Src/Drivers/control_system.c:17:14:Highest_Input_Temp	24	static
-../App/Src/Drivers/control_system.c:33:14:Highest_Seg_Temp	24	static
-../App/Src/Drivers/control_system.c:48:6:CAN_TransmitAll_SensorData	24	static
-../App/Src/Drivers/control_system.c:88:6:CAN_Transmit_PowerConsumption	32	static
-../App/Src/Drivers/control_system.c:117:6:ACC_Control_Loop	40	static
-../App/Src/Drivers/control_system.c:167:6:Set_SwitchEnable	24	static
-../App/Src/Drivers/control_system.c:186:6:Toggle_Status_LEDs	16	static
+../App/Src/Drivers/control_system.c:18:14:Highest_Input_Temp	24	static
+../App/Src/Drivers/control_system.c:34:14:Highest_Seg_Temp	24	static
+../App/Src/Drivers/control_system.c:49:6:CAN_TransmitAll_SensorData	24	static
+../App/Src/Drivers/control_system.c:89:6:CAN_Transmit_PowerConsumption	32	static
+../App/Src/Drivers/control_system.c:116:6:Set_SwitchEnable	16	static
+../App/Src/Drivers/control_system.c:134:6:Toggle_Status_LEDs	16	static
+../App/Src/Drivers/control_system.c:159:6:ACC_Control_Loop	40	static

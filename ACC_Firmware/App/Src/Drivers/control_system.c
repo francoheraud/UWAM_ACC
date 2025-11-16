@@ -6,6 +6,7 @@
 
 #include <Drivers/control_system.h>
 
+// Intended for some future error debugging...
 extern bool has_can_failed = false;
 
 /**
@@ -107,6 +108,47 @@ void CAN_Transmit_PowerConsumption(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t 
 }
 
 
+/**
+ * Capable of setting/resetting the switch circuit pin and updating the corresponding led state in the acc struct...
+ * @param acc
+ * @param en
+ */
+void Set_SwitchEnable(ACC_t *acc, bool en) {
+	if (en) {
+		acc->led = SW_EN_LED_ON;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+	}
+	else {
+		acc->led = SW_EN_LED_OFF;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	}
+	return;
+}
+
+
+/**
+ * @brief	Toggles the status leds depending on the led_t flags...
+ * @param 	acc
+ * @return 	void
+ */
+void Toggle_Status_LEDs(ACC_t *acc) {
+	switch (acc->led) {
+	case SW_EN_LED_ON:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+		break;
+	case SW_EN_LED_OFF:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+		break;
+	case SW_OVERCURRENT:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+		break;
+	default:
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+	}
+	return;
+}
+
+
 
 /**
  * @brief Main control loop. Uses a simple threshold algorithm with hysteresis.
@@ -164,35 +206,5 @@ void ACC_Control_Loop(ACC_t *acc, SensorInputs_t *si, CAN_Driver_t *can) {
 	return ;
 }
 
-void Set_SwitchEnable(ACC_t *acc) {
-	ACC_State_t state = acc->flag;
-	if (state == SWITCH_ENABLE) {
-		acc->led = SW_EN_LED_ON;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	}
-	else if (state == SWITCH_DISABLE) {
-		acc->led = SW_EN_LED_OFF;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	}
-	return;
-}
-
-
-/**
- * @brief
- * @param 	acc
- * @return 	void
- */
-void Toggle_Status_LEDs(ACC_t *acc) {
-	switch (acc->led) {
-	case SW_EN_LED_ON:
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-		break;
-	case SW_EN_LED_OFF:
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-		break;
-	}
-
-}
-
+// TODO: must tidy up everything
 
