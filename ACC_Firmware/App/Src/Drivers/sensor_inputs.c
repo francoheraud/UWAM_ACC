@@ -8,6 +8,9 @@
 
 extern TIM_HandleTypeDef htim2;
 
+// voltage divider resistors
+const float r_series = 30e3f, r_pulldown = 47.6e3f;
+
 /**
  * @brief Helper constrain function.
 * @param float x, float low, float high
@@ -77,7 +80,6 @@ static float Voltage_To_kPa_MIP(float volts) {
 static float Voltage_To_DegC_A1325(float volts) {
 	const float r_25 		= 2752.0f;					// ohms
 	const float v_supply 	= 3.067f;					// V (formula is radiometric)
-	const float r_series = 30e3f, r_pulldown = 47.6e3f; // ohms (voltage divider)
 
 	float r_therm = (v_supply * r_series * r_pulldown)	// ohms -> thermal resistance
 				/ ((v_supply - volts) * r_pulldown - r_series * volts);
@@ -106,8 +108,6 @@ static float Voltage_To_DegC_Bosch(float volts) {
 	const float temp_ref 	= 298.15f;		// 25 deg C
 	const float v_supply 	= 3.067f;		// V (formula is radiometric)
 	const float beta 		= 3463.0f;		// (ratio)
-
-	const float r_series = 30e3f, r_pulldown = 47.6e3f; // ohms (voltage divider)
 
 	float r_therm = (v_supply * r_series * r_pulldown) 	// ohms -> thermal resistance
 			/ ((v_supply - volts) * r_pulldown - r_series * volts);
@@ -315,25 +315,63 @@ void Update_Fan_Speed(SensorInputs_t *si) {
  * @brief Measures current from the switch circuit. This translates the output from the
  * current sense amplifier.
  * @param SensorInputs_t *si
+ * @note shunt res is 0.003 ohms, gain was 50
+ * datasheet btw is: https://www.ti.com/lit/ds/symlink/ina293-q1.pdf?ts=1763285906829&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FINA293-Q1%252Fpart-details%252FINA293B2QDBVRQ1
  */
 static void Measure_SwitchCircuit_Current(SensorInputs_t *si) {
-	const float gain = 50.0f;
-	const float max_voltage = 2.262f, saturation_voltage = 3.3f; // V
+	const float v_supply 	= 3.3f; 			// V
+	const float gain 		= 50.0f;			// (ratio)
+	const float r_shunt 	= 0.003;			// ohms
+	const float max_allowed_current = 50.0f;	// placeholder for now (determine this!)
 
-	float current_sense_out = si->adc_V[8];
+	const float v_div_ratio = r_pulldown / (r_pulldown + r_series);
 
+	float v_sense_out 		= si->adc_V[8]; 	// V
+	v_sense_out = Constrain(v_sense_out, 0.0f, v_supply);
+
+	si->switch_current = v_sense_out / (v_div_ratio * gain * r_shunt);
+
+	si->switch_current = (v_sense_out * (r_series + r_pulldown)) / (0.15f * r_pulldown); // A (from KCL)
+
+	if (si->switch_current > max_allowed_current) {
+		// handle over current...
+	}
+
+	return;
+}
+
+// FIXME: I am worried that the PCB is currently powering the current sense amplifier using 3.3V and then
+// we use a dedicated 5V->3.3V voltage divider for the amp output? Not sure if we're okay with this? Especially
+// if we want to use the full 0-3.3V range for the ADC (for accuracy)? May need to change v_supply!
+
+/**
+ * @brief Logs the switch circuit voltage after being stepped down by a voltage divider and going through a
+ * voltage follower op amp.
+ * @param si
+ * @note Added warning flag for over voltage.
+ */
+static void Measure_SwitchCircuit_Voltage(SensorInputs_t *si) {
+	float v_state = si->adc_V[9]; // V
+	const float max_voltage = 2.262f; // V
+	//const float saturation_voltage = 3.3f;
+	const float v_div_ratio = (2.21f / 12.21f);
+	si->switch_voltage = v_state / v_div_ratio;
+
+	if (si->switch_voltage > max_voltage) {
+		// handle warning flag...
+	}
+	return;
 }
 
 
-
 /**
- *
+ * @brief Computes P = VI...
  * @param si
  * @note Updated ch count to 10
  */
 void Store_PowerConsumption_Data(SensorInputs_t *si) {
-	si->switch_current = si->adc_V[8];
-	si->switch_voltage = si->adc_V[9];
+	Measure_SwitchCircuit_Voltage(si);
+	Measure_SwitchCircuit_Current(si);
 	si->switch_power = si->switch_current * si->switch_voltage;
 	return;
 }

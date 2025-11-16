@@ -55,6 +55,7 @@ void Store_Pressure_Readings(SensorInputs_t *si);
 void PWM_SetAll(SensorInputs_t *si);
 void Update_Fan_Speed(SensorInputs_t *si);
 void Update_ADC_Buffers(SensorInputs_t *si);
+void Store_PowerConsumption_Data(SensorInputs_t *si);
 
 
 #endif /* INC_SENSOR_INPUTS_H_ */
