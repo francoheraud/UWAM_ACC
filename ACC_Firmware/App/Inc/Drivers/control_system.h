@@ -24,15 +24,6 @@ typedef enum {
 
 
 typedef enum {
-	CONTROL_STATE_CHANGED,
-	OVERCURRENT_WARNING,
-	SWITCH_ENABLE,
-	SWITCH_DISABLE
-	// WIP...
-
-} ACC_State_t;
-
-typedef enum {
 	SW_EN_LED_ON,
 	SW_EN_LED_OFF,
 	SW_OVERCURRENT
@@ -40,7 +31,6 @@ typedef enum {
 
 typedef struct {
 	Ctrl_State_t ctrl;
-	ACC_State_t flag;
 	LED_t led;
 } ACC_t;
 
